@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #f5f5f5;
@@ -15,11 +14,11 @@
             line-height: 1.6;
         }
 
-        /* ── Header ── */
+        /* ══ HEADER ══ */
         .header {
             background: #fff;
             border-bottom: 1px solid #e5e5e5;
-            padding: 16px 32px;
+            padding: 12px 28px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -27,101 +26,218 @@
             align-items: center;
             gap: 16px;
         }
-        .header h1 {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1a1a1a;
-        }
-        .header .subtitle {
-            font-size: 13px;
-            color: #6b7280;
-        }
-        .header .back-btn {
+        .header h1 { font-size: 18px; font-weight: 700; }
+        .header .subtitle { font-size: 13px; color: #6b7280; }
+        .hdr-back {
             display: none;
-            background: #f3f4f6;
-            border: 1px solid #e5e5e5;
-            border-radius: 8px;
-            padding: 6px 14px;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            color: #374151;
-            transition: all 0.15s;
+            background: #f3f4f6; border: 1px solid #e5e5e5; border-radius: 8px;
+            padding: 6px 14px; font-family: 'Inter', sans-serif; font-size: 13px;
+            font-weight: 500; cursor: pointer; color: #374151; transition: all 0.15s;
         }
-        .header .back-btn:hover { background: #e5e7eb; }
-        .header .restart-btn {
+        .hdr-back:hover { background: #e5e7eb; }
+        .hdr-right {
             margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hdr-btn {
+            background: #fff; border: 1px solid #e5e5e5; border-radius: 8px;
+            padding: 6px 14px; font-family: 'Inter', sans-serif; font-size: 13px;
+            font-weight: 500; cursor: pointer; color: #6b7280; transition: all 0.15s;
+        }
+        .hdr-btn:hover { background: #f3f4f6; color: #374151; }
+        .hdr-btn.active-tab {
+            background: #2563eb; color: #fff; border-color: #2563eb;
+        }
+
+        /* ── Style dropdown ── */
+        .style-dropdown-wrap { position: relative; }
+        .style-dropdown-btn {
+            background: #fff; border: 1px solid #e5e5e5; border-radius: 8px;
+            padding: 6px 14px; font-family: 'Inter', sans-serif; font-size: 13px;
+            font-weight: 500; cursor: pointer; color: #374151; transition: all 0.15s;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .style-dropdown-btn:hover { background: #f3f4f6; }
+        .style-dropdown-btn .arrow { font-size: 10px; color: #9ca3af; }
+        .style-dropdown-btn .cur-style { font-weight: 700; color: #2563eb; }
+        .style-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
             background: #fff;
             border: 1px solid #e5e5e5;
-            border-radius: 8px;
-            padding: 6px 14px;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            font-weight: 500;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            width: 340px;
+            z-index: 200;
+            overflow: hidden;
+        }
+        .style-dropdown.open { display: block; }
+        .style-dropdown-header {
+            padding: 12px 16px 8px;
+            font-size: 11px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.5px; color: #6b7280;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .style-option {
+            padding: 12px 16px;
             cursor: pointer;
-            color: #6b7280;
-            transition: all 0.15s;
+            transition: background 0.1s;
+            border-bottom: 1px solid #f9fafb;
         }
-        .header .restart-btn:hover { background: #f3f4f6; color: #374151; }
-
-        /* ── Layout ── */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 32px 24px 80px;
+        .style-option:last-child { border-bottom: none; }
+        .style-option:hover { background: #f8faff; }
+        .style-option.active { background: #eff6ff; }
+        .style-option .so-row {
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .style-option .so-name { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+        .style-option.active .so-name { color: #2563eb; }
+        .style-option .so-check { color: #2563eb; font-size: 16px; display: none; }
+        .style-option.active .so-check { display: inline; }
+        .style-option .so-source {
+            font-size: 11px; font-weight: 600; color: #9ca3af;
+            margin-top: 2px;
+        }
+        .style-option .so-desc {
+            font-size: 12px; color: #6b7280; margin-top: 4px; line-height: 1.45;
         }
 
-        /* ── Breadcrumb ── */
+        /* ══ PAGES ══ */
+        .page { display: none; }
+        .page.visible { display: block; }
+        .container { max-width: 900px; margin: 0 auto; padding: 28px 24px 60px; }
+
+        /* ══ OVERVIEW PAGE ══ */
+
+        /* Flowchart diagram */
+        .chart-card {
+            background: #fff; border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            padding: 28px; margin-bottom: 20px;
+        }
+        .chart-card h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+        .chart-card .chart-sub { font-size: 13px; color: #6b7280; margin-bottom: 24px; }
+
+        /* Tree nodes */
+        .tree { position: relative; padding-left: 0; }
+        .tree-node { position: relative; margin-bottom: 0; }
+        .tn-row {
+            display: flex; align-items: flex-start; gap: 14px;
+            padding: 8px 0;
+        }
+        .tn-icon {
+            width: 32px; height: 32px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 700; flex-shrink: 0;
+            color: #fff; margin-top: 2px;
+        }
+        .tn-body { flex: 1; min-width: 0; }
+        .tn-title { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+        .tn-goal { font-size: 12px; color: #6b7280; margin-top: 2px; line-height: 1.45; }
+        .tn-action {
+            display: inline-block; font-size: 11px; font-weight: 600;
+            margin-top: 5px; padding: 2px 8px; border-radius: 4px;
+            background: #f0fdf4; color: #166534;
+        }
+
+        /* Branch connector */
+        .tree-branches {
+            margin-left: 16px;
+            border-left: 2px solid #d1d5db;
+            padding-left: 24px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+        .tree-branches .tn-row { padding: 6px 0; }
+        .tree-sub-branches {
+            margin-left: 16px;
+            border-left: 2px dashed #e5e7eb;
+            padding-left: 20px;
+            padding-top: 2px;
+        }
+        .tree-sub-branches .tn-row { padding: 4px 0; }
+
+        /* clickable nodes */
+        .tn-clickable { cursor: pointer; border-radius: 8px; padding: 6px 8px; margin: -6px -8px; transition: background 0.1s; }
+        .tn-clickable:hover { background: #f8faff; }
+
+        /* Branch label */
+        .branch-label {
+            font-size: 11px; font-weight: 600; color: #9ca3af;
+            text-transform: uppercase; letter-spacing: 0.3px;
+            padding: 8px 0 2px;
+        }
+
+        /* Groups card */
+        .groups-card {
+            background: #fff; border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            padding: 24px 28px; margin-bottom: 20px;
+        }
+        .groups-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+        .group-row {
+            display: flex; gap: 12px; align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .group-row:last-child { border-bottom: none; }
+        .group-badge {
+            font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px;
+            white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+        }
+        .group-info { flex: 1; }
+        .group-name { font-size: 13px; font-weight: 700; color: #1a1a1a; }
+        .group-desc { font-size: 12px; color: #6b7280; margin-top: 2px; line-height: 1.45; }
+
+        /* Rules card */
+        .rules-card {
+            background: #fff; border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            padding: 24px 28px;
+        }
+        .rules-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+        .rules-card ol { padding-left: 20px; font-size: 13px; color: #374151; }
+        .rules-card ol li { margin-bottom: 8px; line-height: 1.55; }
+
+        /* Start button */
+        .start-btn-wrap { text-align: center; margin: 28px 0 0; }
+        .start-btn {
+            display: inline-block; padding: 14px 40px;
+            background: #2563eb; color: #fff; border: none; border-radius: 10px;
+            font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
+            cursor: pointer; transition: background 0.15s;
+        }
+        .start-btn:hover { background: #1d4ed8; }
+
+        /* ══ SCRIPTS PAGE ══ */
+
         .breadcrumb {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            align-items: center;
-            margin-bottom: 24px;
-            font-size: 12px;
-            color: #9ca3af;
+            display: flex; flex-wrap: wrap; gap: 4px; align-items: center;
+            margin-bottom: 20px; font-size: 12px; color: #9ca3af;
         }
-        .breadcrumb .crumb {
-            cursor: pointer;
-            color: #2563eb;
-            font-weight: 500;
-            transition: color 0.15s;
-        }
+        .breadcrumb .crumb { cursor: pointer; color: #2563eb; font-weight: 500; }
         .breadcrumb .crumb:hover { color: #1d4ed8; }
-        .breadcrumb .crumb.current {
-            color: #1a1a1a;
-            cursor: default;
-            font-weight: 600;
-        }
+        .breadcrumb .crumb.current { color: #1a1a1a; cursor: default; font-weight: 600; }
         .breadcrumb .sep { color: #d1d5db; margin: 0 2px; }
 
-        /* ── Node card ── */
         .node-card {
-            background: #fff;
-            border-radius: 12px;
+            background: #fff; border-radius: 12px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            overflow: hidden;
-            animation: fadeIn 0.25s ease;
+            overflow: hidden; animation: fadeIn 0.25s ease;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .node-header {
-            padding: 24px 28px 16px;
-            border-bottom: 1px solid #f3f4f6;
-        }
+        .node-header { padding: 24px 28px 16px; border-bottom: 1px solid #f3f4f6; }
         .node-group-tag {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 3px 10px;
-            border-radius: 4px;
-            margin-bottom: 10px;
+            display: inline-block; font-size: 11px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            padding: 3px 10px; border-radius: 4px; margin-bottom: 10px;
         }
         .tag-opening { background: #dbeafe; color: #1d4ed8; }
         .tag-group1 { background: #dcfce7; color: #166534; }
@@ -130,262 +246,328 @@
         .tag-group4 { background: #e0e7ff; color: #3730a3; }
         .tag-group5 { background: #fecaca; color: #991b1b; }
         .tag-edge { background: #f3f4f6; color: #4b5563; }
-
-        .node-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 4px;
-        }
-        .node-subtitle {
-            font-size: 14px;
-            color: #6b7280;
-        }
-
-        /* ── Script section ── */
+        .node-title { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+        .node-subtitle { font-size: 14px; color: #6b7280; }
         .node-body { padding: 24px 28px; }
 
         .manager-note {
-            background: #fffbeb;
-            border: 1px solid #fde68a;
-            border-radius: 8px;
-            padding: 14px 16px;
-            margin-bottom: 20px;
-            font-size: 13px;
-            color: #78350f;
-            line-height: 1.55;
+            background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px;
+            padding: 14px 16px; margin-bottom: 20px; font-size: 13px;
+            color: #78350f; line-height: 1.55;
         }
         .manager-note strong {
-            display: block;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-            color: #92400e;
+            display: block; font-size: 11px; text-transform: uppercase;
+            letter-spacing: 0.5px; margin-bottom: 6px; color: #92400e;
         }
-
-        .script-block {
-            background: #f0f7ff;
-            border-left: 3px solid #2563eb;
-            border-radius: 0 8px 8px 0;
-            padding: 18px 20px;
-            margin-bottom: 16px;
-            position: relative;
-        }
-        .script-line {
-            margin-bottom: 12px;
-            font-size: 14px;
-            line-height: 1.65;
-        }
-        .script-line:last-child { margin-bottom: 0; }
-
-        .speaker {
-            font-weight: 700;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            margin-right: 6px;
-        }
-        .speaker.jordan { color: #2563eb; }
-        .speaker.client { color: #6b7280; }
-
-        .script-variant-label {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #6b7280;
-            margin: 24px 0 10px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
         .inline-note {
-            background: #fffbeb;
-            border-radius: 6px;
-            padding: 10px 14px;
-            margin: 12px 0;
-            font-size: 12px;
-            color: #78350f;
-            line-height: 1.5;
+            background: #fffbeb; border-radius: 6px; padding: 10px 14px;
+            margin: 12px 0; font-size: 12px; color: #78350f; line-height: 1.5;
             border-left: 3px solid #fbbf24;
         }
-
-        /* ── Choices / transitions ── */
-        .choices {
-            margin-top: 24px;
-            padding-top: 20px;
-            border-top: 1px solid #f3f4f6;
-        }
-        .choices-label {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #6b7280;
-            margin-bottom: 12px;
-        }
-
-        .choice-btn {
-            display: block;
-            width: 100%;
-            text-align: left;
-            background: #fff;
-            border: 1px solid #e5e5e5;
-            border-radius: 10px;
-            padding: 14px 18px;
-            margin-bottom: 8px;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            color: #1a1a1a;
-            transition: all 0.15s;
-            line-height: 1.45;
-        }
-        .choice-btn:hover {
-            border-color: #2563eb;
-            background: #f0f7ff;
-        }
-        .choice-btn .choice-client {
-            font-weight: 600;
-            color: #374151;
-        }
-        .choice-btn .choice-arrow {
-            float: right;
-            color: #2563eb;
-            font-weight: 600;
-            margin-left: 12px;
-        }
-
-        /* ── Post-call action ── */
         .post-call {
-            background: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            border-radius: 8px;
-            padding: 14px 16px;
-            margin-top: 20px;
-            font-size: 13px;
-            color: #166534;
-            line-height: 1.55;
+            background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px;
+            padding: 14px 16px; margin-top: 20px; font-size: 13px;
+            color: #166534; line-height: 1.55;
         }
         .post-call strong {
-            display: block;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-            color: #15803d;
+            display: block; font-size: 11px; text-transform: uppercase;
+            letter-spacing: 0.5px; margin-bottom: 6px; color: #15803d;
         }
 
-        /* ── General rules panel ── */
-        .rules-panel {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            padding: 24px 28px;
-            margin-top: 24px;
+        .script-wrapper { margin-bottom: 16px; }
+        .script-topbar { display: flex; justify-content: flex-end; margin-bottom: 6px; }
+        .copy-btn {
+            background: #e0ecff; border: none; border-radius: 6px;
+            padding: 5px 12px; font-family: 'Inter', sans-serif; font-size: 11px;
+            font-weight: 500; color: #2563eb; cursor: pointer; transition: all 0.15s;
         }
-        .rules-panel h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 16px;
+        .copy-btn:hover { background: #c7dbff; }
+        .script-block {
+            background: #f0f7ff; border-left: 3px solid #2563eb;
+            border-radius: 0 8px 8px 0; padding: 18px 20px;
         }
-        .rules-panel ol {
-            padding-left: 20px;
-            font-size: 13px;
-            color: #374151;
-        }
-        .rules-panel ol li {
-            margin-bottom: 10px;
-            line-height: 1.55;
-        }
+        .script-line { margin-bottom: 12px; font-size: 14px; line-height: 1.65; }
+        .script-line:last-child { margin-bottom: 0; }
+        .speaker { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; margin-right: 6px; }
+        .speaker.mgr { color: #2563eb; }
+        .speaker.client { color: #6b7280; }
 
-        /* ── Tooltip (tour descriptions) ── */
-        .tour-tip {
-            text-decoration: underline dotted #2563eb;
-            cursor: help;
-            color: #2563eb;
-            position: relative;
+        .choices { margin-top: 24px; padding-top: 20px; border-top: 1px solid #f3f4f6; }
+        .choices-label {
+            font-size: 11px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.5px; color: #6b7280; margin-bottom: 12px;
         }
+        .choice-btn {
+            display: block; width: 100%; text-align: left; background: #fff;
+            border: 1px solid #e5e5e5; border-radius: 10px; padding: 14px 18px;
+            margin-bottom: 8px; cursor: pointer; font-family: 'Inter', sans-serif;
+            font-size: 14px; color: #1a1a1a; transition: all 0.15s; line-height: 1.45;
+        }
+        .choice-btn:hover { border-color: #2563eb; background: #f0f7ff; }
+        .choice-btn .choice-arrow { float: right; color: #2563eb; font-weight: 600; margin-left: 12px; }
+
+        .tour-tip { text-decoration: underline dotted #2563eb; cursor: help; color: #2563eb; position: relative; }
         .tour-tip .tip-content {
-            display: none;
-            position: absolute;
-            bottom: calc(100% + 8px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1e293b;
-            color: #fff;
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-size: 12px;
-            line-height: 1.5;
-            width: 320px;
-            z-index: 50;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            font-weight: 400;
-            text-decoration: none;
+            display: none; position: absolute; bottom: calc(100% + 8px);
+            left: 50%; transform: translateX(-50%); background: #1e293b; color: #fff;
+            padding: 12px 16px; border-radius: 8px; font-size: 12px; line-height: 1.5;
+            width: 320px; z-index: 50; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-weight: 400; text-decoration: none;
         }
         .tour-tip:hover .tip-content { display: block; }
         .tour-tip .tip-content::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -6px;
-            border: 6px solid transparent;
-            border-top-color: #1e293b;
+            content: ''; position: absolute; top: 100%; left: 50%; margin-left: -6px;
+            border: 6px solid transparent; border-top-color: #1e293b;
         }
 
-        /* ── Copy button ── */
-        .copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #e0ecff;
-            border: none;
-            border-radius: 6px;
-            padding: 4px 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            font-weight: 500;
-            color: #2563eb;
-            cursor: pointer;
-            transition: all 0.15s;
-        }
-        .copy-btn:hover { background: #c7dbff; }
-
-        /* ── Mobile ── */
+        /* ══ MOBILE ══ */
         @media (max-width: 640px) {
-            .header { padding: 12px 16px; }
+            .header { padding: 10px 14px; gap: 8px; }
             .header h1 { font-size: 15px; }
-            .container { padding: 20px 12px 60px; }
+            .container { padding: 20px 12px 50px; }
             .node-header { padding: 18px 18px 14px; }
-            .node-body { padding: 18px 18px; }
+            .node-body { padding: 18px; }
             .node-title { font-size: 17px; }
-            .tour-tip .tip-content {
-                width: 240px;
-                left: 0;
-                transform: none;
-            }
+            .chart-card { padding: 18px; }
+            .style-dropdown { width: 280px; right: -40px; }
+            .tour-tip .tip-content { width: 240px; left: 0; transform: none; }
         }
     </style>
 </head>
 <body>
 
+<!-- ══ HEADER ══ -->
 <div class="header">
-    <button class="back-btn" id="backBtn" onclick="goBack()">← Back</button>
+    <button class="hdr-back" id="backBtn" onclick="goBack()">← Back</button>
     <div>
         <h1>Qualification Call Flowchart</h1>
-        <div class="subtitle">Database re-engagement — Interactive decision tree</div>
+        <div class="subtitle">Database re-engagement</div>
     </div>
-    <button class="restart-btn" onclick="goToNode('opening')">↻ Restart</button>
+    <div class="hdr-right">
+        <button class="hdr-btn active-tab" id="tabOverview" onclick="showPage('overview')">Overview</button>
+        <button class="hdr-btn" id="tabScripts" onclick="showPage('scripts')">Scripts</button>
+        <div class="style-dropdown-wrap">
+            <button class="style-dropdown-btn" onclick="toggleStyleDropdown(event)">
+                Style: <span class="cur-style" id="curStyleLabel">Jordan</span> <span class="arrow">▼</span>
+            </button>
+            <div class="style-dropdown" id="styleDropdown">
+                <div class="style-dropdown-header">Choose script style</div>
+                <div class="style-option active" data-style="jordan" onclick="selectStyle('jordan')">
+                    <div class="so-row">
+                        <span class="so-name">Jordan</span>
+                        <span class="so-check">✓</span>
+                    </div>
+                    <div class="so-source">Wolf of Wall Street</div>
+                    <div class="so-desc">Energetic, bold, casual. High tempo, lots of personality. "Awesome", "the whole nine yards", "sound good?"</div>
+                </div>
+                <div class="style-option" data-style="don" onclick="selectStyle('don')">
+                    <div class="so-row">
+                        <span class="so-name">Don</span>
+                        <span class="so-check">✓</span>
+                    </div>
+                    <div class="so-source">Mad Men</div>
+                    <div class="so-desc">Calm, measured, professional. Confident without slang. Shorter sentences, no filler words. Classic consultative approach.</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- ══════════════════════════════════════ -->
+<!-- PAGE 1: OVERVIEW                       -->
+<!-- ══════════════════════════════════════ -->
+<div class="page visible" id="page-overview">
 <div class="container">
-    <div class="breadcrumb" id="breadcrumb"></div>
-    <div id="nodeContent"></div>
-    <div class="rules-panel" id="rulesPanel" style="display:none;">
-        <h3>📋 General Rules — All Scenarios</h3>
+
+    <!-- FLOWCHART -->
+    <div class="chart-card">
+        <h2>Call Decision Tree</h2>
+        <div class="chart-sub">Every call follows this structure. Goal: qualification only. 2-3 min max. No selling on the phone.</div>
+
+        <div class="tree">
+            <!-- OPENING -->
+            <div class="tree-node">
+                <div class="tn-row">
+                    <div class="tn-icon" style="background:#2563eb">1</div>
+                    <div class="tn-body">
+                        <div class="tn-title">Opening</div>
+                        <div class="tn-goal">Introduce yourself. Ask if they can talk. Check if Elbrus is still relevant.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BRANCHES from opening -->
+            <div class="tree-branches">
+                <div class="branch-label">Client says "Yes, interested"</div>
+
+                <!-- QUALIFICATION -->
+                <div class="tree-node">
+                    <div class="tn-row">
+                        <div class="tn-icon" style="background:#2563eb">2</div>
+                        <div class="tn-body">
+                            <div class="tn-title">Qualify by timing</div>
+                            <div class="tn-goal">When are they planning? This determines the group.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GROUP 1 -->
+                <div class="tree-branches">
+                    <div class="branch-label">"Ready to plan now"</div>
+                    <div class="tree-node">
+                        <div class="tn-row tn-clickable" onclick="startAtNode('group1')">
+                            <div class="tn-icon" style="background:#16a34a">G1</div>
+                            <div class="tn-body">
+                                <div class="tn-title" style="color:#166534">Ready now</div>
+                                <div class="tn-goal">Qualify route (standard vs non-standard) + month</div>
+                                <div class="tn-action">→ Move to WhatsApp, send dates & prices</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- sub-branches of G1 -->
+                    <div class="tree-sub-branches">
+                        <div class="tn-row" style="padding:2px 0">
+                            <div class="tn-body">
+                                <div class="tn-goal"><strong>Standard route</strong> → collect month → WhatsApp</div>
+                            </div>
+                        </div>
+                        <div class="tn-row" style="padding:2px 0">
+                            <div class="tn-body">
+                                <div class="tn-goal"><strong>Non-standard</strong> → describe key features (N-S Traverse, E-S Traverse, Kazbek+Elbrus) → collect month → WhatsApp</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch-label">"Probably next year"</div>
+                    <div class="tree-node">
+                        <div class="tn-row tn-clickable" onclick="startAtNode('group2')">
+                            <div class="tn-icon" style="background:#d97706">G2</div>
+                            <div class="tn-body">
+                                <div class="tn-title" style="color:#92400e">Next year</div>
+                                <div class="tn-goal">Offer pre-order: min price + open date + price protection</div>
+                                <div class="tn-action">→ If interested: WhatsApp with pre-order details</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tree-sub-branches">
+                        <div class="tn-row" style="padding:2px 0">
+                            <div class="tn-body">
+                                <div class="tn-goal"><strong>Wants pre-order</strong> → qualify route → send details in WhatsApp</div>
+                            </div>
+                        </div>
+                        <div class="tn-row" style="padding:2px 0">
+                            <div class="tn-body">
+                                <div class="tn-goal"><strong>Not ready to book</strong> → agree to notify when schedule published → CRM task</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch-label">"Not sure about timing"</div>
+                    <div class="tree-node">
+                        <div class="tn-row tn-clickable" onclick="startAtNode('group3')">
+                            <div class="tn-icon" style="background:#ca8a04">G3</div>
+                            <div class="tn-body">
+                                <div class="tn-title" style="color:#78350f">Timing uncertain</div>
+                                <div class="tn-goal">Ask THEM when to follow up. Plant the seed about non-standard routes.</div>
+                                <div class="tn-action">→ CRM task on agreed date</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="branch-label">Client says "Already climbed Elbrus"</div>
+                <div class="tree-node">
+                    <div class="tn-row tn-clickable" onclick="startAtNode('already_climbed')">
+                        <div class="tn-icon" style="background:#6366f1">G4</div>
+                        <div class="tn-body">
+                            <div class="tn-title" style="color:#3730a3">Already climbed</div>
+                            <div class="tn-goal">Peak Lenin? Other destinations? Record demand data.</div>
+                            <div class="tn-action">→ Hand off to specialist / record interest</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tree-sub-branches">
+                    <div class="tn-row" style="padding:2px 0">
+                        <div class="tn-body"><div class="tn-goal"><strong>Peak Lenin</strong> → pass to specialist via WhatsApp</div></div>
+                    </div>
+                    <div class="tn-row" style="padding:2px 0">
+                        <div class="tn-body"><div class="tn-goal"><strong>Other destination</strong> → record in CRM (market data!), follow up</div></div>
+                    </div>
+                    <div class="tn-row" style="padding:2px 0">
+                        <div class="tn-body"><div class="tn-goal"><strong>Nothing</strong> → close warmly → Group 5</div></div>
+                    </div>
+                </div>
+
+                <div class="branch-label">Client says "Not interested" / can't talk / doesn't remember</div>
+                <div class="tree-node">
+                    <div class="tn-row tn-clickable" onclick="startAtNode('not_interested')">
+                        <div class="tn-icon" style="background:#dc2626">G5</div>
+                        <div class="tn-body">
+                            <div class="tn-title" style="color:#991b1b">Not interested</div>
+                            <div class="tn-goal">Close warmly. Leave the door open.</div>
+                            <div class="tn-action">→ Close deal in CRM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tree-sub-branches">
+                    <div class="tn-row" style="padding:2px 0">
+                        <div class="tn-body"><div class="tn-goal"><strong>Busy</strong> → ask when to call back → CRM task</div></div>
+                    </div>
+                    <div class="tn-row" style="padding:2px 0">
+                        <div class="tn-body"><div class="tn-goal"><strong>Doesn't remember</strong> → "Did you end up going or did plans change?" → reactivate</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GROUPS REFERENCE -->
+    <div class="groups-card">
+        <h3>Client Groups — Quick Reference</h3>
+        <div class="group-row">
+            <div class="group-badge" style="background:#dcfce7;color:#166534;">G1</div>
+            <div class="group-info">
+                <div class="group-name">Ready to plan now</div>
+                <div class="group-desc">Qualify route + timing → move conversation to WhatsApp → sales process</div>
+            </div>
+        </div>
+        <div class="group-row">
+            <div class="group-badge" style="background:#fef3c7;color:#92400e;">G2</div>
+            <div class="group-info">
+                <div class="group-name">Interested, but next year</div>
+                <div class="group-desc">Offer pre-order (min price, open date, price protection). If no → notify when schedule published</div>
+            </div>
+        </div>
+        <div class="group-row">
+            <div class="group-badge" style="background:#fde68a;color:#78350f;">G3</div>
+            <div class="group-info">
+                <div class="group-name">Interested, timing uncertain</div>
+                <div class="group-desc">Ask THEM when to reconnect. Mention non-standard routes to plant a seed. CRM task on agreed date</div>
+            </div>
+        </div>
+        <div class="group-row">
+            <div class="group-badge" style="background:#e0e7ff;color:#3730a3;">G4</div>
+            <div class="group-info">
+                <div class="group-name">Already climbed Elbrus</div>
+                <div class="group-desc">Peak Lenin or other peaks? Hand off to specialist. Record destination interest (market data)</div>
+            </div>
+        </div>
+        <div class="group-row">
+            <div class="group-badge" style="background:#fecaca;color:#991b1b;">G5</div>
+            <div class="group-info">
+                <div class="group-name">Not interested</div>
+                <div class="group-desc">Close warmly, leave the door open. Close deal in CRM</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RULES -->
+    <div class="rules-card">
+        <h3>General Rules — All Calls</h3>
         <ol>
             <li><strong>Do NOT sell on the phone.</strong> The call is for qualification ONLY. The real selling happens in chat (WhatsApp).</li>
             <li><strong>Keep calls SHORT</strong> — 2–3 minutes max. The client wasn't expecting your call.</li>
@@ -393,36 +575,96 @@
             <li><strong>Say "I", not "we."</strong> First person, personal, conversational.</li>
             <li><strong>Log everything after each call.</strong> CRM entry: client group, interest level, next contact date, notes.</li>
             <li><strong>If client is busy:</strong> "No problem — when would be a better time for you?" → log the callback time.</li>
-            <li><strong>If you get voicemail:</strong> Do NOT leave a voicemail. Send a reactivation message in WhatsApp instead (scripts [85] or [87] from the Scripts Database).</li>
+            <li><strong>If you get voicemail:</strong> Do NOT leave a voicemail. Send a reactivation message in WhatsApp instead (scripts [85] or [87]).</li>
             <li><strong>WhatsApp is our preferred channel.</strong> Always suggest it first. Facebook Messenger is second, email is third.</li>
-            <li><strong>Tone:</strong> Confident, friendly, helpful — never pushy. You're the guy who makes things easy, not the guy who's trying to close a deal.</li>
+            <li><strong>Tone:</strong> Confident, friendly, helpful — never pushy. Helpful advisor, not telemarketer.</li>
             <li><strong>ALWAYS ask the client when THEY are ready</strong> — never impose your own timeline.</li>
         </ol>
     </div>
+
+    <div class="start-btn-wrap">
+        <button class="start-btn" onclick="showPage('scripts'); goToNode('opening', false);">Start Call →</button>
+    </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- PAGE 2: SCRIPTS                        -->
+<!-- ══════════════════════════════════════ -->
+<div class="page" id="page-scripts">
+<div class="container">
+    <div class="breadcrumb" id="breadcrumb"></div>
+    <div id="nodeContent"></div>
+</div>
 </div>
 
 <script>
-// ── Tour descriptions for tooltips ──
+// ══ PAGE SWITCHING ══
+function showPage(page) {
+    document.getElementById('page-overview').classList.toggle('visible', page === 'overview');
+    document.getElementById('page-scripts').classList.toggle('visible', page === 'scripts');
+    document.getElementById('tabOverview').classList.toggle('active-tab', page === 'overview');
+    document.getElementById('tabScripts').classList.toggle('active-tab', page === 'scripts');
+    document.getElementById('backBtn').style.display = (page === 'scripts' && navHistory.length > 0) ? 'inline-block' : 'none';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function startAtNode(nodeId) {
+    showPage('scripts');
+    navHistory = [];
+    currentNode = null;
+    goToNode(nodeId, false);
+}
+
+// ══ STYLE DROPDOWN ══
+function toggleStyleDropdown(e) {
+    e.stopPropagation();
+    document.getElementById('styleDropdown').classList.toggle('open');
+}
+document.addEventListener('click', () => {
+    document.getElementById('styleDropdown').classList.remove('open');
+});
+
+function selectStyle(style) {
+    activeStyle = style;
+    document.getElementById('curStyleLabel').textContent = STYLE_NAMES[style];
+    document.querySelectorAll('.style-option').forEach(el => {
+        el.classList.toggle('active', el.dataset.style === style);
+    });
+    document.getElementById('styleDropdown').classList.remove('open');
+    if (currentNode) renderNode(currentNode);
+}
+
+// ══ TOUR TOOLTIPS ══
 const TOURS = {
-    nst: '<strong>North-to-South Traverse</strong><br>Wild north side → both summits → south. Mountain huts (comfort). 9 days, same as standard. ~€2000+. No special experience needed. You see the entire mountain.',
+    nst: '<strong>North-to-South Traverse</strong><br>Wild north side → both summits → south. Mountain huts (comfort). 9 days, same as standard. ~€2000+. No special experience needed.',
     est: '<strong>East-to-South Traverse</strong><br>Wildest, most beautiful side. Tents with max comfort (porters, chef, fresh food). 8 days off-grid. Only 2 departures/season. For experienced climbers.',
     kze: '<strong>Kazbek + Elbrus</strong><br>13 days, two summits. Kazbek = natural acclimatization. Cheaper than 2 separate tours. Accessible for beginners.'
 };
-
 function tip(key, label) {
     return `<span class="tour-tip">${label}<span class="tip-content">${TOURS[key]}</span></span>`;
 }
 
-// ── Node definitions ──
+// ══ STYLE CONFIG ══
+let activeStyle = 'jordan';
+const STYLE_NAMES = { jordan: 'Jordan', don: 'Don' };
+
+// ══════════════════════════════════════════
+// NODE DEFINITIONS
+// ══════════════════════════════════════════
 const NODES = {
 
 opening: {
     tag: 'Opening', tagClass: 'tag-opening',
     title: 'Opening',
     subtitle: 'Introduce yourself. Check if client can talk.',
-    managerNote: `This is the starting point for every call. You're calling clients from the database who previously showed interest but lost contact. Keep your energy up — you're reaching out to someone who was already interested once.`,
+    managerNote: `Starting point for every call. You're calling clients who previously showed interest but lost contact. Check if they can talk and if Elbrus is still on their radar.`,
     script: [
-        {s:'jordan', t:`Hey [client name], how are you? This is Jordan from Elbrus Climbing. You reached out to us a while back about climbing Mount Elbrus — is now a good time to chat about that real quick?`}
+        {s:'m', t:`Hey [client name], how are you? This is Jordan from Elbrus Climbing. You reached out to us a while back about climbing Mount Elbrus — is now a good time to chat about that real quick?`}
+    ],
+    scriptDon: [
+        {s:'m', t:`Good afternoon, [client name]. This is Don from Elbrus Climbing. You contacted us some time ago regarding a Mount Elbrus expedition — do you have a moment to discuss this briefly?`}
     ],
     choices: [
         {label: `"Yeah, sure" / "Go ahead"`, node: 'interest_check'},
@@ -438,12 +680,16 @@ interest_check: {
     title: 'Confirm Interest',
     subtitle: 'Verify that Elbrus is still on their radar.',
     script: [
-        {s:'jordan', t:`Awesome. So you were in touch with my team about an Elbrus expedition — is that still something you're looking at?`},
-        {s:'client', t:`Yeah, actually I've been thinking about it.`},
+        {s:'m', t:`Awesome. So you were in touch with my team about an Elbrus expedition — is that still something you're looking at?`},
+        {s:'c', t:`Yeah, actually I've been thinking about it.`},
     ],
-    note: `If the client says "yes but not this year" → go to Group 2. If "I'm not sure about timing" → Group 3.`,
+    scriptDon: [
+        {s:'m', t:`Great. So you were in touch with my colleagues about climbing Elbrus — is that still something you're considering?`},
+        {s:'c', t:`Yes, I've been thinking about it actually.`},
+    ],
+    note: `If "yes but not this year" → Group 2. If "not sure about timing" → Group 3.`,
     choices: [
-        {label: `"Yes, I want to plan now" — ready for this season`, node: 'group1'},
+        {label: `"Yes, I want to plan now"`, node: 'group1'},
         {label: `"Yes, but probably next year"`, node: 'group2'},
         {label: `"Interested but not sure about timing"`, node: 'group3'},
     ]
@@ -452,69 +698,94 @@ interest_check: {
 group1: {
     tag: 'Group 1 — Ready now', tagClass: 'tag-group1',
     title: 'Client Is Ready to Plan',
-    subtitle: 'Best outcome. Qualify route + timing, move to WhatsApp.',
-    managerNote: `Your goal: collect basic info (route preference + month) and agree on WhatsApp follow-up. Do NOT try to sell on the phone — keep it qualification only. Position yourself as a full-service coordinator (climb + visa + insurance + flights).`,
+    subtitle: 'Qualify route + timing, move to WhatsApp.',
+    managerNote: `Collect route preference + month. Do NOT sell on the phone. Position yourself as full-service coordinator (climb + visa + insurance + flights).`,
     script: [
-        {s:'jordan', t:`Perfect. So here's what I'd love to do — let's get all the details sorted out for you in the next few days, and hopefully we can get your trip planned and everything locked in. And by the way, I'm not just talking about the climb — I'm talking visas, insurance, flights, the whole nine yards. I'll help you with all of it. Sound good?`},
-        {s:'client', t:`Yeah, sounds great.`},
-        {s:'jordan', t:`Great. So rather than trying to cram everything into a phone call, let me send you all the information in writing — I'm thinking WhatsApp. That way you've got everything in front of you, you can look at it whenever you want, come back to it, ask questions — much easier than trying to remember everything from a phone call. Before I do that though, couple quick questions — do you already know what kind of route you want? Like, are you thinking the standard south side climb — that's the most popular, most affordable option — or are you interested in something a bit more unique, more challenging, more of an adventure?`}
+        {s:'m', t:`Perfect. So here's what I'd love to do — let's get all the details sorted out for you in the next few days, and hopefully we can get your trip planned and everything locked in. And by the way, I'm not just talking about the climb — I'm talking visas, insurance, flights, the whole nine yards. I'll help you with all of it. Sound good?`},
+        {s:'c', t:`Yeah, sounds great.`},
+        {s:'m', t:`Great. So rather than trying to cram everything into a phone call, let me send you all the information in writing — I'm thinking WhatsApp. That way you've got everything in front of you, you can look at it whenever you want, come back to it, ask questions — much easier than trying to remember everything from a phone call. Before I do that though, couple quick questions — do you already know what kind of route you want? Like, are you thinking the standard south side climb — that's the most popular, most affordable option — or are you interested in something a bit more unique, more challenging, more of an adventure?`}
     ],
-    note: `You're framing WhatsApp as a BENEFIT for the client ("you'll have everything in writing"). The route question qualifies the client AND makes them think about options they might not have considered.`,
+    scriptDon: [
+        {s:'m', t:`Good to hear. Let's get things moving then — I'd like to help you plan the whole trip in the next few days. And I mean everything: the climb itself, but also visa, insurance, flights. I can assist with all of that.`},
+        {s:'c', t:`That sounds good.`},
+        {s:'m', t:`Rather than going through everything on the phone, I'd suggest I send you the information in writing — WhatsApp would be ideal. That way you have everything in front of you and can review it at your convenience. But first, a couple of quick questions. Do you already have an idea which route you'd prefer? The standard south side climb is our most popular and most affordable option. But we also offer some more unique and challenging routes, if that's something that interests you.`}
+    ],
+    note: `Frame WhatsApp as a BENEFIT for the client. Route question qualifies AND makes them think about options.`,
     choices: [
-        {label: `"Standard climb" — client picks the basic route`, node: 'group1_standard'},
-        {label: `"What non-standard options do you have?" — client is curious`, node: 'group1_nonstandard'},
+        {label: `"Standard climb"`, node: 'group1_standard'},
+        {label: `"What non-standard options do you have?"`, node: 'group1_nonstandard'},
     ]
 },
 
 group1_standard: {
     tag: 'Group 1 — Ready now', tagClass: 'tag-group1',
     title: 'Standard Route — Collect Timing & Close',
-    subtitle: 'Client wants standard. Get the month and move to WhatsApp.',
+    subtitle: 'Get the month and move to WhatsApp.',
     script: [
-        {s:'client', t:`Standard, I think.`},
-        {s:'jordan', t:`Got it. And timing — what works best for you? What month are you looking at?`},
-        {s:'client', t:`August.`},
-        {s:'jordan', t:`Perfect. That's all I need for now. Let me put together the available dates for August on the standard route and send everything over. WhatsApp work for you?`},
-        {s:'client', t:`Yeah, sure.`},
-        {s:'jordan', t:`Great. I've got your number here as [number] — is that the same one for WhatsApp?`},
-        {s:'client', t:`Yeah, that's the one.`},
-        {s:'jordan', t:`Awesome. I'll shoot you a message today. Thanks for your time, [client name]. Talk soon — have a great day!`}
+        {s:'c', t:`Standard, I think.`},
+        {s:'m', t:`Got it. And timing — what works best for you? What month are you looking at?`},
+        {s:'c', t:`August.`},
+        {s:'m', t:`Perfect. That's all I need for now. Let me put together the available dates for August on the standard route and send everything over. WhatsApp work for you?`},
+        {s:'c', t:`Yeah, sure.`},
+        {s:'m', t:`Great. I've got your number here as [number] — is that the same one for WhatsApp?`},
+        {s:'c', t:`Yeah, that's the one.`},
+        {s:'m', t:`Awesome. I'll shoot you a message today. Thanks for your time, [client name]. Talk soon — have a great day!`}
     ],
-    postCall: `Write to client in WhatsApp today. Send available dates for standard climb in their preferred month. Follow the sales process from Sales Playbook.`,
+    scriptDon: [
+        {s:'c', t:`Standard, I think.`},
+        {s:'m', t:`Understood. And timing — which month works best for you?`},
+        {s:'c', t:`August.`},
+        {s:'m', t:`That's all I need for now. I'll put together the available August dates and send everything to you. Is WhatsApp convenient?`},
+        {s:'c', t:`Yes, that works.`},
+        {s:'m', t:`I have your number as [number] — is that the same one for WhatsApp?`},
+        {s:'c', t:`Yes, correct.`},
+        {s:'m', t:`I'll send you the details today. Thank you for your time, [client name]. Speak soon.`}
+    ],
+    postCall: `Write to client in WhatsApp today. Send available dates for standard climb. Follow sales process.`,
     choices: []
 },
 
 group1_nonstandard: {
     tag: 'Group 1 — Ready now', tagClass: 'tag-group1',
     title: 'Non-Standard Routes — Present Options',
-    subtitle: 'Client is curious about unique routes. Walk them through the key features.',
-    managerNote: `Client is curious — this is a buying signal. Describe KEY features of each route so they can picture the experience. Don't rush — if they're asking, they're interested. Let them pull the info out of you.`,
+    subtitle: 'Walk through key features of each route.',
+    managerNote: `Client is curious — buying signal. Describe KEY features. Let them pull info from you.`,
     script: [
-        {s:'client', t:`What kind of non-standard stuff do you have?`},
-        {s:'jordan', t:`Great question. So if you're after more than just the summit — if you actually want an incredible route, amazing scenery, something you'll remember forever — we've got a few options. There's the ${tip('nst','North-to-South Traverse')}, where you cross the entire mountain. There's the ${tip('est','East-to-South Traverse')}, which is our most beautiful and most serious route. And then there's the ${tip('kze','Kazbek plus Elbrus')} combo — two summits in one trip. Any of those sound interesting to you?`}
+        {s:'c', t:`What kind of non-standard stuff do you have?`},
+        {s:'m', t:`Great question. So if you're after more than just the summit — if you actually want an incredible route, amazing scenery, something you'll remember forever — we've got a few options. There's the ${tip('nst','North-to-South Traverse')}, where you cross the entire mountain. There's the ${tip('est','East-to-South Traverse')}, which is our most beautiful and most serious route. And then there's the ${tip('kze','Kazbek plus Elbrus')} combo — two summits in one trip. Any of those sound interesting to you?`}
     ],
-    note: `Keep it high-level first. Let the client pick. Don't dump all details at once — let them pull information out of you. That's engagement. Hover over route names above to see key selling points.`,
+    scriptDon: [
+        {s:'c', t:`What other options do you have?`},
+        {s:'m', t:`We have three alternatives. The ${tip('nst','North-to-South Traverse')} — you cross the entire mountain from the wild north side to the south. The ${tip('est','East-to-South Traverse')} — our most scenic and most challenging route. And the ${tip('kze','Kazbek plus Elbrus')} combination — two summits in one expedition. Would any of these be of interest?`}
+    ],
+    note: `Keep it high-level first. Let the client pick. Hover over route names for key selling points.`,
     choices: [
-        {label: `"Tell me about the north traverse"`, node: 'g1_ns_detail'},
-        {label: `"Interesting, send me the info" — client wants to see everything`, node: 'g1_ns_close'},
+        {label: `"Tell me about the north traverse" — wants details`, node: 'g1_ns_detail'},
+        {label: `"Interesting, send me the info"`, node: 'g1_ns_close'},
     ]
 },
 
 g1_ns_detail: {
     tag: 'Group 1 — Ready now', tagClass: 'tag-group1',
     title: 'Route Details — Deep Dive',
-    subtitle: 'Client asks about specific routes. Describe key selling points.',
+    subtitle: 'Describe key selling points of each route.',
     script: [
-        {s:'client', t:`Tell me more about the north-to-south traverse.`},
-        {s:'jordan', t:`Yeah, absolutely. So the North-to-South Traverse — you start on the wild north side of Elbrus, you cross both summits, and you come down the south side. So basically you see the entire mountain from every angle. And here's the thing — on the north side, there are mountain huts, so you've got comfortable accommodation, just like on the south. The whole trip is 9 days including travel days — same duration as the standard climb. Price is just over two thousand euros. It's significantly more interesting and scenic than the standard route, but it doesn't require any special mountaineering experience.`},
-        {s:'client', t:`Interesting. What about the east-side traverse?`},
-        {s:'jordan', t:`The East-to-South Traverse — this is our crown jewel. The east side is the wildest, most beautiful side of Elbrus — completely away from civilization. It's 8 days, you're camping in tents, but we're talking maximum comfort — porters carry the gear, we've got a chef cooking fresh meals, two-person tents. You go up the east side, cross both summits, come down the south. But here's the thing — this one only runs twice per season, July and August, and it's designed for people who already have some experience.`},
-        {s:'client', t:`Got it. And the Kazbek plus Elbrus?`},
-        {s:'jordan', t:`So this one is 13 days — you start by climbing Mount Kazbek in Georgia, which is an incredible climb in itself, and that serves as perfect natural acclimatization for Elbrus. Then you head over to Elbrus and summit it fully acclimatized and prepared. The beauty of it is the price — it's significantly cheaper than booking two separate expeditions. And it's accessible even for complete beginners, because Kazbek is a bit easier and gives you the perfect training for Elbrus.`},
+        {s:'c', t:`Tell me more about the north-to-south traverse.`},
+        {s:'m', t:`Yeah, absolutely. So the North-to-South Traverse — you start on the wild north side of Elbrus, you cross both summits, and you come down the south side. So basically you see the entire mountain from every angle. And here's the thing — on the north side, there are mountain huts, so you've got comfortable accommodation, just like on the south. The whole trip is 9 days including travel days — same duration as the standard climb. Price is just over two thousand euros. It's significantly more interesting and scenic than the standard route, but it doesn't require any special mountaineering experience.`},
+        {s:'c', t:`Interesting. What about the east-side traverse?`},
+        {s:'m', t:`The East-to-South Traverse — this is our crown jewel. The east side is the wildest, most beautiful side of Elbrus — completely away from civilization. It's 8 days, you're camping in tents, but we're talking maximum comfort — porters carry the gear, we've got a chef cooking fresh meals, two-person tents. You go up the east side, cross both summits, come down the south. But here's the thing — this one only runs twice per season, July and August, and it's designed for people who already have some experience.`},
+        {s:'c', t:`Got it. And the Kazbek plus Elbrus?`},
+        {s:'m', t:`So this one is 13 days — you start by climbing Mount Kazbek in Georgia, which is an incredible climb in itself, and that serves as perfect natural acclimatization for Elbrus. Then you head over to Elbrus and summit it fully acclimatized and prepared. The beauty of it is the price — it's significantly cheaper than booking two separate expeditions. And it's accessible even for complete beginners, because Kazbek is a bit easier and gives you the perfect training for Elbrus.`},
     ],
-    choices: [
-        {label: `Client wants to think / asks to send info`, node: 'g1_ns_close'},
-    ]
+    scriptDon: [
+        {s:'c', t:`Tell me more about the north-to-south traverse.`},
+        {s:'m', t:`Of course. The North-to-South Traverse takes you up the wild north side, across both summits, and down the south. You see the entire mountain. The north side has mountain huts, so accommodation is comfortable — similar to the south. It's 9 days total — same as the standard climb. Just over two thousand euros. Significantly more rewarding, and no special experience required.`},
+        {s:'c', t:`What about the east-side traverse?`},
+        {s:'m', t:`The East-to-South Traverse is our most impressive route. The east side is the wildest and most scenic — completely remote. 8 days. Tents, but with full comfort: porters, a chef, fresh meals, two-person tents. You ascend from the east, cross both summits, descend to the south. Runs only twice per season — July and August. Designed for climbers with prior experience.`},
+        {s:'c', t:`And the Kazbek plus Elbrus?`},
+        {s:'m', t:`That's 13 days. You begin with Kazbek in Georgia — excellent natural acclimatization. Then Elbrus, fully prepared. Considerably more affordable than two separate trips. Accessible to beginners — Kazbek provides ideal preparation.`},
+    ],
+    choices: [{label: `Client wants to think / asks to send info`, node: 'g1_ns_close'}]
 },
 
 g1_ns_close: {
@@ -522,33 +793,45 @@ g1_ns_close: {
     title: 'Non-Standard — Collect Timing & Close',
     subtitle: 'Get the month and move to WhatsApp.',
     script: [
-        {s:'client', t:`Interesting, let me think about it. Send me the info.`},
-        {s:'jordan', t:`Absolutely. Let me put together the full breakdown on all of these — routes, prices, dates, the whole thing. You can look at it, compare, and decide what speaks to you. And just so I can pull the right dates — what time of year works best for you? Got a month in mind?`},
-        {s:'client', t:`July probably.`},
-        {s:'jordan', t:`Perfect. I'll pull together all the July options and send you everything — programs, dates, pricing, the works. WhatsApp cool for that?`},
-        {s:'client', t:`Yeah.`},
-        {s:'jordan', t:`I've got your number as [number] — that's your WhatsApp too?`},
-        {s:'client', t:`Yeah.`},
-        {s:'jordan', t:`Awesome. I'll send you everything today. Thanks, [client name]. Talk soon — have a great day!`}
+        {s:'c', t:`Interesting, let me think about it. Send me the info.`},
+        {s:'m', t:`Absolutely. Let me put together the full breakdown on all of these — routes, prices, dates, the whole thing. You can look at it, compare, and decide what speaks to you. And just so I can pull the right dates — what time of year works best for you? Got a month in mind?`},
+        {s:'c', t:`July probably.`},
+        {s:'m', t:`Perfect. I'll pull together all the July options and send you everything — programs, dates, pricing, the works. WhatsApp cool for that?`},
+        {s:'c', t:`Yeah.`},
+        {s:'m', t:`I've got your number as [number] — that's your WhatsApp too?`},
+        {s:'c', t:`Yeah.`},
+        {s:'m', t:`Awesome. I'll send you everything today. Thanks, [client name]. Talk soon — have a great day!`}
     ],
-    postCall: `Send descriptions, dates, and prices for ALL routes client asked about. Include standard as a comparison. Lead with the route they showed most interest in. Follow sales process.`,
+    scriptDon: [
+        {s:'c', t:`That's interesting. Could you send me the details?`},
+        {s:'m', t:`Of course. I'll prepare a full overview — routes, prices, dates. You can compare and decide. Which month are you considering?`},
+        {s:'c', t:`Probably July.`},
+        {s:'m', t:`I'll compile the July options and send everything. Is WhatsApp convenient?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`I have your number as [number] — is that also your WhatsApp?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`I'll send the information today. Thank you, [client name]. Speak soon.`}
+    ],
+    postCall: `Send all route descriptions, dates, prices. Include standard for comparison. Lead with their preferred route.`,
     choices: []
 },
-
-// ── GROUP 2 ──
 
 group2: {
     tag: 'Group 2 — Next year', tagClass: 'tag-group2',
     title: 'Interested, But Next Year',
-    subtitle: 'Introduce the pre-order concept. Don\'t push.',
-    managerNote: `They're interested but not this season. Your goal: introduce the pre-order (lock in minimum price, open date). Present it as an opportunity, not a sales push. Always give two options: pre-order OR "I'll notify you when schedule is published."`,
+    subtitle: 'Introduce the pre-order concept.',
+    managerNote: `Offer pre-order: min price, open date, price protection. Present as opportunity, not push. Give two options: pre-order OR notify when schedule published.`,
     script: [
-        {s:'client', t:`Yeah, but probably next year. Can't make it happen this season.`},
-        {s:'jordan', t:`Totally get it. So here's the thing — the schedule for next year isn't published yet, but while it's still being finalized, you actually have a chance to pre-book at the lowest starting price with an open date. Meaning you lock in the price now, and you pick your exact date later whenever the schedule comes out. Even if the price goes up by then — yours stays the same. Would you be interested in hearing more about how that works, or would you rather I just let you know when next year's schedule is published?`}
+        {s:'c', t:`Yeah, but probably next year. Can't make it happen this season.`},
+        {s:'m', t:`Totally get it. So here's the thing — the schedule for next year isn't published yet, but while it's still being finalized, you actually have a chance to pre-book at the lowest starting price with an open date. Meaning you lock in the price now, and you pick your exact date later whenever the schedule comes out. Even if the price goes up by then — yours stays the same. Would you be interested in hearing more about how that works, or would you rather I just let you know when next year's schedule is published?`}
     ],
-    note: `Pre-order selling points: (1) minimum price locked in, (2) open date = no commitment to specific date, (3) price protection even if prices rise. Make sure all three come through.`,
+    scriptDon: [
+        {s:'c', t:`Yes, but more likely next year. This season won't work.`},
+        {s:'m', t:`Understood. The schedule for next year hasn't been published yet, but there is an option — you can pre-book at the lowest starting price with an open date. You secure the price now and choose your date later. Even if prices increase, yours stays the same. Would you like to hear more, or would you prefer I notify you when the schedule is available?`}
+    ],
+    note: `Pre-order: (1) minimum price, (2) open date, (3) price protection.`,
     choices: [
-        {label: `"Yeah, send me the details" — interested in pre-order`, node: 'g2_preorder'},
+        {label: `"Send me the details" — interested in pre-order`, node: 'g2_preorder'},
         {label: `"Not ready to book, just let me know later"`, node: 'g2_later'},
     ]
 },
@@ -556,337 +839,426 @@ group2: {
 g2_preorder: {
     tag: 'Group 2 — Next year', tagClass: 'tag-group2',
     title: 'Pre-Order — Qualify Route & Close',
-    subtitle: 'Client wants pre-order details. Ask about route, move to WhatsApp.',
+    subtitle: 'Ask about route, move to WhatsApp.',
     script: [
-        {s:'client', t:`Hmm, that's interesting. Yeah, send me the details.`},
-        {s:'jordan', t:`Great. So just to make sure I send you the right stuff — do you already know what kind of route you're thinking? Standard south side climb, or are you curious about something more unique and adventurous?`},
+        {s:'c', t:`Hmm, that's interesting. Yeah, send me the details.`},
+        {s:'m', t:`Great. So just to make sure I send you the right stuff — do you already know what kind of route you're thinking? Standard south side climb, or are you curious about something more unique and adventurous?`},
+    ],
+    scriptDon: [
+        {s:'c', t:`That's interesting. Yes, please send me the details.`},
+        {s:'m', t:`Certainly. Just so I send the most relevant information — do you know which route you'd prefer? Standard south side, or would you be interested in our more unique options?`},
     ],
     choices: [
-        {label: `"Probably standard" — client picks basic`, node: 'g2_preorder_standard'},
-        {label: `"What non-standard options?" — client curious`, node: 'g2_preorder_nonstandard'},
+        {label: `"Probably standard"`, node: 'g2_preorder_standard'},
+        {label: `"What non-standard options?"`, node: 'g2_preorder_nonstandard'},
     ]
 },
 
 g2_preorder_standard: {
     tag: 'Group 2 — Next year', tagClass: 'tag-group2',
-    title: 'Pre-Order Standard — Close to WhatsApp',
-    subtitle: 'Send pre-order details for standard climb.',
+    title: 'Pre-Order Standard — Close',
+    subtitle: 'Send pre-order details via WhatsApp.',
     script: [
-        {s:'client', t:`I don't know much about it. Probably standard for starters.`},
-        {s:'jordan', t:`Makes sense. So let me send you the pre-order details for the standard climb — the price, the conditions, how the whole thing works. And rather than trying to explain it all over the phone, I'll send it in writing so you've got everything in front of you and can come back to it whenever. WhatsApp work?`},
-        {s:'client', t:`Yeah, let's do that.`},
-        {s:'jordan', t:`I've got your number as [number] — same one for WhatsApp?`},
-        {s:'client', t:`Yeah.`},
-        {s:'jordan', t:`Perfect. I'll send that over today. Thanks for chatting, [client name]. Have a great day!`}
+        {s:'c', t:`I don't know much about it. Probably standard for starters.`},
+        {s:'m', t:`Makes sense. So let me send you the pre-order details for the standard climb — the price, the conditions, how the whole thing works. And rather than trying to explain it all over the phone, I'll send it in writing so you've got everything in front of you and can come back to it whenever. WhatsApp work?`},
+        {s:'c', t:`Yeah, let's do that.`},
+        {s:'m', t:`I've got your number as [number] — same one for WhatsApp?`},
+        {s:'c', t:`Yeah.`},
+        {s:'m', t:`Perfect. I'll send that over today. Thanks for chatting, [client name]. Have a great day!`}
     ],
-    postCall: `Send pre-order details in WhatsApp — price, conditions, how open-date booking works. Follow sales process for pre-orders.`,
+    scriptDon: [
+        {s:'c', t:`Probably standard to start.`},
+        {s:'m', t:`That makes sense. I'll send you the pre-order details — price, conditions, and process. All in writing so you can review at your convenience. Is WhatsApp suitable?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`I have your number as [number] — also your WhatsApp?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`I'll send that today. Thank you, [client name]. Have a good day.`}
+    ],
+    postCall: `Send pre-order details in WhatsApp. Follow sales process for pre-orders.`,
     choices: []
 },
 
 g2_preorder_nonstandard: {
     tag: 'Group 2 — Next year', tagClass: 'tag-group2',
-    title: 'Pre-Order Non-Standard — Present Routes & Close',
-    subtitle: 'Walk through routes, then close to WhatsApp with pre-order details.',
+    title: 'Pre-Order Non-Standard — Routes & Close',
+    subtitle: 'Walk through routes, close with pre-order.',
     script: [
-        {s:'client', t:`What non-standard options do you have?`},
-        {s:'jordan', t:`So if you're looking for more than just the summit — like a genuinely incredible route — we've got the ${tip('nst','North-to-South Traverse')} where you cross the entire mountain, the ${tip('est','East-to-South Traverse')} which is our most beautiful and most serious route, and the ${tip('kze','Kazbek plus Elbrus')} combo — two summits in one trip. Any of those catch your eye?`},
-        {s:'client', t:`The traverse sounds cool. Which one's better?`},
-        {s:'jordan', t:`So the North-to-South Traverse — you start on the wild north side, cross both summits, and come down the south. You basically see the whole mountain from every angle. And on the north side there are huts, so you've got comfortable accommodation just like the south. Duration is 9 days, same as the standard climb. Price is just over two thousand euros. It's way more interesting than the standard route but doesn't require any special experience. Now, the East-to-South Traverse — that's our most spectacular route. The east side is the wildest, most beautiful side of Elbrus, 8 days totally off the grid. You're in tents, but with maximum comfort — porters, a chef cooking fresh meals, two-person tents. This one is for experienced climbers and only runs twice per season. Which one sounds more like your thing?`},
-        {s:'client', t:`Probably the north one.`},
-        {s:'jordan', t:`Great choice. So let me send you the pre-order details for the North-to-South Traverse — price, conditions, how the open-date booking works. I can also throw in the standard route as a comparison, if you want. You can look at both and decide. WhatsApp work for you?`},
-        {s:'client', t:`Yeah.`},
-        {s:'jordan', t:`I've got your number as [number] — same for WhatsApp?`},
-        {s:'client', t:`Yeah.`},
-        {s:'jordan', t:`Perfect. I'll send that over today. Thanks for the chat, [client name]. Have a great day!`}
+        {s:'c', t:`What non-standard options do you have?`},
+        {s:'m', t:`So if you're looking for more than just the summit — we've got the ${tip('nst','North-to-South Traverse')} where you cross the entire mountain, the ${tip('est','East-to-South Traverse')} which is our most beautiful and most serious route, and the ${tip('kze','Kazbek plus Elbrus')} combo. Any of those catch your eye?`},
+        {s:'c', t:`The traverse sounds cool. Which one's better?`},
+        {s:'m', t:`The North-to-South — you start on the wild north side, cross both summits, come down south. Whole mountain from every angle. Huts on the north side, so comfortable like the south. 9 days, same as standard. Just over two thousand euros. Way more interesting but no special experience needed. The East-to-South — our most spectacular. Wildest, most beautiful side, 8 days off the grid. Tents but with max comfort — porters, chef, fresh meals. For experienced climbers, only twice per season. Which one?`},
+        {s:'c', t:`Probably the north one.`},
+        {s:'m', t:`Great choice. Let me send you the pre-order details for the North-to-South Traverse — price, conditions, open-date booking. I can throw in standard for comparison too. WhatsApp work?`},
+        {s:'c', t:`Yeah.`},
+        {s:'m', t:`Perfect. I'll send that today. Thanks, [client name]. Have a great day!`}
     ],
-    postCall: `Send pre-order details for the chosen traverse + standard route for comparison. Follow sales process.`,
+    scriptDon: [
+        {s:'c', t:`What other options do you have?`},
+        {s:'m', t:`We have three alternatives: the ${tip('nst','North-to-South Traverse')}, the ${tip('est','East-to-South Traverse')}, and the ${tip('kze','Kazbek plus Elbrus')} combination. Would any of these interest you?`},
+        {s:'c', t:`The traverse sounds interesting. Which would you recommend?`},
+        {s:'m', t:`The North-to-South: wild north side, both summits, down south. Mountain huts — comfortable. 9 days, same as standard. Just over two thousand euros. No special experience needed. The East-to-South: the wildest, most beautiful side. 8 days, tents with full comfort — porters, chef. For experienced climbers, twice per season. Which appeals to you?`},
+        {s:'c', t:`The north traverse.`},
+        {s:'m', t:`Good choice. I'll send pre-order details for the North-to-South Traverse, plus standard for comparison. Is WhatsApp convenient?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`I'll send that today. Thank you, [client name]. Have a good day.`}
+    ],
+    postCall: `Send pre-order details for chosen traverse + standard for comparison.`,
     choices: []
 },
 
 g2_later: {
     tag: 'Group 2 — Next year', tagClass: 'tag-group2',
     title: 'No Pre-Order — Agree on Follow-Up',
-    subtitle: 'Client isn\'t ready to commit. Set a natural follow-up point.',
-    managerNote: `Don't push. Set up a natural follow-up (when schedule is published) and make sure you have their WhatsApp. They should feel in control, not pressured.`,
+    subtitle: 'Set a natural follow-up point.',
+    managerNote: `Don't push. Agree to notify when schedule is published. They should feel in control.`,
     script: [
-        {s:'client', t:`Nah, I'm not ready to book anything. I'd rather just come back to it closer to the time.`},
-        {s:'jordan', t:`Totally fine, no pressure at all. How about this — when next year's schedule is ready, I'll send you everything right away. That'll be around spring. I'll send the current programs, dates, pricing — you look at it whenever works for you, and if anything catches your eye, we'll take it from there. No obligations whatsoever. Sound good?`},
-        {s:'client', t:`Yeah, let's do it that way.`},
-        {s:'jordan', t:`Would WhatsApp work for you when I send that over?`},
-        {s:'client', t:`Yeah.`},
-        {s:'jordan', t:`Perfect. Thanks for the chat, [client name]. Have a great day!`}
+        {s:'c', t:`Nah, I'm not ready to book anything. I'd rather just come back to it closer to the time.`},
+        {s:'m', t:`Totally fine, no pressure at all. How about this — when next year's schedule is ready, I'll send you everything right away. That'll be around spring. I'll send the current programs, dates, pricing — you look at it whenever works for you, and if anything catches your eye, we'll take it from there. No obligations whatsoever. Sound good?`},
+        {s:'c', t:`Yeah, let's do it that way.`},
+        {s:'m', t:`Would WhatsApp work for you when I send that over?`},
+        {s:'c', t:`Yeah.`},
+        {s:'m', t:`Perfect. Thanks for the chat, [client name]. Have a great day!`}
     ],
-    postCall: `Create CRM task for spring — send new schedule when published. Note: client interested for next year, declined pre-order.`,
+    scriptDon: [
+        {s:'c', t:`No, I'd rather not book anything now.`},
+        {s:'m', t:`Of course. When next year's schedule is ready — around spring — I'll send you the programs, dates, and pricing. You can review whenever suits you. No obligations. Does that work?`},
+        {s:'c', t:`Yes, that sounds good.`},
+        {s:'m', t:`Would WhatsApp be convenient?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`Thank you, [client name]. Have a good day.`}
+    ],
+    postCall: `CRM task for spring — send schedule when published. Note: declined pre-order.`,
     choices: []
 },
-
-// ── GROUP 3 ──
 
 group3: {
     tag: 'Group 3 — Uncertain timing', tagClass: 'tag-group3',
     title: 'Interested, But Timing Uncertain',
     subtitle: 'Ask THEM when they\'re ready. Plant the route seed.',
-    managerNote: `Two goals: (1) agree on when to follow up — ask THEM when is a good time, don't impose your timeline; (2) ask about route — this makes them think and increases the chance they engage later. Even if they don't know yet, planting the seed about non-standard routes is valuable.`,
+    managerNote: `Two goals: (1) agree on follow-up — ask THEM, don't impose; (2) mention routes to make them think.`,
     script: [
-        {s:'client', t:`Yeah, I mean I'm interested, but I'm not really sure about the timing. Could be this year, could be next.`},
-        {s:'jordan', t:`Got it. So let me ask you this — when do you think you'd be ready to start actually planning it? Just so I know when's the best time to reach out.`},
+        {s:'c', t:`Yeah, I mean I'm interested, but I'm not really sure about the timing. Could be this year, could be next.`},
+        {s:'m', t:`Got it. So let me ask you this — when do you think you'd be ready to start actually planning it? Just so I know when's the best time to reach out.`},
     ],
-    note: `Critical: ASK the client when THEY are ready. Never say "I'll write you in a couple of months" — that's imposing your schedule. Let them set the timeline.`,
+    scriptDon: [
+        {s:'c', t:`Yes, I'm interested, but I'm not sure about the timing.`},
+        {s:'m', t:`I understand. When do you think you might be ready to start planning? Just so I know the best time to get in touch.`},
+    ],
+    note: `ASK the client when THEY are ready. Never impose your timeline.`,
     choices: [
-        {label: `"Maybe in a couple of months" — names approximate time`, node: 'g3_has_timeframe'},
-        {label: `"Honestly no idea when" — can't name any date`, node: 'g3_no_timeframe'},
+        {label: `"Maybe in a couple of months"`, node: 'g3_has_timeframe'},
+        {label: `"Honestly no idea when"`, node: 'g3_no_timeframe'},
     ]
 },
 
 g3_has_timeframe: {
     tag: 'Group 3 — Uncertain timing', tagClass: 'tag-group3',
-    title: 'Has Approximate Timeframe — Route Seed & Close',
-    subtitle: 'Confirm follow-up date. Ask about route to plant the seed.',
+    title: 'Has Timeframe — Route Seed & Close',
+    subtitle: 'Confirm follow-up date. Plant route seed.',
     script: [
-        {s:'client', t:`Maybe in a couple of months. Depends on my work situation.`},
-        {s:'jordan', t:`Sure, makes sense. So I'll reach out around [month]. And while we've got a minute — do you have a sense of what kind of route you'd be interested in? Like, the standard south side climb — that's the most popular — or maybe something more unique and adventurous?`},
-        {s:'client', t:`What do you mean by more adventurous?`},
-        {s:'jordan', t:`Well, if you're interested in more than just reaching the summit — like you actually want an incredible route with amazing scenery — we've got the ${tip('nst','North-to-South Traverse')}. You go up the wild north side, cross both summits, come down the south. They've got mountain huts on the north side so you're comfortable the whole way. There's also the ${tip('est','East-to-South Traverse')} — that's the wildest, most beautiful side of Elbrus, you're in tents but with full comfort, porters, a chef. And then there's ${tip('kze','Kazbek plus Elbrus')} — two summits in one trip. Just putting that on your radar so you know what's out there.`},
-        {s:'client', t:`Interesting, I didn't know about those. Probably standard for me though.`},
-        {s:'jordan', t:`No problem. So here's what we'll do — when I reach out in [month], I'll send you all the info on the standard climb — dates, prices, everything current. And if in the meantime you get curious about any of those other options, I'll send you those too. Plus I'll help with all the logistics — visas, flights, insurance, all of it. Sound good?`},
-        {s:'client', t:`Yeah, sounds good.`},
-        {s:'jordan', t:`Would WhatsApp work for when I send that over?`},
-        {s:'client', t:`Yeah.`},
-        {s:'jordan', t:`Perfect. Thanks for chatting, [client name]. Have a great day!`}
+        {s:'c', t:`Maybe in a couple of months. Depends on my work situation.`},
+        {s:'m', t:`Sure, makes sense. So I'll reach out around [month]. And while we've got a minute — do you have a sense of what kind of route you'd be interested in? Like, the standard south side climb — that's the most popular — or maybe something more unique and adventurous?`},
+        {s:'c', t:`What do you mean by more adventurous?`},
+        {s:'m', t:`Well, if you're interested in more than just reaching the summit — we've got the ${tip('nst','North-to-South Traverse')}. You go up the wild north side, cross both summits, come down the south. Mountain huts, comfortable. There's also the ${tip('est','East-to-South Traverse')} — wildest, most beautiful side, tents but with full comfort. And ${tip('kze','Kazbek plus Elbrus')} — two summits in one trip. Just putting that on your radar.`},
+        {s:'c', t:`Interesting. Probably standard for me though.`},
+        {s:'m', t:`No problem. When I reach out in [month], I'll send you all the info — dates, prices. And if you get curious about those other options, I'll send those too. Plus I'll help with logistics — visas, flights, insurance. Sound good?`},
+        {s:'c', t:`Yeah, sounds good.`},
+        {s:'m', t:`Would WhatsApp work?`},
+        {s:'c', t:`Yeah.`},
+        {s:'m', t:`Perfect. Thanks for chatting, [client name]. Have a great day!`}
     ],
-    note: `For Group 3, mentioning non-standard routes is about planting a seed. You're making them THINK. Even if they go with standard, they now know options exist and might ask questions later — that's engagement.`,
-    postCall: `CRM task for [agreed month]. Note: interested but timing uncertain, leaning toward standard, mentioned non-standard options. Follow up via WhatsApp.`,
+    scriptDon: [
+        {s:'c', t:`Perhaps in a couple of months. Depends on work.`},
+        {s:'m', t:`Understood. I'll get in touch around [month]. While we have a moment — do you know which route might interest you? Standard south side, or would you consider something more unique?`},
+        {s:'c', t:`What do you mean?`},
+        {s:'m', t:`Besides the standard route, we offer the ${tip('nst','North-to-South Traverse')} — both summits, mountain huts, comfortable. The ${tip('est','East-to-South Traverse')} — most scenic side, tents with full comfort. And ${tip('kze','Kazbek plus Elbrus')} — two summits. Just so you're aware.`},
+        {s:'c', t:`Interesting. Standard for me, I think.`},
+        {s:'m', t:`No problem. When I contact you in [month], I'll send everything — dates, prices. And logistics support: visa, flights, insurance. Does that work?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`WhatsApp convenient?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`Thank you, [client name]. Have a good day.`}
+    ],
+    note: `Mentioning non-standard routes plants a seed. Even if they choose standard, they now know options exist.`,
+    postCall: `CRM task for [month]. Note: timing uncertain, standard route, non-standard mentioned. WhatsApp follow-up.`,
     choices: []
 },
 
 g3_no_timeframe: {
     tag: 'Group 3 — Uncertain timing', tagClass: 'tag-group3',
     title: 'No Timeframe — Plant Seed & Leave Door Open',
-    subtitle: 'Don\'t push for a date. Mention routes, give your contact.',
-    managerNote: `Client is genuinely unsure. Don't push for a date — it'll feel forced. Plant the route seed, give them your contact, leave the door wide open.`,
+    subtitle: 'Mention routes, give your contact.',
+    managerNote: `Don't push for a date. Plant the route seed, give contact, leave door open.`,
     script: [
-        {s:'client', t:`Honestly — I have no idea when. Someday, probably, but I really can't say right now.`},
-        {s:'jordan', t:`No worries at all. One quick question for the future though — do you have a sense of what kind of route you'd be interested in? Just the standard climb, or maybe something more interesting? Besides the standard route we've got things like a traverse across both summits, and a combo where you climb Kazbek and Elbrus together. Just so you know those options exist and can think about it.`},
-        {s:'client', t:`No idea, haven't really thought about it.`},
-        {s:'jordan', t:`Totally fine. Tell you what — whenever you're ready, just reach out and I'll walk you through everything, help you pick the right route. And if you want, here's my number — you can text me anytime. Sound good?`},
-        {s:'client', t:`Yeah, sounds good.`},
-        {s:'jordan', t:`Thanks for chatting, [client name]. All the best!`}
+        {s:'c', t:`Honestly — I have no idea when. Someday, probably, but I really can't say right now.`},
+        {s:'m', t:`No worries at all. One quick question — do you have a sense of what kind of route? Standard, or something more interesting? We've got traverses across both summits, a Kazbek-Elbrus combo. Just so you know the options.`},
+        {s:'c', t:`No idea, haven't really thought about it.`},
+        {s:'m', t:`Totally fine. Whenever you're ready, just reach out — I'll walk you through everything. Here's my number, text me anytime. Sound good?`},
+        {s:'c', t:`Yeah, sounds good.`},
+        {s:'m', t:`Thanks for chatting, [client name]. All the best!`}
     ],
-    postCall: `CRM note — interested but no timeframe, no route preference yet. Non-standard routes mentioned. No specific follow-up date — client will reach out. Consider soft follow-up in 3-4 months.`,
+    scriptDon: [
+        {s:'c', t:`Honestly, I have no idea. Someday perhaps.`},
+        {s:'m', t:`That's completely fine. One question — do you know which route might interest you? Besides standard, we have traverses and a Kazbek-Elbrus combination. Just so you know the options.`},
+        {s:'c', t:`I haven't thought about it.`},
+        {s:'m', t:`No problem. Whenever you're ready, feel free to get in touch. You have my number. Would that be helpful?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`Thank you, [client name]. All the best.`}
+    ],
+    postCall: `CRM note — no timeframe, routes mentioned. Consider soft follow-up in 3-4 months.`,
     choices: []
 },
-
-// ── GROUP 4 ──
 
 already_climbed: {
     tag: 'Group 4 — Already climbed', tagClass: 'tag-group4',
     title: 'Already Climbed Elbrus',
-    subtitle: 'Congratulate. Explore interest in new peaks.',
-    managerNote: `They've done Elbrus — congratulate them and find out if they want something new. Peak Lenin is the main offer for post-Elbrus clients. Even if they name a destination we don't offer — WRITE IT DOWN. That market intelligence is valuable.`,
+    subtitle: 'Explore interest in new peaks.',
+    managerNote: `Congratulate. Peak Lenin = main offer. Even if they want something we don't have — RECORD IT. Don't sell Peak Lenin — hand off to specialist.`,
     script: [
-        {s:'client', t:`Yeah. But actually, I already climbed Elbrus.`},
-        {s:'jordan', t:`Oh, congratulations! That's awesome. So let me ask you — are you looking at any new peaks? Maybe something higher, or in a different region?`},
-        {s:'client', t:`What else do you guys have besides Elbrus?`},
-        {s:'jordan', t:`So the big one for people who've done Elbrus — the natural next step — is Peak Lenin. 7,134 meters. That's a serious high-altitude expedition, a whole different level. We've also got some other options. If that sounds interesting, what I'd suggest is I pass your contact to my colleague who specializes in these expeditions — he'll reach out, walk you through the program, logistics, preparation. There's quite a bit to discuss because this is a bigger undertaking than Elbrus. What do you think?`}
+        {s:'c', t:`Yeah. But actually, I already climbed Elbrus.`},
+        {s:'m', t:`Oh, congratulations! That's awesome. So let me ask you — are you looking at any new peaks? Maybe something higher, or in a different region?`},
+        {s:'c', t:`What else do you guys have besides Elbrus?`},
+        {s:'m', t:`So the big one for people who've done Elbrus — the natural next step — is Peak Lenin. 7,134 meters. That's a serious high-altitude expedition, a whole different level. We've also got some other options. If that sounds interesting, what I'd suggest is I pass your contact to my colleague who specializes in these expeditions — he'll reach out, walk you through the program, logistics, preparation. What do you think?`}
     ],
-    note: `Don't try to sell Peak Lenin yourself — it's a different product with different logistics. The specialist will handle it. Your job: identify interest and hand off.`,
+    scriptDon: [
+        {s:'c', t:`Actually, I've already climbed Elbrus.`},
+        {s:'m', t:`Congratulations. Are you considering any new peaks? Something higher, or in a different region?`},
+        {s:'c', t:`What else do you offer?`},
+        {s:'m', t:`The most popular next step is Peak Lenin — 7,134 meters. A serious high-altitude expedition. We have other options as well. If this interests you, I can connect you with my colleague who specialises in these expeditions. Would that be helpful?`}
+    ],
     choices: [
-        {label: `"Peak Lenin sounds interesting" — wants to learn more`, node: 'g4_peak_lenin'},
-        {label: `"I'm more into Kilimanjaro / Nepal / other"`, node: 'g4_other_destination'},
-        {label: `"Nah, I'm good — not planning more climbs"`, node: 'g4_not_interested'},
+        {label: `"Peak Lenin sounds interesting"`, node: 'g4_peak_lenin'},
+        {label: `"I'm more into Kilimanjaro / Nepal / other"`, node: 'g4_other'},
+        {label: `"Not planning more climbs"`, node: 'g4_done'},
     ]
 },
 
 g4_peak_lenin: {
     tag: 'Group 4 — Already climbed', tagClass: 'tag-group4',
-    title: 'Peak Lenin — Hand Off to Specialist',
-    subtitle: 'Client is interested. Pass to the specialist manager.',
+    title: 'Peak Lenin — Hand Off',
+    subtitle: 'Pass to specialist.',
     script: [
-        {s:'client', t:`Yeah, Peak Lenin sounds interesting.`},
-        {s:'jordan', t:`Awesome. My colleague will reach out to you soon — he knows everything about this expedition and can answer all your questions. Would you prefer if he contacts you on WhatsApp or Facebook?`},
-        {s:'client', t:`WhatsApp.`},
-        {s:'jordan', t:`Great. I've got your number as [number] — same one for WhatsApp?`},
-        {s:'client', t:`Yeah.`},
-        {s:'jordan', t:`Perfect. He'll be in touch. Thanks for chatting, [client name]. Have a great day!`}
+        {s:'c', t:`Yeah, Peak Lenin sounds interesting.`},
+        {s:'m', t:`Awesome. My colleague will reach out to you soon — he knows everything about this expedition. Would you prefer WhatsApp or Facebook?`},
+        {s:'c', t:`WhatsApp.`},
+        {s:'m', t:`I've got your number as [number] — same for WhatsApp?`},
+        {s:'c', t:`Yeah.`},
+        {s:'m', t:`Perfect. He'll be in touch. Thanks, [client name]. Have a great day!`}
     ],
-    note: `WhatsApp is our preferred channel — always mention it first. If client prefers Facebook or email, that works too but it's less ideal.`,
-    postCall: `CRM task for Peak Lenin specialist — include client name, contact, interest level. Specialist to reach out via WhatsApp.`,
+    scriptDon: [
+        {s:'c', t:`Yes, Peak Lenin sounds interesting.`},
+        {s:'m', t:`My colleague will reach out shortly. Would WhatsApp or Facebook be more convenient?`},
+        {s:'c', t:`WhatsApp.`},
+        {s:'m', t:`Your number [number] — also WhatsApp?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`He'll be in touch soon. Thank you, [client name]. Have a good day.`}
+    ],
+    note: `WhatsApp preferred. Facebook/email also work but less ideal.`,
+    postCall: `CRM task for Peak Lenin specialist. Include contact + interest level.`,
     choices: []
 },
 
-g4_other_destination: {
+g4_other: {
     tag: 'Group 4 — Already climbed', tagClass: 'tag-group4',
-    title: 'Other Destination — Record & Follow Up',
-    subtitle: 'Even if we don\'t offer it — record the data.',
-    managerNote: `Even if the destination is something we don't offer — don't dismiss it. Record what they want. This data is gold for understanding demand. Be honest.`,
+    title: 'Other Destination',
+    subtitle: 'Record demand data. Follow up.',
+    managerNote: `Record what they want — even if we don't offer it. Market intelligence. Be honest.`,
     script: [
-        {s:'client', t:`I'm more into Kilimanjaro, actually. Or maybe something in Nepal.`},
-        {s:'jordan', t:`Oh, interesting — thanks for sharing that. Let me look into what we've got for those destinations and I'll get back to you. If we have something that fits — I'll send you all the details. If not — I'll be straight with you and maybe I can point you in the right direction. Would WhatsApp work for me to send that over?`},
-        {s:'client', t:`Yeah.`},
-        {s:'jordan', t:`Great. I'll be in touch soon. Thanks for the chat, [client name]. Have a great day!`}
+        {s:'c', t:`I'm more into Kilimanjaro, actually. Or maybe something in Nepal.`},
+        {s:'m', t:`Oh, interesting — thanks for sharing that. Let me look into what we've got and I'll get back to you. If we have something — I'll send details. If not — I'll be straight with you. WhatsApp work?`},
+        {s:'c', t:`Yeah.`},
+        {s:'m', t:`Great. I'll be in touch soon. Thanks, [client name]. Have a great day!`}
     ],
-    postCall: `Record the destinations client mentioned in CRM — important market data. Check if we have anything, and get back to the client either way. Honesty builds trust.`,
+    scriptDon: [
+        {s:'c', t:`I'm more interested in Kilimanjaro, or perhaps Nepal.`},
+        {s:'m', t:`Good to know. Let me check what we can offer and I'll get back to you. Is WhatsApp convenient?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`I'll be in touch shortly. Thank you, [client name]. Have a good day.`}
+    ],
+    postCall: `Record destinations in CRM. Check availability. Follow up either way.`,
     choices: []
 },
 
-g4_not_interested: {
+g4_done: {
     tag: 'Group 5 — Not interested', tagClass: 'tag-group5',
     title: 'No Further Interest',
     subtitle: 'Close warmly.',
     script: [
-        {s:'client', t:`Nah, I'm good. One and done — not planning any more climbs.`},
-        {s:'jordan', t:`Fair enough! Glad you got to experience Elbrus though. If you ever change your mind or get the itch for something new — don't hesitate to reach out, I'm always here. All the best, [client name]!`}
+        {s:'c', t:`Nah, I'm good. Not planning any more climbs.`},
+        {s:'m', t:`Fair enough! Glad you got to experience Elbrus. If you ever get the itch — don't hesitate to reach out. All the best, [client name]!`}
     ],
-    postCall: `Close deal in CRM. Note: completed Elbrus, no further interest.`,
-    choices: []
-},
-
-// ── GROUP 5 ──
-
-not_interested: {
-    tag: 'Group 5 — Not interested', tagClass: 'tag-group5',
-    title: 'Not Interested',
-    subtitle: 'Close warmly. Don\'t push.',
-    script: [
-        {s:'client', t:`No, not interested anymore.`},
-        {s:'jordan', t:`Totally fine. If the idea ever comes back — don't hesitate to reach out, I'm always here. Thanks for your time, [client name]. All the best!`}
+    scriptDon: [
+        {s:'c', t:`No thank you. Not planning further climbs.`},
+        {s:'m', t:`Completely understand. If you ever reconsider, you're welcome to get in touch. All the best, [client name].`}
     ],
     postCall: `Close deal in CRM.`,
     choices: []
 },
 
-// ── EDGE CASES ──
+not_interested: {
+    tag: 'Group 5 — Not interested', tagClass: 'tag-group5',
+    title: 'Not Interested',
+    subtitle: 'Close warmly.',
+    script: [
+        {s:'c', t:`No, not interested anymore.`},
+        {s:'m', t:`Totally fine. If the idea ever comes back — don't hesitate to reach out, I'm always here. Thanks for your time, [client name]. All the best!`}
+    ],
+    scriptDon: [
+        {s:'c', t:`No, it's no longer relevant for me.`},
+        {s:'m', t:`I understand. If you ever revisit the idea, feel free to get in touch. Thank you, [client name]. All the best.`}
+    ],
+    postCall: `Close deal in CRM.`,
+    choices: []
+},
 
 busy: {
     tag: 'Edge case', tagClass: 'tag-edge',
     title: 'Client Is Busy',
-    subtitle: 'Agree on a callback time. Don\'t squeeze in a pitch.',
-    managerNote: `Client can't talk now. Don't take it personally, don't try to squeeze in a pitch. Just agree on a callback time and move on.`,
+    subtitle: 'Agree on callback time.',
+    managerNote: `Don't pitch. Just agree on a time and move on.`,
     script: [
-        {s:'client', t:`No, I can't talk right now.`},
-        {s:'jordan', t:`No problem at all. When would be a better time for you? Maybe later today, or tomorrow?`},
-        {s:'client', t:`How about tomorrow afternoon?`},
-        {s:'jordan', t:`Done. I'll call you tomorrow afternoon. Have a great day!`}
+        {s:'c', t:`No, I can't talk right now.`},
+        {s:'m', t:`No problem at all. When would be a better time for you? Maybe later today, or tomorrow?`},
+        {s:'c', t:`How about tomorrow afternoon?`},
+        {s:'m', t:`Done. I'll call you tomorrow afternoon. Have a great day!`}
     ],
-    note: `Let them suggest the time. Don't say "I'll call tomorrow at 3" — ask when THEY are available.`,
-    postCall: `CRM task — callback at agreed time. Note: couldn't talk, reschedule only.`,
+    scriptDon: [
+        {s:'c', t:`No, I'm unable to speak right now.`},
+        {s:'m', t:`Of course. When would be more convenient? Later today, or tomorrow?`},
+        {s:'c', t:`Tomorrow afternoon.`},
+        {s:'m', t:`I'll call you then. Have a good day.`}
+    ],
+    note: `Let them suggest the time. Don't impose.`,
+    postCall: `CRM task — callback at agreed time.`,
     choices: []
 },
 
 doesnt_remember: {
     tag: 'Edge case', tagClass: 'tag-edge',
     title: 'Client Doesn\'t Remember',
-    subtitle: 'Calmly remind them. Use the reactivation question.',
-    managerNote: `Common with cold-ish calls. Don't panic — just calmly remind them. The question "did you end up going or did plans change?" naturally re-opens the conversation.`,
+    subtitle: 'Calmly remind. Reactivation question.',
+    managerNote: `Common. Keep it light. "Did you end up going or did plans change?" re-opens the conversation naturally.`,
     script: [
-        {s:'client', t:`Elbrus Climbing? I don't remember contacting anyone.`},
-        {s:'jordan', t:`Yeah, you were in touch with us [around this time / last year] about climbing Mount Elbrus. Did you end up going, or did those plans change?`}
+        {s:'c', t:`Elbrus Climbing? I don't remember contacting anyone.`},
+        {s:'m', t:`Yeah, you were in touch with us [around this time / last year] about climbing Mount Elbrus. Did you end up going, or did those plans change?`}
     ],
-    note: `"Did you end up going or did plans change?" — powerful reactivation question. Not pushy, just curious. Leads naturally to: (a) "I went" → Group 4, (b) "Plans changed, still interested" → continue, (c) "Not interested" → Group 5.`,
+    scriptDon: [
+        {s:'c', t:`Elbrus Climbing? I don't recall making any enquiry.`},
+        {s:'m', t:`Yes, you were in contact with us [around that time / last year] regarding Elbrus. Did you end up making the trip, or did your plans change?`}
+    ],
+    note: `Leads to: (a) "I went" → Group 4, (b) "Didn't work out, still interested" → continue, (c) "Not interested" → Group 5.`,
     choices: [
-        {label: `"Oh yeah, I remember. No, it didn't work out" — re-interested`, node: 'dr_reinterested'},
-        {label: `"I already went / climbed it"`, node: 'already_climbed'},
-        {label: `"No, not interested anymore"`, node: 'not_interested'},
+        {label: `"Oh yeah, didn't work out" — re-interested`, node: 'dr_reinterested'},
+        {label: `"I already climbed it"`, node: 'already_climbed'},
+        {label: `"Not interested"`, node: 'not_interested'},
     ]
 },
 
 dr_reinterested: {
     tag: 'Edge case', tagClass: 'tag-edge',
     title: 'Re-Engaged — Qualify & Close',
-    subtitle: 'Client remembers and is interested again.',
+    subtitle: 'Client is interested again.',
     script: [
-        {s:'client', t:`Oh yeah, I think I remember now. No, it didn't work out.`},
-        {s:'jordan', t:`Got it. So is that something you'd want to revisit? Because if so, I can help you plan the whole thing from A to Z — the route, dates, visa, insurance, flights. I'll take care of all of it.`},
-        {s:'client', t:`Yeah, I'm actually still interested.`},
-        {s:'jordan', t:`Awesome. So let's not try to cram all that into a phone call — let me send you everything in writing so you've got it all in front of you and can look at it on your own time. Just a couple of quick questions — do you know what kind of route you'd want? The standard south side climb, or something more unique and challenging?`},
-        {s:'client', t:`I don't really know. Probably standard.`},
-        {s:'jordan', t:`Makes sense. And what time of year works best for you — got a month in mind?`},
-        {s:'client', t:`Summer. Maybe July or August.`},
-        {s:'jordan', t:`Perfect. Let me pull together the best options and send them over. WhatsApp work for you?`},
-        {s:'client', t:`Yeah.`},
-        {s:'jordan', t:`I've got your number as [number] — same for WhatsApp?`},
-        {s:'client', t:`Yeah.`},
-        {s:'jordan', t:`Great. I'll send you everything today. Thanks for your time, [client name]. Talk soon — have a great day!`}
+        {s:'c', t:`Oh yeah, I think I remember now. No, it didn't work out.`},
+        {s:'m', t:`Got it. So is that something you'd want to revisit? Because if so, I can help you plan the whole thing from A to Z — the route, dates, visa, insurance, flights. I'll take care of all of it.`},
+        {s:'c', t:`Yeah, I'm actually still interested.`},
+        {s:'m', t:`Awesome. Let me send you everything in writing — much easier to review. Quick questions — standard south side climb, or something more unique? And what month works best?`},
+        {s:'c', t:`Probably standard. July or August.`},
+        {s:'m', t:`Perfect. Let me pull together the options and send them over. WhatsApp work?`},
+        {s:'c', t:`Yeah.`},
+        {s:'m', t:`I've got [number] — same for WhatsApp?`},
+        {s:'c', t:`Yeah.`},
+        {s:'m', t:`Great. I'll send everything today. Thanks, [client name]. Talk soon!`}
     ],
-    postCall: `Send available dates and options for client's preferred months via WhatsApp. Follow sales process. CRM note: didn't remember initial contact, re-engaged.`,
+    scriptDon: [
+        {s:'c', t:`Oh yes, I remember. It didn't happen in the end.`},
+        {s:'m', t:`Would you like to revisit this? I can help plan everything — route, dates, visa, insurance, flights.`},
+        {s:'c', t:`Yes, I'm still interested.`},
+        {s:'m', t:`Good. Let me send you the information in writing. Which route — standard, or something more unique? And which month?`},
+        {s:'c', t:`Probably standard. July or August.`},
+        {s:'m', t:`I'll put together the options. Is WhatsApp convenient?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`Your number [number] — also WhatsApp?`},
+        {s:'c', t:`Yes.`},
+        {s:'m', t:`I'll send everything today. Thank you, [client name]. Speak soon.`}
+    ],
+    postCall: `Send dates for their preferred months. Follow sales process. CRM: re-engaged.`,
     choices: []
 }
 
-}; // end NODES
+};
 
-// ── Navigation state ──
-let history = [];
+// ══ NAVIGATION ══
+let navHistory = [];
 let currentNode = null;
 
 function goToNode(nodeId, addToHistory = true) {
-    if (currentNode && addToHistory) {
-        history.push(currentNode);
-    }
+    if (currentNode && addToHistory) navHistory.push(currentNode);
+    if (nodeId === 'opening' && addToHistory) navHistory = [];
     currentNode = nodeId;
     renderNode(nodeId);
     updateBreadcrumb();
-    document.getElementById('backBtn').style.display = history.length > 0 ? 'inline-block' : 'none';
-    document.getElementById('rulesPanel').style.display = NODES[nodeId].choices.length === 0 ? 'block' : 'none';
+    document.getElementById('backBtn').style.display = navHistory.length > 0 ? 'inline-block' : 'none';
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 function goBack() {
-    if (history.length === 0) return;
-    const prev = history.pop();
+    if (navHistory.length === 0) { showPage('overview'); return; }
+    const prev = navHistory.pop();
     currentNode = prev;
     renderNode(prev);
     updateBreadcrumb();
-    document.getElementById('backBtn').style.display = history.length > 0 ? 'inline-block' : 'none';
-    document.getElementById('rulesPanel').style.display = NODES[prev].choices.length === 0 ? 'block' : 'none';
+    document.getElementById('backBtn').style.display = navHistory.length > 0 ? 'inline-block' : 'none';
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 function updateBreadcrumb() {
     const bc = document.getElementById('breadcrumb');
-    const all = [...history, currentNode];
+    const all = [...navHistory, currentNode];
     bc.innerHTML = all.map((id, i) => {
         const n = NODES[id];
         const isLast = i === all.length - 1;
         const sep = i < all.length - 1 ? '<span class="sep">→</span>' : '';
-        if (isLast) {
-            return `<span class="crumb current">${n.title}</span>`;
-        }
+        if (isLast) return `<span class="crumb current">${n.title}</span>`;
         return `<span class="crumb" onclick="jumpTo(${i})">${n.title}</span>${sep}`;
     }).join('');
 }
 
 function jumpTo(index) {
-    const all = [...history, currentNode];
-    const targetId = all[index];
-    history = all.slice(0, index);
-    currentNode = targetId;
-    renderNode(targetId);
+    const all = [...navHistory, currentNode];
+    navHistory = all.slice(0, index);
+    currentNode = all[index];
+    renderNode(currentNode);
     updateBreadcrumb();
-    document.getElementById('backBtn').style.display = history.length > 0 ? 'inline-block' : 'none';
-    document.getElementById('rulesPanel').style.display = NODES[targetId].choices.length === 0 ? 'block' : 'none';
+    document.getElementById('backBtn').style.display = navHistory.length > 0 ? 'inline-block' : 'none';
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 function renderNode(nodeId) {
     const node = NODES[nodeId];
     const el = document.getElementById('nodeContent');
+    const scriptJ = node.script || [];
+    const scriptD = node.scriptDon || scriptJ;
+    const mgrName = activeStyle === 'jordan' ? 'J' : 'D';
+    const currentScript = activeStyle === 'don' ? scriptD : scriptJ;
 
-    // Build script HTML
     let scriptHTML = '';
-    if (node.script && node.script.length > 0) {
-        const scriptText = node.script.filter(l => l.s === 'jordan').map(l => l.t).join('\n\n');
-        scriptHTML = `<div class="script-block">
-            <button class="copy-btn" onclick="copyScript(this, '${nodeId}')">Copy</button>
-            ${node.script.map(line => `
-                <div class="script-line">
-                    <span class="speaker ${line.s}">${line.s === 'jordan' ? 'J:' : 'C:'}</span>
-                    ${line.t}
-                </div>
-            `).join('')}
+    if (currentScript.length > 0) {
+        scriptHTML = `<div class="script-wrapper">
+            <div class="script-topbar">
+                <button class="copy-btn" onclick="copyScript(this, '${nodeId}')">Copy script</button>
+            </div>
+            <div class="script-block">
+                ${currentScript.map(line => `
+                    <div class="script-line">
+                        <span class="speaker ${line.s === 'm' ? 'mgr' : 'client'}">${line.s === 'm' ? mgrName + ':' : 'C:'}</span>
+                        ${line.t}
+                    </div>
+                `).join('')}
+            </div>
         </div>`;
     }
 
-    // Choices HTML
     let choicesHTML = '';
     if (node.choices && node.choices.length > 0) {
         choicesHTML = `<div class="choices">
@@ -894,7 +1266,7 @@ function renderNode(nodeId) {
             ${node.choices.map(c => `
                 <button class="choice-btn" onclick="goToNode('${c.node}')">
                     <span class="choice-arrow">→</span>
-                    <span class="choice-client">${c.label}</span>
+                    ${c.label}
                 </button>
             `).join('')}
         </div>`;
@@ -907,10 +1279,10 @@ function renderNode(nodeId) {
             <div class="node-subtitle">${node.subtitle}</div>
         </div>
         <div class="node-body">
-            ${node.managerNote ? `<div class="manager-note"><strong>📋 Manager Note</strong>${node.managerNote}</div>` : ''}
+            ${node.managerNote ? `<div class="manager-note"><strong>Manager Note</strong>${node.managerNote}</div>` : ''}
             ${scriptHTML}
             ${node.note ? `<div class="inline-note">${node.note}</div>` : ''}
-            ${node.postCall ? `<div class="post-call"><strong>✅ Post-Call Action</strong>${node.postCall}</div>` : ''}
+            ${node.postCall ? `<div class="post-call"><strong>Post-Call Action</strong>${node.postCall}</div>` : ''}
             ${choicesHTML}
         </div>
     </div>`;
@@ -918,16 +1290,17 @@ function renderNode(nodeId) {
 
 function copyScript(btn, nodeId) {
     const node = NODES[nodeId];
-    const text = node.script.filter(l => l.s === 'jordan').map(l => l.t).join('\n\n');
+    const lines = activeStyle === 'don' ? (node.scriptDon || node.script) : node.script;
+    const text = lines.filter(l => l.s === 'm').map(l => {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = l.t;
+        return tmp.textContent || tmp.innerText;
+    }).join('\n\n');
     navigator.clipboard.writeText(text).then(() => {
         btn.textContent = 'Copied!';
-        setTimeout(() => btn.textContent = 'Copy', 1500);
+        setTimeout(() => btn.textContent = 'Copy script', 1500);
     });
 }
-
-// ── Init ──
-goToNode('opening', false);
 </script>
-
 </body>
 </html>
