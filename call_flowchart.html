@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elbrus Climbing — Qualification Call Flowchart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* ── Header ── */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 16px 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        .header .subtitle {
+            font-size: 13px;
+            color: #6b7280;
+        }
+        .header .back-btn {
+            display: none;
+            background: #f3f4f6;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #374151;
+            transition: all 0.15s;
+        }
+        .header .back-btn:hover { background: #e5e7eb; }
+        .header .restart-btn {
+            margin-left: auto;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #6b7280;
+            transition: all 0.15s;
+        }
+        .header .restart-btn:hover { background: #f3f4f6; color: #374151; }
+
+        /* ── Layout ── */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 24px 80px;
+        }
+
+        /* ── Breadcrumb ── */
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        .breadcrumb .crumb {
+            cursor: pointer;
+            color: #2563eb;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+        .breadcrumb .crumb:hover { color: #1d4ed8; }
+        .breadcrumb .crumb.current {
+            color: #1a1a1a;
+            cursor: default;
+            font-weight: 600;
+        }
+        .breadcrumb .sep { color: #d1d5db; margin: 0 2px; }
+
+        /* ── Node card ── */
+        .node-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            overflow: hidden;
+            animation: fadeIn 0.25s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .node-header {
+            padding: 24px 28px 16px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .node-group-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .tag-opening { background: #dbeafe; color: #1d4ed8; }
+        .tag-group1 { background: #dcfce7; color: #166534; }
+        .tag-group2 { background: #fef3c7; color: #92400e; }
+        .tag-group3 { background: #fde68a; color: #78350f; }
+        .tag-group4 { background: #e0e7ff; color: #3730a3; }
+        .tag-group5 { background: #fecaca; color: #991b1b; }
+        .tag-edge { background: #f3f4f6; color: #4b5563; }
+
+        .node-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        .node-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* ── Script section ── */
+        .node-body { padding: 24px 28px; }
+
+        .manager-note {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #78350f;
+            line-height: 1.55;
+        }
+        .manager-note strong {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            color: #92400e;
+        }
+
+        .script-block {
+            background: #f0f7ff;
+            border-left: 3px solid #2563eb;
+            border-radius: 0 8px 8px 0;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .script-line {
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.65;
+        }
+        .script-line:last-child { margin-bottom: 0; }
+
+        .speaker {
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-right: 6px;
+        }
+        .speaker.jordan { color: #2563eb; }
+        .speaker.client { color: #6b7280; }
+
+        .script-variant-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7280;
+            margin: 24px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .inline-note {
+            background: #fffbeb;
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin: 12px 0;
+            font-size: 12px;
+            color: #78350f;
+            line-height: 1.5;
+            border-left: 3px solid #fbbf24;
+        }
+
+        /* ── Choices / transitions ── */
+        .choices {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #f3f4f6;
+        }
+        .choices-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7280;
+            margin-bottom: 12px;
+        }
+
+        .choice-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #1a1a1a;
+            transition: all 0.15s;
+            line-height: 1.45;
+        }
+        .choice-btn:hover {
+            border-color: #2563eb;
+            background: #f0f7ff;
+        }
+        .choice-btn .choice-client {
+            font-weight: 600;
+            color: #374151;
+        }
+        .choice-btn .choice-arrow {
+            float: right;
+            color: #2563eb;
+            font-weight: 600;
+            margin-left: 12px;
+        }
+
+        /* ── Post-call action ── */
+        .post-call {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #166534;
+            line-height: 1.55;
+        }
+        .post-call strong {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            color: #15803d;
+        }
+
+        /* ── General rules panel ── */
+        .rules-panel {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            padding: 24px 28px;
+            margin-top: 24px;
+        }
+        .rules-panel h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .rules-panel ol {
+            padding-left: 20px;
+            font-size: 13px;
+            color: #374151;
+        }
+        .rules-panel ol li {
+            margin-bottom: 10px;
+            line-height: 1.55;
+        }
+
+        /* ── Tooltip (tour descriptions) ── */
+        .tour-tip {
+            text-decoration: underline dotted #2563eb;
+            cursor: help;
+            color: #2563eb;
+            position: relative;
+        }
+        .tour-tip .tip-content {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            line-height: 1.5;
+            width: 320px;
+            z-index: 50;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-weight: 400;
+            text-decoration: none;
+        }
+        .tour-tip:hover .tip-content { display: block; }
+        .tour-tip .tip-content::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+        }
+
+        /* ── Copy button ── */
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e0ecff;
+            border: none;
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            color: #2563eb;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .copy-btn:hover { background: #c7dbff; }
+
+        /* ── Mobile ── */
+        @media (max-width: 640px) {
+            .header { padding: 12px 16px; }
+            .header h1 { font-size: 15px; }
+            .container { padding: 20px 12px 60px; }
+            .node-header { padding: 18px 18px 14px; }
+            .node-body { padding: 18px 18px; }
+            .node-title { font-size: 17px; }
+            .tour-tip .tip-content {
+                width: 240px;
+                left: 0;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <button class="back-btn" id="backBtn" onclick="goBack()">← Back</button>
+    <div>
+        <h1>Qualification Call Flowchart</h1>
+        <div class="subtitle">Database re-engagement — Interactive decision tree</div>
+    </div>
+    <button class="restart-btn" onclick="goToNode('opening')">↻ Restart</button>
+</div>
+
+<div class="container">
+    <div class="breadcrumb" id="breadcrumb"></div>
+    <div id="nodeContent"></div>
+    <div class="rules-panel" id="rulesPanel" style="display:none;">
+        <h3>📋 General Rules — All Scenarios</h3>
+        <ol>
+            <li><strong>Do NOT sell on the phone.</strong> The call is for qualification ONLY. The real selling happens in chat (WhatsApp).</li>
+            <li><strong>Keep calls SHORT</strong> — 2–3 minutes max. The client wasn't expecting your call.</li>
+            <li><strong>Don't push.</strong> If a client isn't ready — that's perfectly normal. Log it and move on.</li>
+            <li><strong>Say "I", not "we."</strong> First person, personal, conversational.</li>
+            <li><strong>Log everything after each call.</strong> CRM entry: client group, interest level, next contact date, notes.</li>
+            <li><strong>If client is busy:</strong> "No problem — when would be a better time for you?" → log the callback time.</li>
+            <li><strong>If you get voicemail:</strong> Do NOT leave a voicemail. Send a reactivation message in WhatsApp instead (scripts [85] or [87] from the Scripts Database).</li>
+            <li><strong>WhatsApp is our preferred channel.</strong> Always suggest it first. Facebook Messenger is second, email is third.</li>
+            <li><strong>Tone:</strong> Confident, friendly, helpful — never pushy. You're the guy who makes things easy, not the guy who's trying to close a deal.</li>
+            <li><strong>ALWAYS ask the client when THEY are ready</strong> — never impose your own timeline.</li>
+        </ol>
+    </div>
+</div>
+
+<script>
+// ── Tour descriptions for tooltips ──
+const TOURS = {
+    nst: '<strong>North-to-South Traverse</strong><br>Wild north side → both summits → south. Mountain huts (comfort). 9 days, same as standard. ~€2000+. No special experience needed. You see the entire mountain.',
+    est: '<strong>East-to-South Traverse</strong><br>Wildest, most beautiful side. Tents with max comfort (porters, chef, fresh food). 8 days off-grid. Only 2 departures/season. For experienced climbers.',
+    kze: '<strong>Kazbek + Elbrus</strong><br>13 days, two summits. Kazbek = natural acclimatization. Cheaper than 2 separate tours. Accessible for beginners.'
+};
+
+function tip(key, label) {
+    return `<span class="tour-tip">${label}<span class="tip-content">${TOURS[key]}</span></span>`;
+}
+
+// ── Node definitions ──
+const NODES = {
+
+opening: {
+    tag: 'Opening', tagClass: 'tag-opening',
+    title: 'Opening',
+    subtitle: 'Introduce yourself. Check if client can talk.',
+    managerNote: `This is the starting point for every call. You're calling clients from the database who previously showed interest but lost contact. Keep your energy up — you're reaching out to someone who was already interested once.`,
+    script: [
+        {s:'jordan', t:`Hey [client name], how are you? This is Jordan from Elbrus Climbing. You reached out to us a while back about climbing Mount Elbrus — is now a good time to chat about that real quick?`}
+    ],
+    choices: [
+        {label: `"Yeah, sure" / "Go ahead"`, node: 'interest_check'},
+        {label: `"I can't talk right now"`, node: 'busy'},
+        {label: `"I don't remember contacting anyone"`, node: 'doesnt_remember'},
+        {label: `"No, not interested"`, node: 'not_interested'},
+        {label: `"I already climbed Elbrus"`, node: 'already_climbed'}
+    ]
+},
+
+interest_check: {
+    tag: 'Opening', tagClass: 'tag-opening',
+    title: 'Confirm Interest',
+    subtitle: 'Verify that Elbrus is still on their radar.',
+    script: [
+        {s:'jordan', t:`Awesome. So you were in touch with my team about an Elbrus expedition — is that still something you're looking at?`},
+        {s:'client', t:`Yeah, actually I've been thinking about it.`},
+    ],
+    note: `If the client says "yes but not this year" → go to Group 2. If "I'm not sure about timing" → Group 3.`,
+    choices: [
+        {label: `"Yes, I want to plan now" — ready for this season`, node: 'group1'},
+        {label: `"Yes, but probably next year"`, node: 'group2'},
+        {label: `"Interested but not sure about timing"`, node: 'group3'},
+    ]
+},
+
+group1: {
+    tag: 'Group 1 — Ready now', tagClass: 'tag-group1',
+    title: 'Client Is Ready to Plan',
+    subtitle: 'Best outcome. Qualify route + timing, move to WhatsApp.',
+    managerNote: `Your goal: collect basic info (route preference + month) and agree on WhatsApp follow-up. Do NOT try to sell on the phone — keep it qualification only. Position yourself as a full-service coordinator (climb + visa + insurance + flights).`,
+    script: [
+        {s:'jordan', t:`Perfect. So here's what I'd love to do — let's get all the details sorted out for you in the next few days, and hopefully we can get your trip planned and everything locked in. And by the way, I'm not just talking about the climb — I'm talking visas, insurance, flights, the whole nine yards. I'll help you with all of it. Sound good?`},
+        {s:'client', t:`Yeah, sounds great.`},
+        {s:'jordan', t:`Great. So rather than trying to cram everything into a phone call, let me send you all the information in writing — I'm thinking WhatsApp. That way you've got everything in front of you, you can look at it whenever you want, come back to it, ask questions — much easier than trying to remember everything from a phone call. Before I do that though, couple quick questions — do you already know what kind of route you want? Like, are you thinking the standard south side climb — that's the most popular, most affordable option — or are you interested in something a bit more unique, more challenging, more of an adventure?`}
+    ],
+    note: `You're framing WhatsApp as a BENEFIT for the client ("you'll have everything in writing"). The route question qualifies the client AND makes them think about options they might not have considered.`,
+    choices: [
+        {label: `"Standard climb" — client picks the basic route`, node: 'group1_standard'},
+        {label: `"What non-standard options do you have?" — client is curious`, node: 'group1_nonstandard'},
+    ]
+},
+
+group1_standard: {
+    tag: 'Group 1 — Ready now', tagClass: 'tag-group1',
+    title: 'Standard Route — Collect Timing & Close',
+    subtitle: 'Client wants standard. Get the month and move to WhatsApp.',
+    script: [
+        {s:'client', t:`Standard, I think.`},
+        {s:'jordan', t:`Got it. And timing — what works best for you? What month are you looking at?`},
+        {s:'client', t:`August.`},
+        {s:'jordan', t:`Perfect. That's all I need for now. Let me put together the available dates for August on the standard route and send everything over. WhatsApp work for you?`},
+        {s:'client', t:`Yeah, sure.`},
+        {s:'jordan', t:`Great. I've got your number here as [number] — is that the same one for WhatsApp?`},
+        {s:'client', t:`Yeah, that's the one.`},
+        {s:'jordan', t:`Awesome. I'll shoot you a message today. Thanks for your time, [client name]. Talk soon — have a great day!`}
+    ],
+    postCall: `Write to client in WhatsApp today. Send available dates for standard climb in their preferred month. Follow the sales process from Sales Playbook.`,
+    choices: []
+},
+
+group1_nonstandard: {
+    tag: 'Group 1 — Ready now', tagClass: 'tag-group1',
+    title: 'Non-Standard Routes — Present Options',
+    subtitle: 'Client is curious about unique routes. Walk them through the key features.',
+    managerNote: `Client is curious — this is a buying signal. Describe KEY features of each route so they can picture the experience. Don't rush — if they're asking, they're interested. Let them pull the info out of you.`,
+    script: [
+        {s:'client', t:`What kind of non-standard stuff do you have?`},
+        {s:'jordan', t:`Great question. So if you're after more than just the summit — if you actually want an incredible route, amazing scenery, something you'll remember forever — we've got a few options. There's the ${tip('nst','North-to-South Traverse')}, where you cross the entire mountain. There's the ${tip('est','East-to-South Traverse')}, which is our most beautiful and most serious route. And then there's the ${tip('kze','Kazbek plus Elbrus')} combo — two summits in one trip. Any of those sound interesting to you?`}
+    ],
+    note: `Keep it high-level first. Let the client pick. Don't dump all details at once — let them pull information out of you. That's engagement. Hover over route names above to see key selling points.`,
+    choices: [
+        {label: `"Tell me about the north traverse"`, node: 'g1_ns_detail'},
+        {label: `"Interesting, send me the info" — client wants to see everything`, node: 'g1_ns_close'},
+    ]
+},
+
+g1_ns_detail: {
+    tag: 'Group 1 — Ready now', tagClass: 'tag-group1',
+    title: 'Route Details — Deep Dive',
+    subtitle: 'Client asks about specific routes. Describe key selling points.',
+    script: [
+        {s:'client', t:`Tell me more about the north-to-south traverse.`},
+        {s:'jordan', t:`Yeah, absolutely. So the North-to-South Traverse — you start on the wild north side of Elbrus, you cross both summits, and you come down the south side. So basically you see the entire mountain from every angle. And here's the thing — on the north side, there are mountain huts, so you've got comfortable accommodation, just like on the south. The whole trip is 9 days including travel days — same duration as the standard climb. Price is just over two thousand euros. It's significantly more interesting and scenic than the standard route, but it doesn't require any special mountaineering experience.`},
+        {s:'client', t:`Interesting. What about the east-side traverse?`},
+        {s:'jordan', t:`The East-to-South Traverse — this is our crown jewel. The east side is the wildest, most beautiful side of Elbrus — completely away from civilization. It's 8 days, you're camping in tents, but we're talking maximum comfort — porters carry the gear, we've got a chef cooking fresh meals, two-person tents. You go up the east side, cross both summits, come down the south. But here's the thing — this one only runs twice per season, July and August, and it's designed for people who already have some experience.`},
+        {s:'client', t:`Got it. And the Kazbek plus Elbrus?`},
+        {s:'jordan', t:`So this one is 13 days — you start by climbing Mount Kazbek in Georgia, which is an incredible climb in itself, and that serves as perfect natural acclimatization for Elbrus. Then you head over to Elbrus and summit it fully acclimatized and prepared. The beauty of it is the price — it's significantly cheaper than booking two separate expeditions. And it's accessible even for complete beginners, because Kazbek is a bit easier and gives you the perfect training for Elbrus.`},
+    ],
+    choices: [
+        {label: `Client wants to think / asks to send info`, node: 'g1_ns_close'},
+    ]
+},
+
+g1_ns_close: {
+    tag: 'Group 1 — Ready now', tagClass: 'tag-group1',
+    title: 'Non-Standard — Collect Timing & Close',
+    subtitle: 'Get the month and move to WhatsApp.',
+    script: [
+        {s:'client', t:`Interesting, let me think about it. Send me the info.`},
+        {s:'jordan', t:`Absolutely. Let me put together the full breakdown on all of these — routes, prices, dates, the whole thing. You can look at it, compare, and decide what speaks to you. And just so I can pull the right dates — what time of year works best for you? Got a month in mind?`},
+        {s:'client', t:`July probably.`},
+        {s:'jordan', t:`Perfect. I'll pull together all the July options and send you everything — programs, dates, pricing, the works. WhatsApp cool for that?`},
+        {s:'client', t:`Yeah.`},
+        {s:'jordan', t:`I've got your number as [number] — that's your WhatsApp too?`},
+        {s:'client', t:`Yeah.`},
+        {s:'jordan', t:`Awesome. I'll send you everything today. Thanks, [client name]. Talk soon — have a great day!`}
+    ],
+    postCall: `Send descriptions, dates, and prices for ALL routes client asked about. Include standard as a comparison. Lead with the route they showed most interest in. Follow sales process.`,
+    choices: []
+},
+
+// ── GROUP 2 ──
+
+group2: {
+    tag: 'Group 2 — Next year', tagClass: 'tag-group2',
+    title: 'Interested, But Next Year',
+    subtitle: 'Introduce the pre-order concept. Don\'t push.',
+    managerNote: `They're interested but not this season. Your goal: introduce the pre-order (lock in minimum price, open date). Present it as an opportunity, not a sales push. Always give two options: pre-order OR "I'll notify you when schedule is published."`,
+    script: [
+        {s:'client', t:`Yeah, but probably next year. Can't make it happen this season.`},
+        {s:'jordan', t:`Totally get it. So here's the thing — the schedule for next year isn't published yet, but while it's still being finalized, you actually have a chance to pre-book at the lowest starting price with an open date. Meaning you lock in the price now, and you pick your exact date later whenever the schedule comes out. Even if the price goes up by then — yours stays the same. Would you be interested in hearing more about how that works, or would you rather I just let you know when next year's schedule is published?`}
+    ],
+    note: `Pre-order selling points: (1) minimum price locked in, (2) open date = no commitment to specific date, (3) price protection even if prices rise. Make sure all three come through.`,
+    choices: [
+        {label: `"Yeah, send me the details" — interested in pre-order`, node: 'g2_preorder'},
+        {label: `"Not ready to book, just let me know later"`, node: 'g2_later'},
+    ]
+},
+
+g2_preorder: {
+    tag: 'Group 2 — Next year', tagClass: 'tag-group2',
+    title: 'Pre-Order — Qualify Route & Close',
+    subtitle: 'Client wants pre-order details. Ask about route, move to WhatsApp.',
+    script: [
+        {s:'client', t:`Hmm, that's interesting. Yeah, send me the details.`},
+        {s:'jordan', t:`Great. So just to make sure I send you the right stuff — do you already know what kind of route you're thinking? Standard south side climb, or are you curious about something more unique and adventurous?`},
+    ],
+    choices: [
+        {label: `"Probably standard" — client picks basic`, node: 'g2_preorder_standard'},
+        {label: `"What non-standard options?" — client curious`, node: 'g2_preorder_nonstandard'},
+    ]
+},
+
+g2_preorder_standard: {
+    tag: 'Group 2 — Next year', tagClass: 'tag-group2',
+    title: 'Pre-Order Standard — Close to WhatsApp',
+    subtitle: 'Send pre-order details for standard climb.',
+    script: [
+        {s:'client', t:`I don't know much about it. Probably standard for starters.`},
+        {s:'jordan', t:`Makes sense. So let me send you the pre-order details for the standard climb — the price, the conditions, how the whole thing works. And rather than trying to explain it all over the phone, I'll send it in writing so you've got everything in front of you and can come back to it whenever. WhatsApp work?`},
+        {s:'client', t:`Yeah, let's do that.`},
+        {s:'jordan', t:`I've got your number as [number] — same one for WhatsApp?`},
+        {s:'client', t:`Yeah.`},
+        {s:'jordan', t:`Perfect. I'll send that over today. Thanks for chatting, [client name]. Have a great day!`}
+    ],
+    postCall: `Send pre-order details in WhatsApp — price, conditions, how open-date booking works. Follow sales process for pre-orders.`,
+    choices: []
+},
+
+g2_preorder_nonstandard: {
+    tag: 'Group 2 — Next year', tagClass: 'tag-group2',
+    title: 'Pre-Order Non-Standard — Present Routes & Close',
+    subtitle: 'Walk through routes, then close to WhatsApp with pre-order details.',
+    script: [
+        {s:'client', t:`What non-standard options do you have?`},
+        {s:'jordan', t:`So if you're looking for more than just the summit — like a genuinely incredible route — we've got the ${tip('nst','North-to-South Traverse')} where you cross the entire mountain, the ${tip('est','East-to-South Traverse')} which is our most beautiful and most serious route, and the ${tip('kze','Kazbek plus Elbrus')} combo — two summits in one trip. Any of those catch your eye?`},
+        {s:'client', t:`The traverse sounds cool. Which one's better?`},
+        {s:'jordan', t:`So the North-to-South Traverse — you start on the wild north side, cross both summits, and come down the south. You basically see the whole mountain from every angle. And on the north side there are huts, so you've got comfortable accommodation just like the south. Duration is 9 days, same as the standard climb. Price is just over two thousand euros. It's way more interesting than the standard route but doesn't require any special experience. Now, the East-to-South Traverse — that's our most spectacular route. The east side is the wildest, most beautiful side of Elbrus, 8 days totally off the grid. You're in tents, but with maximum comfort — porters, a chef cooking fresh meals, two-person tents. This one is for experienced climbers and only runs twice per season. Which one sounds more like your thing?`},
+        {s:'client', t:`Probably the north one.`},
+        {s:'jordan', t:`Great choice. So let me send you the pre-order details for the North-to-South Traverse — price, conditions, how the open-date booking works. I can also throw in the standard route as a comparison, if you want. You can look at both and decide. WhatsApp work for you?`},
+        {s:'client', t:`Yeah.`},
+        {s:'jordan', t:`I've got your number as [number] — same for WhatsApp?`},
+        {s:'client', t:`Yeah.`},
+        {s:'jordan', t:`Perfect. I'll send that over today. Thanks for the chat, [client name]. Have a great day!`}
+    ],
+    postCall: `Send pre-order details for the chosen traverse + standard route for comparison. Follow sales process.`,
+    choices: []
+},
+
+g2_later: {
+    tag: 'Group 2 — Next year', tagClass: 'tag-group2',
+    title: 'No Pre-Order — Agree on Follow-Up',
+    subtitle: 'Client isn\'t ready to commit. Set a natural follow-up point.',
+    managerNote: `Don't push. Set up a natural follow-up (when schedule is published) and make sure you have their WhatsApp. They should feel in control, not pressured.`,
+    script: [
+        {s:'client', t:`Nah, I'm not ready to book anything. I'd rather just come back to it closer to the time.`},
+        {s:'jordan', t:`Totally fine, no pressure at all. How about this — when next year's schedule is ready, I'll send you everything right away. That'll be around spring. I'll send the current programs, dates, pricing — you look at it whenever works for you, and if anything catches your eye, we'll take it from there. No obligations whatsoever. Sound good?`},
+        {s:'client', t:`Yeah, let's do it that way.`},
+        {s:'jordan', t:`Would WhatsApp work for you when I send that over?`},
+        {s:'client', t:`Yeah.`},
+        {s:'jordan', t:`Perfect. Thanks for the chat, [client name]. Have a great day!`}
+    ],
+    postCall: `Create CRM task for spring — send new schedule when published. Note: client interested for next year, declined pre-order.`,
+    choices: []
+},
+
+// ── GROUP 3 ──
+
+group3: {
+    tag: 'Group 3 — Uncertain timing', tagClass: 'tag-group3',
+    title: 'Interested, But Timing Uncertain',
+    subtitle: 'Ask THEM when they\'re ready. Plant the route seed.',
+    managerNote: `Two goals: (1) agree on when to follow up — ask THEM when is a good time, don't impose your timeline; (2) ask about route — this makes them think and increases the chance they engage later. Even if they don't know yet, planting the seed about non-standard routes is valuable.`,
+    script: [
+        {s:'client', t:`Yeah, I mean I'm interested, but I'm not really sure about the timing. Could be this year, could be next.`},
+        {s:'jordan', t:`Got it. So let me ask you this — when do you think you'd be ready to start actually planning it? Just so I know when's the best time to reach out.`},
+    ],
+    note: `Critical: ASK the client when THEY are ready. Never say "I'll write you in a couple of months" — that's imposing your schedule. Let them set the timeline.`,
+    choices: [
+        {label: `"Maybe in a couple of months" — names approximate time`, node: 'g3_has_timeframe'},
+        {label: `"Honestly no idea when" — can't name any date`, node: 'g3_no_timeframe'},
+    ]
+},
+
+g3_has_timeframe: {
+    tag: 'Group 3 — Uncertain timing', tagClass: 'tag-group3',
+    title: 'Has Approximate Timeframe — Route Seed & Close',
+    subtitle: 'Confirm follow-up date. Ask about route to plant the seed.',
+    script: [
+        {s:'client', t:`Maybe in a couple of months. Depends on my work situation.`},
+        {s:'jordan', t:`Sure, makes sense. So I'll reach out around [month]. And while we've got a minute — do you have a sense of what kind of route you'd be interested in? Like, the standard south side climb — that's the most popular — or maybe something more unique and adventurous?`},
+        {s:'client', t:`What do you mean by more adventurous?`},
+        {s:'jordan', t:`Well, if you're interested in more than just reaching the summit — like you actually want an incredible route with amazing scenery — we've got the ${tip('nst','North-to-South Traverse')}. You go up the wild north side, cross both summits, come down the south. They've got mountain huts on the north side so you're comfortable the whole way. There's also the ${tip('est','East-to-South Traverse')} — that's the wildest, most beautiful side of Elbrus, you're in tents but with full comfort, porters, a chef. And then there's ${tip('kze','Kazbek plus Elbrus')} — two summits in one trip. Just putting that on your radar so you know what's out there.`},
+        {s:'client', t:`Interesting, I didn't know about those. Probably standard for me though.`},
+        {s:'jordan', t:`No problem. So here's what we'll do — when I reach out in [month], I'll send you all the info on the standard climb — dates, prices, everything current. And if in the meantime you get curious about any of those other options, I'll send you those too. Plus I'll help with all the logistics — visas, flights, insurance, all of it. Sound good?`},
+        {s:'client', t:`Yeah, sounds good.`},
+        {s:'jordan', t:`Would WhatsApp work for when I send that over?`},
+        {s:'client', t:`Yeah.`},
+        {s:'jordan', t:`Perfect. Thanks for chatting, [client name]. Have a great day!`}
+    ],
+    note: `For Group 3, mentioning non-standard routes is about planting a seed. You're making them THINK. Even if they go with standard, they now know options exist and might ask questions later — that's engagement.`,
+    postCall: `CRM task for [agreed month]. Note: interested but timing uncertain, leaning toward standard, mentioned non-standard options. Follow up via WhatsApp.`,
+    choices: []
+},
+
+g3_no_timeframe: {
+    tag: 'Group 3 — Uncertain timing', tagClass: 'tag-group3',
+    title: 'No Timeframe — Plant Seed & Leave Door Open',
+    subtitle: 'Don\'t push for a date. Mention routes, give your contact.',
+    managerNote: `Client is genuinely unsure. Don't push for a date — it'll feel forced. Plant the route seed, give them your contact, leave the door wide open.`,
+    script: [
+        {s:'client', t:`Honestly — I have no idea when. Someday, probably, but I really can't say right now.`},
+        {s:'jordan', t:`No worries at all. One quick question for the future though — do you have a sense of what kind of route you'd be interested in? Just the standard climb, or maybe something more interesting? Besides the standard route we've got things like a traverse across both summits, and a combo where you climb Kazbek and Elbrus together. Just so you know those options exist and can think about it.`},
+        {s:'client', t:`No idea, haven't really thought about it.`},
+        {s:'jordan', t:`Totally fine. Tell you what — whenever you're ready, just reach out and I'll walk you through everything, help you pick the right route. And if you want, here's my number — you can text me anytime. Sound good?`},
+        {s:'client', t:`Yeah, sounds good.`},
+        {s:'jordan', t:`Thanks for chatting, [client name]. All the best!`}
+    ],
+    postCall: `CRM note — interested but no timeframe, no route preference yet. Non-standard routes mentioned. No specific follow-up date — client will reach out. Consider soft follow-up in 3-4 months.`,
+    choices: []
+},
+
+// ── GROUP 4 ──
+
+already_climbed: {
+    tag: 'Group 4 — Already climbed', tagClass: 'tag-group4',
+    title: 'Already Climbed Elbrus',
+    subtitle: 'Congratulate. Explore interest in new peaks.',
+    managerNote: `They've done Elbrus — congratulate them and find out if they want something new. Peak Lenin is the main offer for post-Elbrus clients. Even if they name a destination we don't offer — WRITE IT DOWN. That market intelligence is valuable.`,
+    script: [
+        {s:'client', t:`Yeah. But actually, I already climbed Elbrus.`},
+        {s:'jordan', t:`Oh, congratulations! That's awesome. So let me ask you — are you looking at any new peaks? Maybe something higher, or in a different region?`},
+        {s:'client', t:`What else do you guys have besides Elbrus?`},
+        {s:'jordan', t:`So the big one for people who've done Elbrus — the natural next step — is Peak Lenin. 7,134 meters. That's a serious high-altitude expedition, a whole different level. We've also got some other options. If that sounds interesting, what I'd suggest is I pass your contact to my colleague who specializes in these expeditions — he'll reach out, walk you through the program, logistics, preparation. There's quite a bit to discuss because this is a bigger undertaking than Elbrus. What do you think?`}
+    ],
+    note: `Don't try to sell Peak Lenin yourself — it's a different product with different logistics. The specialist will handle it. Your job: identify interest and hand off.`,
+    choices: [
+        {label: `"Peak Lenin sounds interesting" — wants to learn more`, node: 'g4_peak_lenin'},
+        {label: `"I'm more into Kilimanjaro / Nepal / other"`, node: 'g4_other_destination'},
+        {label: `"Nah, I'm good — not planning more climbs"`, node: 'g4_not_interested'},
+    ]
+},
+
+g4_peak_lenin: {
+    tag: 'Group 4 — Already climbed', tagClass: 'tag-group4',
+    title: 'Peak Lenin — Hand Off to Specialist',
+    subtitle: 'Client is interested. Pass to the specialist manager.',
+    script: [
+        {s:'client', t:`Yeah, Peak Lenin sounds interesting.`},
+        {s:'jordan', t:`Awesome. My colleague will reach out to you soon — he knows everything about this expedition and can answer all your questions. Would you prefer if he contacts you on WhatsApp or Facebook?`},
+        {s:'client', t:`WhatsApp.`},
+        {s:'jordan', t:`Great. I've got your number as [number] — same one for WhatsApp?`},
+        {s:'client', t:`Yeah.`},
+        {s:'jordan', t:`Perfect. He'll be in touch. Thanks for chatting, [client name]. Have a great day!`}
+    ],
+    note: `WhatsApp is our preferred channel — always mention it first. If client prefers Facebook or email, that works too but it's less ideal.`,
+    postCall: `CRM task for Peak Lenin specialist — include client name, contact, interest level. Specialist to reach out via WhatsApp.`,
+    choices: []
+},
+
+g4_other_destination: {
+    tag: 'Group 4 — Already climbed', tagClass: 'tag-group4',
+    title: 'Other Destination — Record & Follow Up',
+    subtitle: 'Even if we don\'t offer it — record the data.',
+    managerNote: `Even if the destination is something we don't offer — don't dismiss it. Record what they want. This data is gold for understanding demand. Be honest.`,
+    script: [
+        {s:'client', t:`I'm more into Kilimanjaro, actually. Or maybe something in Nepal.`},
+        {s:'jordan', t:`Oh, interesting — thanks for sharing that. Let me look into what we've got for those destinations and I'll get back to you. If we have something that fits — I'll send you all the details. If not — I'll be straight with you and maybe I can point you in the right direction. Would WhatsApp work for me to send that over?`},
+        {s:'client', t:`Yeah.`},
+        {s:'jordan', t:`Great. I'll be in touch soon. Thanks for the chat, [client name]. Have a great day!`}
+    ],
+    postCall: `Record the destinations client mentioned in CRM — important market data. Check if we have anything, and get back to the client either way. Honesty builds trust.`,
+    choices: []
+},
+
+g4_not_interested: {
+    tag: 'Group 5 — Not interested', tagClass: 'tag-group5',
+    title: 'No Further Interest',
+    subtitle: 'Close warmly.',
+    script: [
+        {s:'client', t:`Nah, I'm good. One and done — not planning any more climbs.`},
+        {s:'jordan', t:`Fair enough! Glad you got to experience Elbrus though. If you ever change your mind or get the itch for something new — don't hesitate to reach out, I'm always here. All the best, [client name]!`}
+    ],
+    postCall: `Close deal in CRM. Note: completed Elbrus, no further interest.`,
+    choices: []
+},
+
+// ── GROUP 5 ──
+
+not_interested: {
+    tag: 'Group 5 — Not interested', tagClass: 'tag-group5',
+    title: 'Not Interested',
+    subtitle: 'Close warmly. Don\'t push.',
+    script: [
+        {s:'client', t:`No, not interested anymore.`},
+        {s:'jordan', t:`Totally fine. If the idea ever comes back — don't hesitate to reach out, I'm always here. Thanks for your time, [client name]. All the best!`}
+    ],
+    postCall: `Close deal in CRM.`,
+    choices: []
+},
+
+// ── EDGE CASES ──
+
+busy: {
+    tag: 'Edge case', tagClass: 'tag-edge',
+    title: 'Client Is Busy',
+    subtitle: 'Agree on a callback time. Don\'t squeeze in a pitch.',
+    managerNote: `Client can't talk now. Don't take it personally, don't try to squeeze in a pitch. Just agree on a callback time and move on.`,
+    script: [
+        {s:'client', t:`No, I can't talk right now.`},
+        {s:'jordan', t:`No problem at all. When would be a better time for you? Maybe later today, or tomorrow?`},
+        {s:'client', t:`How about tomorrow afternoon?`},
+        {s:'jordan', t:`Done. I'll call you tomorrow afternoon. Have a great day!`}
+    ],
+    note: `Let them suggest the time. Don't say "I'll call tomorrow at 3" — ask when THEY are available.`,
+    postCall: `CRM task — callback at agreed time. Note: couldn't talk, reschedule only.`,
+    choices: []
+},
+
+doesnt_remember: {
+    tag: 'Edge case', tagClass: 'tag-edge',
+    title: 'Client Doesn\'t Remember',
+    subtitle: 'Calmly remind them. Use the reactivation question.',
+    managerNote: `Common with cold-ish calls. Don't panic — just calmly remind them. The question "did you end up going or did plans change?" naturally re-opens the conversation.`,
+    script: [
+        {s:'client', t:`Elbrus Climbing? I don't remember contacting anyone.`},
+        {s:'jordan', t:`Yeah, you were in touch with us [around this time / last year] about climbing Mount Elbrus. Did you end up going, or did those plans change?`}
+    ],
+    note: `"Did you end up going or did plans change?" — powerful reactivation question. Not pushy, just curious. Leads naturally to: (a) "I went" → Group 4, (b) "Plans changed, still interested" → continue, (c) "Not interested" → Group 5.`,
+    choices: [
+        {label: `"Oh yeah, I remember. No, it didn't work out" — re-interested`, node: 'dr_reinterested'},
+        {label: `"I already went / climbed it"`, node: 'already_climbed'},
+        {label: `"No, not interested anymore"`, node: 'not_interested'},
+    ]
+},
+
+dr_reinterested: {
+    tag: 'Edge case', tagClass: 'tag-edge',
+    title: 'Re-Engaged — Qualify & Close',
+    subtitle: 'Client remembers and is interested again.',
+    script: [
+        {s:'client', t:`Oh yeah, I think I remember now. No, it didn't work out.`},
+        {s:'jordan', t:`Got it. So is that something you'd want to revisit? Because if so, I can help you plan the whole thing from A to Z — the route, dates, visa, insurance, flights. I'll take care of all of it.`},
+        {s:'client', t:`Yeah, I'm actually still interested.`},
+        {s:'jordan', t:`Awesome. So let's not try to cram all that into a phone call — let me send you everything in writing so you've got it all in front of you and can look at it on your own time. Just a couple of quick questions — do you know what kind of route you'd want? The standard south side climb, or something more unique and challenging?`},
+        {s:'client', t:`I don't really know. Probably standard.`},
+        {s:'jordan', t:`Makes sense. And what time of year works best for you — got a month in mind?`},
+        {s:'client', t:`Summer. Maybe July or August.`},
+        {s:'jordan', t:`Perfect. Let me pull together the best options and send them over. WhatsApp work for you?`},
+        {s:'client', t:`Yeah.`},
+        {s:'jordan', t:`I've got your number as [number] — same for WhatsApp?`},
+        {s:'client', t:`Yeah.`},
+        {s:'jordan', t:`Great. I'll send you everything today. Thanks for your time, [client name]. Talk soon — have a great day!`}
+    ],
+    postCall: `Send available dates and options for client's preferred months via WhatsApp. Follow sales process. CRM note: didn't remember initial contact, re-engaged.`,
+    choices: []
+}
+
+}; // end NODES
+
+// ── Navigation state ──
+let history = [];
+let currentNode = null;
+
+function goToNode(nodeId, addToHistory = true) {
+    if (currentNode && addToHistory) {
+        history.push(currentNode);
+    }
+    currentNode = nodeId;
+    renderNode(nodeId);
+    updateBreadcrumb();
+    document.getElementById('backBtn').style.display = history.length > 0 ? 'inline-block' : 'none';
+    document.getElementById('rulesPanel').style.display = NODES[nodeId].choices.length === 0 ? 'block' : 'none';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function goBack() {
+    if (history.length === 0) return;
+    const prev = history.pop();
+    currentNode = prev;
+    renderNode(prev);
+    updateBreadcrumb();
+    document.getElementById('backBtn').style.display = history.length > 0 ? 'inline-block' : 'none';
+    document.getElementById('rulesPanel').style.display = NODES[prev].choices.length === 0 ? 'block' : 'none';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function updateBreadcrumb() {
+    const bc = document.getElementById('breadcrumb');
+    const all = [...history, currentNode];
+    bc.innerHTML = all.map((id, i) => {
+        const n = NODES[id];
+        const isLast = i === all.length - 1;
+        const sep = i < all.length - 1 ? '<span class="sep">→</span>' : '';
+        if (isLast) {
+            return `<span class="crumb current">${n.title}</span>`;
+        }
+        return `<span class="crumb" onclick="jumpTo(${i})">${n.title}</span>${sep}`;
+    }).join('');
+}
+
+function jumpTo(index) {
+    const all = [...history, currentNode];
+    const targetId = all[index];
+    history = all.slice(0, index);
+    currentNode = targetId;
+    renderNode(targetId);
+    updateBreadcrumb();
+    document.getElementById('backBtn').style.display = history.length > 0 ? 'inline-block' : 'none';
+    document.getElementById('rulesPanel').style.display = NODES[targetId].choices.length === 0 ? 'block' : 'none';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function renderNode(nodeId) {
+    const node = NODES[nodeId];
+    const el = document.getElementById('nodeContent');
+
+    // Build script HTML
+    let scriptHTML = '';
+    if (node.script && node.script.length > 0) {
+        const scriptText = node.script.filter(l => l.s === 'jordan').map(l => l.t).join('\n\n');
+        scriptHTML = `<div class="script-block">
+            <button class="copy-btn" onclick="copyScript(this, '${nodeId}')">Copy</button>
+            ${node.script.map(line => `
+                <div class="script-line">
+                    <span class="speaker ${line.s}">${line.s === 'jordan' ? 'J:' : 'C:'}</span>
+                    ${line.t}
+                </div>
+            `).join('')}
+        </div>`;
+    }
+
+    // Choices HTML
+    let choicesHTML = '';
+    if (node.choices && node.choices.length > 0) {
+        choicesHTML = `<div class="choices">
+            <div class="choices-label">Client response — choose a path:</div>
+            ${node.choices.map(c => `
+                <button class="choice-btn" onclick="goToNode('${c.node}')">
+                    <span class="choice-arrow">→</span>
+                    <span class="choice-client">${c.label}</span>
+                </button>
+            `).join('')}
+        </div>`;
+    }
+
+    el.innerHTML = `<div class="node-card">
+        <div class="node-header">
+            <div class="node-group-tag ${node.tagClass}">${node.tag}</div>
+            <div class="node-title">${node.title}</div>
+            <div class="node-subtitle">${node.subtitle}</div>
+        </div>
+        <div class="node-body">
+            ${node.managerNote ? `<div class="manager-note"><strong>📋 Manager Note</strong>${node.managerNote}</div>` : ''}
+            ${scriptHTML}
+            ${node.note ? `<div class="inline-note">${node.note}</div>` : ''}
+            ${node.postCall ? `<div class="post-call"><strong>✅ Post-Call Action</strong>${node.postCall}</div>` : ''}
+            ${choicesHTML}
+        </div>
+    </div>`;
+}
+
+function copyScript(btn, nodeId) {
+    const node = NODES[nodeId];
+    const text = node.script.filter(l => l.s === 'jordan').map(l => l.t).join('\n\n');
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 1500);
+    });
+}
+
+// ── Init ──
+goToNode('opening', false);
+</script>
+
+</body>
+</html>
