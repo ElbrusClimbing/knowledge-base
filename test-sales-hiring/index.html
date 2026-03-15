@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sales Manager Assessment | Elbrus Climbing</title>
+  <meta name="description" content="Sales Manager candidate assessment test for Elbrus Climbing">
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Prevent iOS zoom on input focus */
+    input[type="text"], input[type="url"], input[type="tel"], select {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Progress bar & timer (hidden until test starts) -->
+    <div class="progress-container" id="progress-section" style="display:none;">
+      <div class="progress-info">
+        <span id="progress-text">Question 1 of 46</span>
+        <span class="timer green" id="timer">25:00</span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- Main content area -->
+    <div id="main-content"></div>
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="spinner"></div>
+    <div class="loading-text">Submitting your results...</div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="questions.js"></script>
+  <script src="scoring.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
