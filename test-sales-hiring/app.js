@@ -11,9 +11,156 @@ const CONFIG = {
   WHATSAPP_URL: 'https://api.whatsapp.com/send/?phone=34603574933'
 };
 
+// === UI TRANSLATIONS ===
+const UI_TEXT = {
+  en: {
+    welcomeTitle: 'Sales Manager Assessment',
+    welcomeIntro: 'Welcome to the Elbrus Climbing sales assessment.',
+    welcomeIntro2: 'This test evaluates your approach to sales situations, client communication, and professional development. There are no right or wrong answers \u2014 we are looking for how you think and make decisions.',
+    whatYouGet: 'What you will get:',
+    getItem1: 'Personalized feedback on your strengths and areas for growth',
+    getItem2: 'Your score and our assessment of fit for the role',
+    important: 'Important:',
+    impItem1: '46 questions, estimated time 15\u201320 minutes',
+    impItem2: 'Time limit: 25 minutes',
+    impItem3: 'Answer honestly \u2014 the test includes consistency checks',
+    impItem4: 'You cannot go back to previous questions',
+    impItem5: 'You can only take this test once',
+    startBtn: 'Start \u2192',
+    contactTitle: 'Sales Manager Assessment',
+    contactIntro: 'Please fill in your details to begin the test. The test contains 46 questions and is timed at 25 minutes.',
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    resumeLink: 'Resume Link',
+    resumePlaceholder: 'https://...',
+    resumeError: 'Please enter a valid URL',
+    phone: 'Phone Number',
+    phonePlaceholder: '+1 234 567 8900',
+    availableOn: 'Available on',
+    selectOne: '(select at least one)',
+    messengerError: 'Please select at least one messenger',
+    consent: 'I consent to the processing of my personal data for the purpose of evaluating my candidacy. My data will be stored securely and used only for hiring purposes.',
+    beginTest: 'Begin Test',
+    questionOf: 'Question {n} of {total}',
+    selectAll: 'Select all that apply',
+    finishTest: 'Finish Test',
+    nextBtn: 'Next',
+    submitBtn: 'Submit',
+    outOf100: 'out of 100',
+    alreadyTakenTitle: 'Test Already Completed',
+    alreadyTakenText: 'You have already completed this test. Each candidate may only take it once.',
+    alreadyTakenError: 'If you believe this is an error, please contact us via',
+    rejectTitle: 'Thank you for your time',
+    rejectText: 'Thank you for completing the test.<br><br>Unfortunately, at this time we are unable to offer a collaboration. We wish you the best of luck in your career search.',
+    considerTitle: 'Thank you for completing the test!',
+    considerText: 'We are ready to consider your candidacy. To continue, please record a short video (1\u20132 minutes) in English telling us about what you expect from working with us, your current priorities, and goals.<br><br>Send the video and a link to your resume via WhatsApp:',
+    contactWhatsApp: 'Contact us on WhatsApp',
+    strongTitle: 'Excellent result!',
+    strongText: 'You have demonstrated a high level of professional competencies. We are ready to discuss a potential collaboration with you.<br><br>We will contact you shortly. You can also reach out to us directly:',
+    areasForGrowth: 'Areas for Growth',
+    submitting: 'Submitting your results...',
+    shareResult: 'Share your result',
+    copied: 'Copied!',
+    shareText: 'I scored {score}/100 on the Elbrus Climbing sales assessment',
+    likertLabels: ['Strongly disagree', 'Rather no', 'Rather yes', 'Fully agree'],
+    rankClickHint: 'Click items in order of importance (1 = most important)',
+    weaknesses: {
+      clientQualification: { title: 'Client qualification', text: 'Consider asking questions to understand the client\'s needs before presenting options or prices. In consultative sales, qualification comes before presentation.' },
+      discountHandling: { title: 'Discount handling', text: 'Offering discounts without understanding the real reason behind a client\'s hesitation can undermine product value. Focus on identifying the actual concern first.' },
+      proactivity: { title: 'Proactivity', text: 'In sales, waiting for the client to come back on their own often means losing them. A proactive follow-up approach helps maintain momentum.' },
+      systemAdherence: { title: 'System adherence', text: 'Working within a structured sales system with scripts and processes is essential for consistency and scalability.' },
+      safety: { title: 'Safety', text: 'Never provide unverified information about safety to clients. When unsure, consult with the team before responding.' },
+      profDev: { title: 'Professional development', text: 'Investing in professional development through books, courses, and other resources can significantly accelerate your growth in sales.' }
+    }
+  },
+  ru: {
+    welcomeTitle: '\u041e\u0446\u0435\u043d\u043a\u0430 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430 \u043f\u043e \u043f\u0440\u043e\u0434\u0430\u0436\u0430\u043c',
+    welcomeIntro: '\u0414\u043e\u0431\u0440\u043e \u043f\u043e\u0436\u0430\u043b\u043e\u0432\u0430\u0442\u044c \u0432 \u0442\u0435\u0441\u0442 \u0434\u043b\u044f \u043a\u0430\u043d\u0434\u0438\u0434\u0430\u0442\u043e\u0432 Elbrus Climbing.',
+    welcomeIntro2: '\u042d\u0442\u043e\u0442 \u0442\u0435\u0441\u0442 \u043e\u0446\u0435\u043d\u0438\u0432\u0430\u0435\u0442 \u0432\u0430\u0448 \u043f\u043e\u0434\u0445\u043e\u0434 \u043a \u043f\u0440\u043e\u0434\u0430\u0436\u0430\u043c, \u043a\u043e\u043c\u043c\u0443\u043d\u0438\u043a\u0430\u0446\u0438\u044e \u0441 \u043a\u043b\u0438\u0435\u043d\u0442\u0430\u043c\u0438 \u0438 \u043f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u043e\u0435 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435. \u041f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0445 \u0438\u043b\u0438 \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0445 \u043e\u0442\u0432\u0435\u0442\u043e\u0432 \u043d\u0435\u0442 \u2014 \u043d\u0430\u0441 \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u0443\u0435\u0442, \u043a\u0430\u043a \u0432\u044b \u0434\u0443\u043c\u0430\u0435\u0442\u0435 \u0438 \u043f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u0442\u0435 \u0440\u0435\u0448\u0435\u043d\u0438\u044f.',
+    whatYouGet: '\u0427\u0442\u043e \u0432\u044b \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u0435:',
+    getItem1: '\u041f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u0443\u044e \u043e\u0431\u0440\u0430\u0442\u043d\u0443\u044e \u0441\u0432\u044f\u0437\u044c \u043f\u043e \u0441\u0438\u043b\u044c\u043d\u044b\u043c \u0441\u0442\u043e\u0440\u043e\u043d\u0430\u043c \u0438 \u0437\u043e\u043d\u0430\u043c \u0440\u043e\u0441\u0442\u0430',
+    getItem2: '\u0412\u0430\u0448 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442 \u0438 \u043d\u0430\u0448\u0443 \u043e\u0446\u0435\u043d\u043a\u0443 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u044f \u0440\u043e\u043b\u0438',
+    important: '\u0412\u0430\u0436\u043d\u043e:',
+    impItem1: '46 \u0432\u043e\u043f\u0440\u043e\u0441\u043e\u0432, \u043e\u0440\u0438\u0435\u043d\u0442\u0438\u0440\u043e\u0432\u043e\u0447\u043d\u043e\u0435 \u0432\u0440\u0435\u043c\u044f 15\u201320 \u043c\u0438\u043d\u0443\u0442',
+    impItem2: '\u041b\u0438\u043c\u0438\u0442 \u0432\u0440\u0435\u043c\u0435\u043d\u0438: 25 \u043c\u0438\u043d\u0443\u0442',
+    impItem3: '\u041e\u0442\u0432\u0435\u0447\u0430\u0439\u0442\u0435 \u0447\u0435\u0441\u0442\u043d\u043e \u2014 \u0442\u0435\u0441\u0442 \u0432\u043a\u043b\u044e\u0447\u0430\u0435\u0442 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0443 \u043d\u0430 \u043f\u043e\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c',
+    impItem4: '\u0412\u0435\u0440\u043d\u0443\u0442\u044c\u0441\u044f \u043a \u043f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0438\u043c \u0432\u043e\u043f\u0440\u043e\u0441\u0430\u043c \u043d\u0435\u043b\u044c\u0437\u044f',
+    impItem5: '\u0422\u0435\u0441\u0442 \u043c\u043e\u0436\u043d\u043e \u043f\u0440\u043e\u0439\u0442\u0438 \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0434\u0438\u043d \u0440\u0430\u0437',
+    startBtn: '\u041d\u0430\u0447\u0430\u0442\u044c \u2192',
+    contactTitle: '\u041e\u0446\u0435\u043d\u043a\u0430 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430 \u043f\u043e \u043f\u0440\u043e\u0434\u0430\u0436\u0430\u043c',
+    contactIntro: '\u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0437\u0430\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u0432\u0430\u0448\u0438 \u0434\u0430\u043d\u043d\u044b\u0435 \u0434\u043b\u044f \u043d\u0430\u0447\u0430\u043b\u0430 \u0442\u0435\u0441\u0442\u0430. \u0422\u0435\u0441\u0442 \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 46 \u0432\u043e\u043f\u0440\u043e\u0441\u043e\u0432 \u0438 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d 25 \u043c\u0438\u043d\u0443\u0442\u0430\u043c\u0438.',
+    firstName: '\u0418\u043c\u044f',
+    lastName: '\u0424\u0430\u043c\u0438\u043b\u0438\u044f',
+    resumeLink: '\u0421\u0441\u044b\u043b\u043a\u0430 \u043d\u0430 \u0440\u0435\u0437\u044e\u043c\u0435',
+    resumePlaceholder: 'https://...',
+    resumeError: '\u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u044b\u0439 URL',
+    phone: '\u041d\u043e\u043c\u0435\u0440 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430',
+    phonePlaceholder: '+7 999 123 4567',
+    availableOn: '\u0414\u043e\u0441\u0442\u0443\u043f\u0435\u043d \u0432',
+    selectOne: '(\u0432\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0445\u043e\u0442\u044f \u0431\u044b \u043e\u0434\u0438\u043d)',
+    messengerError: '\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0445\u043e\u0442\u044f \u0431\u044b \u043e\u0434\u0438\u043d \u043c\u0435\u0441\u0441\u0435\u043d\u0434\u0436\u0435\u0440',
+    consent: '\u042f \u0434\u0430\u044e \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u043d\u0430 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0443 \u043c\u043e\u0438\u0445 \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445 \u0434\u043b\u044f \u043e\u0446\u0435\u043d\u043a\u0438 \u043c\u043e\u0435\u0439 \u043a\u0430\u043d\u0434\u0438\u0434\u0430\u0442\u0443\u0440\u044b. \u041c\u043e\u0438 \u0434\u0430\u043d\u043d\u044b\u0435 \u0431\u0443\u0434\u0443\u0442 \u0445\u0440\u0430\u043d\u0438\u0442\u044c\u0441\u044f \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e \u0438 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c\u0441\u044f \u0442\u043e\u043b\u044c\u043a\u043e \u0434\u043b\u044f \u0446\u0435\u043b\u0435\u0439 \u043d\u0430\u0439\u043c\u0430.',
+    beginTest: '\u041d\u0430\u0447\u0430\u0442\u044c \u0442\u0435\u0441\u0442',
+    questionOf: '\u0412\u043e\u043f\u0440\u043e\u0441 {n} \u0438\u0437 {total}',
+    selectAll: '\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0441\u0435 \u043f\u043e\u0434\u0445\u043e\u0434\u044f\u0449\u0438\u0435',
+    finishTest: '\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044c \u0442\u0435\u0441\u0442',
+    nextBtn: '\u0414\u0430\u043b\u0435\u0435',
+    submitBtn: '\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c',
+    outOf100: '\u0438\u0437 100',
+    alreadyTakenTitle: '\u0422\u0435\u0441\u0442 \u0443\u0436\u0435 \u043f\u0440\u043e\u0439\u0434\u0435\u043d',
+    alreadyTakenText: '\u0412\u044b \u0443\u0436\u0435 \u043f\u0440\u043e\u0448\u043b\u0438 \u044d\u0442\u043e\u0442 \u0442\u0435\u0441\u0442. \u041a\u0430\u0436\u0434\u044b\u0439 \u043a\u0430\u043d\u0434\u0438\u0434\u0430\u0442 \u043c\u043e\u0436\u0435\u0442 \u043f\u0440\u043e\u0439\u0442\u0438 \u0435\u0433\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0434\u0438\u043d \u0440\u0430\u0437.',
+    alreadyTakenError: '\u0415\u0441\u043b\u0438 \u0432\u044b \u0441\u0447\u0438\u0442\u0430\u0435\u0442\u0435 \u044d\u0442\u043e \u043e\u0448\u0438\u0431\u043a\u043e\u0439, \u0441\u0432\u044f\u0436\u0438\u0442\u0435\u0441\u044c \u0441 \u043d\u0430\u043c\u0438 \u0447\u0435\u0440\u0435\u0437',
+    rejectTitle: '\u0421\u043f\u0430\u0441\u0438\u0431\u043e \u0437\u0430 \u0432\u0430\u0448\u0435 \u0432\u0440\u0435\u043c\u044f',
+    rejectText: '\u0421\u043f\u0430\u0441\u0438\u0431\u043e \u0437\u0430 \u043f\u0440\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u0435 \u0442\u0435\u0441\u0442\u0430.<br><br>\u041a \u0441\u043e\u0436\u0430\u043b\u0435\u043d\u0438\u044e, \u0432 \u043d\u0430\u0441\u0442\u043e\u044f\u0449\u0435\u0435 \u0432\u0440\u0435\u043c\u044f \u043c\u044b \u043d\u0435 \u043c\u043e\u0436\u0435\u043c \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0438\u0442\u044c \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u0447\u0435\u0441\u0442\u0432\u043e. \u0416\u0435\u043b\u0430\u0435\u043c \u0432\u0430\u043c \u0443\u0441\u043f\u0435\u0445\u043e\u0432 \u0432 \u043f\u043e\u0438\u0441\u043a\u0435 \u0440\u0430\u0431\u043e\u0442\u044b.',
+    considerTitle: '\u0421\u043f\u0430\u0441\u0438\u0431\u043e \u0437\u0430 \u043f\u0440\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u0435 \u0442\u0435\u0441\u0442\u0430!',
+    considerText: '\u041c\u044b \u0433\u043e\u0442\u043e\u0432\u044b \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u0432\u0430\u0448\u0443 \u043a\u0430\u043d\u0434\u0438\u0434\u0430\u0442\u0443\u0440\u0443. \u0414\u043b\u044f \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0435\u043d\u0438\u044f \u0437\u0430\u043f\u0438\u0448\u0438\u0442\u0435 \u043a\u043e\u0440\u043e\u0442\u043a\u043e\u0435 \u0432\u0438\u0434\u0435\u043e (1\u20132 \u043c\u0438\u043d\u0443\u0442\u044b) \u043d\u0430 \u0430\u043d\u0433\u043b\u0438\u0439\u0441\u043a\u043e\u043c \u044f\u0437\u044b\u043a\u0435 \u043e \u0442\u043e\u043c, \u0447\u0442\u043e \u0432\u044b \u043e\u0436\u0438\u0434\u0430\u0435\u0442\u0435 \u043e\u0442 \u0440\u0430\u0431\u043e\u0442\u044b \u0441 \u043d\u0430\u043c\u0438, \u0432\u0430\u0448\u0438 \u043f\u0440\u0438\u043e\u0440\u0438\u0442\u0435\u0442\u044b \u0438 \u0446\u0435\u043b\u0438.<br><br>\u041e\u0442\u043f\u0440\u0430\u0432\u044c\u0442\u0435 \u0432\u0438\u0434\u0435\u043e \u0438 \u0441\u0441\u044b\u043b\u043a\u0443 \u043d\u0430 \u0440\u0435\u0437\u044e\u043c\u0435 \u0447\u0435\u0440\u0435\u0437 WhatsApp:',
+    contactWhatsApp: '\u041d\u0430\u043f\u0438\u0441\u0430\u0442\u044c \u0432 WhatsApp',
+    strongTitle: '\u041e\u0442\u043b\u0438\u0447\u043d\u044b\u0439 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442!',
+    strongText: '\u0412\u044b \u043f\u0440\u043e\u0434\u0435\u043c\u043e\u043d\u0441\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043b\u0438 \u0432\u044b\u0441\u043e\u043a\u0438\u0439 \u0443\u0440\u043e\u0432\u0435\u043d\u044c \u043f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u043a\u043e\u043c\u043f\u0435\u0442\u0435\u043d\u0446\u0438\u0439. \u041c\u044b \u0433\u043e\u0442\u043e\u0432\u044b \u043e\u0431\u0441\u0443\u0434\u0438\u0442\u044c \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0435 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u0447\u0435\u0441\u0442\u0432\u043e.<br><br>\u041c\u044b \u0441\u0432\u044f\u0436\u0435\u043c\u0441\u044f \u0441 \u0432\u0430\u043c\u0438 \u0432 \u0431\u043b\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0432\u0440\u0435\u043c\u044f. \u0412\u044b \u0442\u0430\u043a\u0436\u0435 \u043c\u043e\u0436\u0435\u0442\u0435 \u043d\u0430\u043f\u0438\u0441\u0430\u0442\u044c \u043d\u0430\u043c:',
+    areasForGrowth: '\u0417\u043e\u043d\u044b \u0440\u043e\u0441\u0442\u0430',
+    submitting: '\u041e\u0442\u043f\u0440\u0430\u0432\u043a\u0430 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u043e\u0432...',
+    shareResult: '\u041f\u043e\u0434\u0435\u043b\u0438\u0442\u044c\u0441\u044f \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u043e\u043c',
+    copied: '\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e!',
+    shareText: '\u042f \u043d\u0430\u0431\u0440\u0430\u043b(\u0430) {score}/100 \u0432 \u0442\u0435\u0441\u0442\u0435 Elbrus Climbing \u0434\u043b\u044f \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u043e\u0432 \u043f\u043e \u043f\u0440\u043e\u0434\u0430\u0436\u0430\u043c',
+    likertLabels: ['\u0421\u043e\u0432\u0441\u0435\u043c \u043d\u0435 \u0441\u043e\u0433\u043b\u0430\u0441\u0435\u043d', '\u0421\u043a\u043e\u0440\u0435\u0435 \u043d\u0435\u0442', '\u0421\u043a\u043e\u0440\u0435\u0435 \u0434\u0430', '\u041f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e \u0441\u043e\u0433\u043b\u0430\u0441\u0435\u043d'],
+    rankClickHint: '\u041d\u0430\u0436\u0438\u043c\u0430\u0439\u0442\u0435 \u043d\u0430 \u043f\u0443\u043d\u043a\u0442\u044b \u0432 \u043f\u043e\u0440\u044f\u0434\u043a\u0435 \u0432\u0430\u0436\u043d\u043e\u0441\u0442\u0438 (1 = \u0441\u0430\u043c\u043e\u0435 \u0432\u0430\u0436\u043d\u043e\u0435)',
+    weaknesses: {
+      clientQualification: { title: '\u041a\u0432\u0430\u043b\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f \u043a\u043b\u0438\u0435\u043d\u0442\u043e\u0432', text: '\u0420\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u043c \u0437\u0430\u0434\u0430\u0432\u0430\u0442\u044c \u0432\u043e\u043f\u0440\u043e\u0441\u044b \u0434\u043b\u044f \u043f\u043e\u043d\u0438\u043c\u0430\u043d\u0438\u044f \u043f\u043e\u0442\u0440\u0435\u0431\u043d\u043e\u0441\u0442\u0435\u0439 \u043a\u043b\u0438\u0435\u043d\u0442\u0430 \u043f\u0435\u0440\u0435\u0434 \u043f\u0440\u0435\u0437\u0435\u043d\u0442\u0430\u0446\u0438\u0435\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u043e\u0432 \u0438 \u0446\u0435\u043d.' },
+      discountHandling: { title: '\u0420\u0430\u0431\u043e\u0442\u0430 \u0441\u043e \u0441\u043a\u0438\u0434\u043a\u0430\u043c\u0438', text: '\u041f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0441\u043a\u0438\u0434\u043e\u043a \u0431\u0435\u0437 \u043f\u043e\u043d\u0438\u043c\u0430\u043d\u0438\u044f \u0440\u0435\u0430\u043b\u044c\u043d\u043e\u0439 \u043f\u0440\u0438\u0447\u0438\u043d\u044b \u043a\u043e\u043b\u0435\u0431\u0430\u043d\u0438\u0439 \u043a\u043b\u0438\u0435\u043d\u0442\u0430 \u043c\u043e\u0436\u0435\u0442 \u043e\u0431\u0435\u0441\u0446\u0435\u043d\u0438\u0442\u044c \u043f\u0440\u043e\u0434\u0443\u043a\u0442.' },
+      proactivity: { title: '\u041f\u0440\u043e\u0430\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u044c', text: '\u0412 \u043f\u0440\u043e\u0434\u0430\u0436\u0430\u0445 \u043e\u0436\u0438\u0434\u0430\u043d\u0438\u0435 \u0447\u0442\u043e \u043a\u043b\u0438\u0435\u043d\u0442 \u0432\u0435\u0440\u043d\u0451\u0442\u0441\u044f \u0441\u0430\u043c \u0447\u0430\u0441\u0442\u043e \u043e\u0437\u043d\u0430\u0447\u0430\u0435\u0442 \u0435\u0433\u043e \u043f\u043e\u0442\u0435\u0440\u044e.' },
+      systemAdherence: { title: '\u0421\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043c\u0435', text: '\u0420\u0430\u0431\u043e\u0442\u0430 \u0432 \u0440\u0430\u043c\u043a\u0430\u0445 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0439 \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u043f\u0440\u043e\u0434\u0430\u0436 \u0432\u0430\u0436\u043d\u0430 \u0434\u043b\u044f \u0441\u0442\u0430\u0431\u0438\u043b\u044c\u043d\u043e\u0441\u0442\u0438 \u0438 \u043c\u0430\u0441\u0448\u0442\u0430\u0431\u0438\u0440\u0443\u0435\u043c\u043e\u0441\u0442\u0438.' },
+      safety: { title: '\u0411\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u044c', text: '\u041d\u0438\u043a\u043e\u0433\u0434\u0430 \u043d\u0435 \u0434\u0430\u0432\u0430\u0439\u0442\u0435 \u043d\u0435\u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043d\u0443\u044e \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u0438 \u043a\u043b\u0438\u0435\u043d\u0442\u0430\u043c.' },
+      profDev: { title: '\u041f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u043e\u0435 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435', text: '\u0418\u043d\u0432\u0435\u0441\u0442\u0438\u0446\u0438\u0438 \u0432 \u043f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u043e\u0435 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435 \u0447\u0435\u0440\u0435\u0437 \u043a\u043d\u0438\u0433\u0438 \u0438 \u043a\u0443\u0440\u0441\u044b \u043c\u043e\u0433\u0443\u0442 \u0437\u043d\u0430\u0447\u0438\u0442\u0435\u043b\u044c\u043d\u043e \u0443\u0441\u043a\u043e\u0440\u0438\u0442\u044c \u0432\u0430\u0448 \u0440\u043e\u0441\u0442.' }
+    }
+  }
+};
+
+// === INTERLEAVED QUESTION ORDER ===
+// Fixed deterministic order: every 3rd position is a Likert question
+// Regular questions (IDs 1-30): 30 questions
+// Likert questions (IDs 31-46): 16 questions
+// Pattern: R, R, L, R, R, L, ... until we run out of one type, then append rest
+const QUESTION_ORDER = (function() {
+  const regular = [];
+  for (let i = 1; i <= 30; i++) regular.push(i);
+  const likert = [];
+  for (let i = 31; i <= 46; i++) likert.push(i);
+
+  const order = [];
+  let ri = 0, li = 0;
+  while (ri < regular.length || li < likert.length) {
+    // Add 2 regular questions
+    if (ri < regular.length) order.push(regular[ri++]);
+    if (ri < regular.length) order.push(regular[ri++]);
+    // Add 1 likert question
+    if (li < likert.length) order.push(likert[li++]);
+  }
+  return order;
+})();
+
 // === STATE ===
 const state = {
-  currentScreen: 0,       // 0 = welcome, 1 = contact, 2-47 = questions, 48 = results
+  currentScreen: 0,       // 0 = welcome, 1 = contact, 2+ = questions, last = results
   answers: {},
   questionStartTimes: {},
   questionTimes: [],
@@ -21,12 +168,22 @@ const state = {
   timerInterval: null,
   testStartTime: null,
   candidate: null,
-  submitted: false
+  submitted: false,
+  language: 'en',
+  rankingOrder: []  // for click-to-rank
 };
 
 // === DOM HELPERS ===
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
+
+// Helper to get current language text
+function t() { return UI_TEXT[state.language]; }
+function getQuestions() { return questions[state.language]; }
+function getQuestionById(id) { return getQuestions().find(q => q.id === id); }
+
+// === COPY PROTECTION ===
+document.addEventListener('contextmenu', e => e.preventDefault());
 
 // === INITIALIZATION ===
 document.addEventListener('DOMContentLoaded', () => {
@@ -40,6 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // === ALREADY TAKEN ===
 function showAlreadyTaken() {
+  const txt = t();
   const container = $('.container');
   container.innerHTML = `
     <div class="header">
@@ -47,9 +205,9 @@ function showAlreadyTaken() {
     </div>
     <div class="card">
       <div class="already-taken">
-        <h2>Test Already Completed</h2>
-        <p>You have already completed this test. Each candidate may only take it once.</p>
-        <p style="margin-top:16px;">If you believe this is an error, please contact us via
+        <h2>${txt.alreadyTakenTitle}</h2>
+        <p>${txt.alreadyTakenText}</p>
+        <p style="margin-top:16px;">${txt.alreadyTakenError}
           <a href="${CONFIG.WHATSAPP_URL}" target="_blank" style="color:var(--accent);">WhatsApp</a>.</p>
       </div>
     </div>
@@ -58,41 +216,58 @@ function showAlreadyTaken() {
 
 // === WELCOME SCREEN (Screen 0) ===
 function renderWelcomeScreen() {
+  const txt = t();
   const main = $('#main-content');
   main.innerHTML = `
     <div class="screen active" id="screen-welcome">
       <div class="card">
         <div class="welcome-content">
+          <div class="lang-selector">
+            <button class="lang-btn ${state.language === 'en' ? 'active' : ''}" data-lang="en">
+              <span class="lang-flag">\ud83c\uddec\ud83c\udde7</span> English
+            </button>
+            <button class="lang-btn ${state.language === 'ru' ? 'active' : ''}" data-lang="ru">
+              <span class="lang-flag">\ud83c\uddf7\ud83c\uddfa</span> \u0420\u0443\u0441\u0441\u043a\u0438\u0439
+            </button>
+          </div>
           <img src="logo.png" alt="Elbrus Climbing" class="welcome-logo" style="display:block;margin:0 auto 20px;">
-          <div class="welcome-title">Sales Manager Assessment</div>
-          <p class="welcome-intro">Welcome to the Elbrus Climbing sales assessment.</p>
-          <p class="welcome-intro">This test evaluates your approach to sales situations, client communication, and professional development. There are no right or wrong answers — we are looking for how you think and make decisions.</p>
+          <div class="welcome-title">${txt.welcomeTitle}</div>
+          <p class="welcome-intro">${txt.welcomeIntro}</p>
+          <p class="welcome-intro">${txt.welcomeIntro2}</p>
 
           <div class="welcome-section">
-            <h3>What you will get:</h3>
+            <h3>${txt.whatYouGet}</h3>
             <ul>
-              <li>Personalized feedback on your strengths and areas for growth</li>
-              <li>Your score and our assessment of fit for the role</li>
+              <li>${txt.getItem1}</li>
+              <li>${txt.getItem2}</li>
             </ul>
           </div>
 
           <div class="welcome-section">
-            <h3>Important:</h3>
+            <h3>${txt.important}</h3>
             <ul>
-              <li>46 questions, estimated time 15-20 minutes</li>
-              <li>Time limit: 25 minutes</li>
-              <li>Answer honestly — the test includes consistency checks</li>
-              <li>You cannot go back to previous questions</li>
-              <li>You can only take this test once</li>
+              <li>${txt.impItem1}</li>
+              <li>${txt.impItem2}</li>
+              <li>${txt.impItem3}</li>
+              <li>${txt.impItem4}</li>
+              <li>${txt.impItem5}</li>
             </ul>
           </div>
 
           <div class="btn-spacer"></div>
-          <button class="btn btn-primary" id="btn-welcome-start">Start &rarr;</button>
+          <button class="btn btn-primary" id="btn-welcome-start">${txt.startBtn}</button>
         </div>
       </div>
     </div>
   `;
+
+  // Language selector bindings
+  $$('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.language = btn.dataset.lang;
+      renderWelcomeScreen();
+    });
+  });
 
   $('#btn-welcome-start').addEventListener('click', () => {
     state.currentScreen = 1;
@@ -107,36 +282,37 @@ function initContactForm() {
 }
 
 function renderContactScreen() {
+  const txt = t();
   const main = $('#main-content');
   main.innerHTML = `
     <div class="screen active" id="screen-contact">
       <div class="card">
-        <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-bright);margin-bottom:4px;">Sales Manager Assessment</h2>
-        <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:24px;">Please fill in your details to begin the test. The test contains ${CONFIG.TOTAL_QUESTIONS} questions and is timed at 25 minutes.</p>
+        <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-bright);margin-bottom:4px;">${txt.contactTitle}</h2>
+        <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:24px;">${txt.contactIntro}</p>
 
         <div class="form-group">
-          <label>First Name <span class="required">*</span></label>
-          <input type="text" id="inp-first" autocomplete="given-name" placeholder="Your first name">
+          <label>${txt.firstName} <span class="required">*</span></label>
+          <input type="text" id="inp-first" autocomplete="given-name" placeholder="${txt.firstName}">
         </div>
 
         <div class="form-group">
-          <label>Last Name <span class="required">*</span></label>
-          <input type="text" id="inp-last" autocomplete="family-name" placeholder="Your last name">
+          <label>${txt.lastName} <span class="required">*</span></label>
+          <input type="text" id="inp-last" autocomplete="family-name" placeholder="${txt.lastName}">
         </div>
 
         <div class="form-group">
-          <label>Resume Link <span class="required">*</span></label>
-          <input type="url" id="inp-resume" autocomplete="url" placeholder="https://...">
-          <div class="validation-msg" id="val-resume">Please enter a valid URL</div>
+          <label>${txt.resumeLink} <span class="required">*</span></label>
+          <input type="url" id="inp-resume" autocomplete="url" placeholder="${txt.resumePlaceholder}">
+          <div class="validation-msg" id="val-resume">${txt.resumeError}</div>
         </div>
 
         <div class="form-group">
-          <label>Phone Number <span class="required">*</span></label>
-          <input type="tel" id="inp-phone" autocomplete="tel" placeholder="+1 234 567 8900">
+          <label>${txt.phone} <span class="required">*</span></label>
+          <input type="tel" id="inp-phone" autocomplete="tel" placeholder="${txt.phonePlaceholder}">
         </div>
 
         <div class="checkbox-group">
-          <div class="group-label">Available on <span class="required">*</span> <span style="font-size:0.8rem;color:var(--text-dim);">(select at least one)</span></div>
+          <div class="group-label">${txt.availableOn} <span class="required">*</span> <span style="font-size:0.8rem;color:var(--text-dim);">${txt.selectOne}</span></div>
           <div class="checkbox-row">
             <label class="checkbox-item">
               <input type="checkbox" id="chk-whatsapp"> WhatsApp
@@ -145,16 +321,16 @@ function renderContactScreen() {
               <input type="checkbox" id="chk-telegram"> Telegram
             </label>
           </div>
-          <div class="validation-msg" id="val-messenger">Please select at least one messenger</div>
+          <div class="validation-msg" id="val-messenger">${txt.messengerError}</div>
         </div>
 
         <label class="consent-item">
           <input type="checkbox" id="chk-consent">
-          <span>I consent to the processing of my personal data for the purpose of evaluating my candidacy. My data will be stored securely and used only for hiring purposes.</span>
+          <span>${txt.consent}</span>
         </label>
 
         <div class="btn-spacer"></div>
-        <button class="btn btn-primary" id="btn-start" disabled>Begin Test</button>
+        <button class="btn btn-primary" id="btn-start" disabled>${txt.beginTest}</button>
       </div>
     </div>
   `;
@@ -226,7 +402,7 @@ function startTest() {
   $('#progress-section').style.display = 'block';
 
   startTimer();
-  renderQuestion(1);
+  renderQuestionByIndex(0);
 }
 
 // === TIMER ===
@@ -265,77 +441,75 @@ function autoSubmit() {
 }
 
 // === RENDER QUESTION ===
-function renderQuestion(qNum) {
-  const q = questions[qNum - 1];
+// positionIndex is 0-based index into QUESTION_ORDER
+function renderQuestionByIndex(positionIndex) {
+  const qId = QUESTION_ORDER[positionIndex];
+  const q = getQuestionById(qId);
   if (!q) return;
 
-  // Update progress
-  updateProgress(qNum);
+  const displayNum = positionIndex + 1;  // 1-based for display
+  const txt = t();
 
-  // Track time per question
-  state.questionStartTimes[qNum] = Date.now();
+  // Update progress
+  updateProgress(displayNum);
+
+  // Track time per question (keyed by question ID)
+  state.questionStartTimes[qId] = Date.now();
 
   const main = $('#main-content');
-  const isLast = qNum === CONFIG.TOTAL_QUESTIONS;
-
-  // Section divider before Likert section
-  let sectionHeader = '';
-  if (qNum === 31) {
-    sectionHeader = `
-      <div class="section-divider">
-        <h2>Section 2: Self-Assessment</h2>
-        <p>Rate how much you agree with each statement.<br>There are no right or wrong answers.</p>
-      </div>
-    `;
-  }
+  const isLast = positionIndex === QUESTION_ORDER.length - 1;
 
   let optionsHTML = '';
 
   if (q.type === 'single') {
-    optionsHTML = renderSingleOptions(q, qNum);
+    optionsHTML = renderSingleOptions(q, qId);
   } else if (q.type === 'multi') {
-    optionsHTML = renderMultiOptions(q, qNum);
+    optionsHTML = renderMultiOptions(q, qId);
   } else if (q.type === 'ranking') {
-    optionsHTML = renderRankingOptions(q, qNum);
+    optionsHTML = renderRankingOptions(q, qId);
   } else if (q.type === 'likert') {
-    optionsHTML = renderLikertOptions(q, qNum);
+    optionsHTML = renderLikertOptions(q, qId);
   }
 
+  const questionLabel = txt.questionOf.replace('{n}', displayNum).replace('{total}', CONFIG.TOTAL_QUESTIONS);
+  const hintHTML = q.type === 'multi' ? `<div class="question-hint">${txt.selectAll}</div>` : '';
+  const rankHintHTML = q.type === 'ranking' ? `<div class="question-hint">${txt.rankClickHint}</div>` : '';
+
   main.innerHTML = `
-    <div class="screen active" id="screen-q${qNum}">
+    <div class="screen active" id="screen-q${qId}">
       <div class="card">
-        ${sectionHeader}
-        <div class="question-number">Question ${qNum} of ${CONFIG.TOTAL_QUESTIONS}</div>
+        <div class="question-number">${questionLabel}</div>
         <div class="question-text">${q.text}</div>
-        ${q.type === 'multi' ? '<div class="question-hint">Select all that apply</div>' : ''}
+        ${hintHTML}
+        ${rankHintHTML}
         ${optionsHTML}
         <div class="btn-spacer"></div>
-        <button class="btn btn-primary" id="btn-next" disabled>${isLast ? 'Finish Test' : 'Next'}</button>
+        <button class="btn btn-primary" id="btn-next" disabled>${isLast ? txt.finishTest : txt.nextBtn}</button>
       </div>
     </div>
   `;
 
   // Bind next button
   $('#btn-next').addEventListener('click', () => {
-    recordAnswer(qNum, q);
+    recordAnswer(qId, q);
     if (isLast) {
       finishTest();
     } else {
-      state.currentScreen = qNum + 2;
-      renderQuestion(qNum + 1);
+      state.currentScreen = positionIndex + 3;
+      renderQuestionByIndex(positionIndex + 1);
     }
   });
 
   // Bind answer selection to enable next button
-  bindAnswerSelection(qNum, q);
+  bindAnswerSelection(qId, q);
 }
 
-function renderSingleOptions(q, qNum) {
+function renderSingleOptions(q, qId) {
   return `<div class="options-list">
     ${q.options.map(opt => `
       <div class="option-item">
-        <input type="radio" name="q${qNum}" id="q${qNum}_${opt.label}" value="${opt.label}">
-        <label class="option-label" for="q${qNum}_${opt.label}">
+        <input type="radio" name="q${qId}" id="q${qId}_${opt.label}" value="${opt.label}">
+        <label class="option-label" for="q${qId}_${opt.label}">
           <span class="option-letter">${opt.label}</span>
           <span>${opt.text}</span>
         </label>
@@ -344,12 +518,12 @@ function renderSingleOptions(q, qNum) {
   </div>`;
 }
 
-function renderMultiOptions(q, qNum) {
+function renderMultiOptions(q, qId) {
   return `<div class="options-list">
     ${q.options.map(opt => `
       <div class="option-item">
-        <input type="checkbox" name="q${qNum}" id="q${qNum}_${opt.label}" value="${opt.label}">
-        <label class="option-label" for="q${qNum}_${opt.label}">
+        <input type="checkbox" name="q${qId}" id="q${qId}_${opt.label}" value="${opt.label}">
+        <label class="option-label" for="q${qId}_${opt.label}">
           <span class="option-letter">${opt.label}</span>
           <span>${opt.text}</span>
         </label>
@@ -358,31 +532,26 @@ function renderMultiOptions(q, qNum) {
   </div>`;
 }
 
-function renderRankingOptions(q, qNum) {
-  return `<div class="ranking-list">
+function renderRankingOptions(q, qId) {
+  // Click-to-rank interface
+  state.rankingOrder = [];
+  return `<div class="ranking-list" id="ranking-list">
     ${q.options.map(opt => `
-      <div class="ranking-item">
-        <select id="rank_${opt.label}" data-rank="${opt.label}">
-          <option value="">--</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
+      <div class="ranking-card" data-label="${opt.label}" id="rank-card-${opt.label}">
+        <div class="ranking-circle"></div>
         <span class="ranking-text">${opt.text}</span>
       </div>
     `).join('')}
   </div>`;
 }
 
-function renderLikertOptions(q, qNum) {
-  const labels = ['Strongly disagree', 'Rather no', 'Rather yes', 'Fully agree'];
+function renderLikertOptions(q, qId) {
+  const labels = t().likertLabels;
   return `<div class="likert-grid">
     ${[0, 1, 2, 3].map(val => `
       <div class="likert-btn">
-        <input type="radio" name="q${qNum}" id="q${qNum}_${val}" value="${val}">
-        <label class="likert-label" for="q${qNum}_${val}">
+        <input type="radio" name="q${qId}" id="q${qId}_${val}" value="${val}">
+        <label class="likert-label" for="q${qId}_${val}">
           <span class="likert-number">${val}</span>
           <span class="likert-text">${labels[val]}</span>
         </label>
@@ -391,76 +560,92 @@ function renderLikertOptions(q, qNum) {
   </div>`;
 }
 
-function bindAnswerSelection(qNum, q) {
+function bindAnswerSelection(qId, q) {
   if (q.type === 'single' || q.type === 'likert') {
-    $$(`input[name="q${qNum}"]`).forEach(inp => {
+    $$(`input[name="q${qId}"]`).forEach(inp => {
       inp.addEventListener('change', () => {
         $('#btn-next').disabled = false;
       });
     });
   } else if (q.type === 'multi') {
-    $$(`input[name="q${qNum}"]`).forEach(inp => {
+    $$(`input[name="q${qId}"]`).forEach(inp => {
       inp.addEventListener('change', () => {
-        const anyChecked = [...$$(`input[name="q${qNum}"]`)].some(i => i.checked);
+        const anyChecked = [...$$(`input[name="q${qId}"]`)].some(i => i.checked);
         $('#btn-next').disabled = !anyChecked;
       });
     });
   } else if (q.type === 'ranking') {
-    $$(`select[data-rank]`).forEach(sel => {
-      sel.addEventListener('change', () => {
-        const allFilled = [...$$(`select[data-rank]`)].every(s => s.value !== '');
-        // Check for duplicates
-        const values = [...$$(`select[data-rank]`)].map(s => s.value).filter(v => v !== '');
-        const unique = new Set(values);
-        const noDuplicates = values.length === unique.size;
-        $('#btn-next').disabled = !(allFilled && noDuplicates);
+    // Click-to-rank binding
+    $$('.ranking-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const label = card.dataset.label;
+        const existingIdx = state.rankingOrder.indexOf(label);
 
-        // Highlight duplicates
-        $$(`select[data-rank]`).forEach(s => {
-          s.style.borderColor = '';
-        });
-        if (values.length > unique.size) {
-          const seen = {};
-          $$(`select[data-rank]`).forEach(s => {
-            if (s.value && seen[s.value]) {
-              s.style.borderColor = 'var(--error)';
-              seen[s.value].style.borderColor = 'var(--error)';
-            }
-            if (s.value) seen[s.value] = s;
-          });
+        if (existingIdx !== -1) {
+          // Remove and shift down
+          state.rankingOrder.splice(existingIdx, 1);
+        } else {
+          // Add to end of ranking
+          state.rankingOrder.push(label);
         }
+
+        // Update all cards visually
+        updateRankingDisplay();
+
+        // Enable next only when all 5 are ranked
+        $('#btn-next').disabled = state.rankingOrder.length !== q.options.length;
       });
     });
   }
 }
 
-function recordAnswer(qNum, q) {
+function updateRankingDisplay() {
+  $$('.ranking-card').forEach(card => {
+    const label = card.dataset.label;
+    const circle = card.querySelector('.ranking-circle');
+    const idx = state.rankingOrder.indexOf(label);
+
+    if (idx !== -1) {
+      circle.textContent = idx + 1;
+      card.classList.add('ranked');
+    } else {
+      circle.textContent = '';
+      card.classList.remove('ranked');
+    }
+  });
+}
+
+function recordAnswer(qId, q) {
   // Record time spent
-  const startTime = state.questionStartTimes[qNum] || Date.now();
+  const startTime = state.questionStartTimes[qId] || Date.now();
   const elapsed = Math.round((Date.now() - startTime) / 1000);
-  state.questionTimes[qNum - 1] = elapsed;
+  // Store by question ID
+  state.questionTimes[qId - 1] = elapsed;
 
   if (q.type === 'single' || q.type === 'likert') {
-    const checked = document.querySelector(`input[name="q${qNum}"]:checked`);
+    const checked = document.querySelector(`input[name="q${qId}"]:checked`);
     if (checked) {
-      state.answers['Q' + qNum] = q.type === 'likert' ? parseInt(checked.value, 10) : checked.value;
+      state.answers['Q' + qId] = q.type === 'likert' ? parseInt(checked.value, 10) : checked.value;
     }
   } else if (q.type === 'multi') {
-    const checked = [...$$(`input[name="q${qNum}"]:checked`)].map(i => i.value);
-    state.answers['Q' + qNum] = checked;
+    const checked = [...$$(`input[name="q${qId}"]:checked`)].map(i => i.value);
+    state.answers['Q' + qId] = checked;
   } else if (q.type === 'ranking') {
+    // Convert rankingOrder array to object: { label: position }
     const ranking = {};
-    $$(`select[data-rank]`).forEach(sel => {
-      ranking[sel.dataset.rank] = parseInt(sel.value, 10);
+    state.rankingOrder.forEach((label, idx) => {
+      ranking[label] = idx + 1;
     });
-    state.answers['Q' + qNum] = ranking;
+    state.answers['Q' + qId] = ranking;
   }
 }
 
-function updateProgress(qNum) {
-  const pct = ((qNum - 1) / CONFIG.TOTAL_QUESTIONS) * 100;
+function updateProgress(displayNum) {
+  const pct = ((displayNum - 1) / CONFIG.TOTAL_QUESTIONS) * 100;
   $('#progress-fill').style.width = pct + '%';
-  $('#progress-text').textContent = `Question ${qNum} of ${CONFIG.TOTAL_QUESTIONS}`;
+  const txt = t();
+  const label = txt.questionOf.replace('{n}', displayNum).replace('{total}', CONFIG.TOTAL_QUESTIONS);
+  $('#progress-text').textContent = label;
 }
 
 // === FINISH TEST ===
@@ -469,6 +654,10 @@ function finishTest() {
 
   if (state.submitted) return;
   state.submitted = true;
+
+  // Update loading text
+  const loadingText = document.querySelector('.loading-text');
+  if (loadingText) loadingText.textContent = t().submitting;
 
   // Show loading
   showLoading(true);
@@ -479,7 +668,7 @@ function finishTest() {
   // Build payload
   const payload = {
     timestamp: new Date().toISOString(),
-    language: 'en',
+    language: state.language,
     candidate: state.candidate,
     answers: state.answers,
     timing: {
@@ -537,6 +726,8 @@ function showLoading(show) {
 
 // === RENDER RESULTS ===
 function renderResults(result) {
+  const txt = t();
+
   // Hide progress
   $('#progress-section').style.display = 'none';
 
@@ -548,35 +739,27 @@ function renderResults(result) {
   if (result.autoReject || result.decision === 'reject') {
     decisionHTML = `
       <div class="decision-box reject">
-        <div class="decision-title">Thank you for your time</div>
-        <div class="decision-text">
-          Thank you for completing the test.<br><br>
-          Unfortunately, at this time we are unable to offer a collaboration.
-          We wish you the best of luck in your career search.
-        </div>
+        <div class="decision-title">${txt.rejectTitle}</div>
+        <div class="decision-text">${txt.rejectText}</div>
       </div>
     `;
   } else if (result.decision === 'consider') {
     decisionHTML = `
       <div class="decision-box consider">
-        <div class="decision-title">Thank you for completing the test!</div>
+        <div class="decision-title">${txt.considerTitle}</div>
         <div class="decision-text">
-          We are ready to consider your candidacy. To continue, please record a short video (1-2 minutes) in English
-          telling us about what you expect from working with us, your current priorities, and goals.<br><br>
-          Send the video and a link to your resume via WhatsApp:<br>
-          <a href="${CONFIG.WHATSAPP_URL}" target="_blank">Contact us on WhatsApp</a>
+          ${txt.considerText}<br>
+          <a href="${CONFIG.WHATSAPP_URL}" target="_blank">${txt.contactWhatsApp}</a>
         </div>
       </div>
     `;
   } else {
     decisionHTML = `
       <div class="decision-box strong">
-        <div class="decision-title">Excellent result!</div>
+        <div class="decision-title">${txt.strongTitle}</div>
         <div class="decision-text">
-          You have demonstrated a high level of professional competencies.
-          We are ready to discuss a potential collaboration with you.<br><br>
-          We will contact you shortly. You can also reach out to us directly:<br>
-          <a href="${CONFIG.WHATSAPP_URL}" target="_blank">Contact us on WhatsApp</a>
+          ${txt.strongText}<br>
+          <a href="${CONFIG.WHATSAPP_URL}" target="_blank">${txt.contactWhatsApp}</a>
         </div>
       </div>
     `;
@@ -587,7 +770,7 @@ function renderResults(result) {
   if (result.weaknesses.length > 0) {
     weaknessHTML = `
       <div class="weaknesses">
-        <h3>Areas for Growth</h3>
+        <h3>${txt.areasForGrowth}</h3>
         ${result.weaknesses.map(w => `
           <div class="weakness-item">
             <div class="weakness-title">${w.title}</div>
@@ -604,13 +787,15 @@ function renderResults(result) {
       <div class="card">
         <div class="result-score">
           <div class="result-score-number" style="color:${scoreColor}">${score}</div>
-          <div class="result-score-label">out of 100</div>
+          <div class="result-score-label">${txt.outOf100}</div>
         </div>
         <div class="result-bar">
           <div class="result-bar-fill ${colorClass}" id="result-bar-fill" style="width:0%"></div>
         </div>
         ${decisionHTML}
         ${weaknessHTML}
+        <div class="btn-spacer"></div>
+        <button class="btn btn-secondary" id="btn-share">${txt.shareResult}</button>
       </div>
     </div>
   `;
@@ -620,5 +805,44 @@ function renderResults(result) {
     requestAnimationFrame(() => {
       $('#result-bar-fill').style.width = score + '%';
     });
+  });
+
+  // Share button
+  const shareBtn = $('#btn-share');
+  const shareTextContent = txt.shareText.replace('{score}', score);
+  const shareUrl = window.location.href;
+
+  shareBtn.addEventListener('click', async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          text: shareTextContent,
+          url: shareUrl
+        });
+      } catch (e) {
+        // User cancelled or error — ignore
+      }
+    } else {
+      // Desktop fallback: copy to clipboard
+      try {
+        await navigator.clipboard.writeText(shareTextContent + ' ' + shareUrl);
+        shareBtn.textContent = txt.copied;
+        setTimeout(() => {
+          shareBtn.textContent = txt.shareResult;
+        }, 2000);
+      } catch (e) {
+        // Fallback for older browsers
+        const textarea = document.createElement('textarea');
+        textarea.value = shareTextContent + ' ' + shareUrl;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        shareBtn.textContent = txt.copied;
+        setTimeout(() => {
+          shareBtn.textContent = txt.shareResult;
+        }, 2000);
+      }
+    }
   });
 }
