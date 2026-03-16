@@ -17,6 +17,14 @@
 </head>
 <body>
   <div class="container">
+    <!-- Global language indicator (shown on contact/question/result screens, disabled) -->
+    <div id="lang-indicator" style="display:none;text-align:right;margin-bottom:4px;">
+      <select id="lang-indicator-select" disabled style="appearance:none;-webkit-appearance:none;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:5px 28px 5px 10px;font-size:0.8rem;font-family:inherit;color:var(--text-dim);cursor:default;opacity:0.7;background-image:url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M3%205l3%203%203-3%22%2F%3E%3C%2Fsvg%3E');background-repeat:no-repeat;background-position:right 8px center;">
+        <option value="en">EN</option>
+        <option value="ru">RU</option>
+      </select>
+    </div>
+
     <!-- Progress bar & timer (hidden until test starts) -->
     <div class="progress-container" id="progress-section" style="display:none;">
       <div class="progress-info">

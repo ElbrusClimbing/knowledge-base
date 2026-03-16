@@ -602,6 +602,7 @@ input, textarea {
 .result-bar-fill.red { background: var(--error); }
 .result-bar-fill.yellow { background: var(--warning); }
 .result-bar-fill.green { background: var(--success); }
+.result-bar-fill.bright-green { background: #22c55e; }
 
 /* Decision message */
 .decision-box {

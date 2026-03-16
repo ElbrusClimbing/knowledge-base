@@ -82,7 +82,7 @@ const questions = {
       type: 'single',
       text: 'Client: "Hi! I want to go to Elbrus in July. How much does it cost and what is included?" Which answer is BEST?',
       options: [
-        { label: 'a', text: '"Hello! The price depends on the programme. A standard south-side ascent starts from 1,150 EUR. Other programmes cost more. Which programme are you interested in?"' },
+        { label: 'a', text: '"Hello! The price depends on the programme. A standard south-side climb starts from 1,150 EUR. Other programmes cost more. Which programme are you interested in?"' },
         { label: 'b', text: '"Hello! Tour prices in July range from 1,150 to 3,650 EUR. Included: accommodation, meals, guides. Here is all the detailed information, available dates, and exact prices: [link]. If you have any questions, I will be happy to answer them."' },
         { label: 'c', text: '"Hi! In July we have many trips on different routes. Prices vary by programme. Do you want the simplest standard south-side route or something more interesting and challenging?"' },
         { label: 'd', text: '"Hi! July is a great time \u2014 the peak of the season! Are you going alone or with a group? Do you have mountain experience? I will find the best programme for you and send all the information."' }
@@ -337,8 +337,8 @@ const questions = {
       type: 'single',
       text: 'You discussed an Elbrus tour with a client a year ago but have not been in contact since. Write the first message.',
       options: [
-        { label: 'a', text: '"Hello! I wanted to ask whether an Elbrus ascent is still something you are considering? We are ready to offer you the best conditions this season."' },
-        { label: 'b', text: '"Hello! We discussed an Elbrus ascent before. If your plans have not changed, I can tell you about what is new in this season\'s programme."' },
+        { label: 'a', text: '"Hello! I wanted to ask whether an Elbrus climb is still something you are considering? We are ready to offer you the best conditions this season."' },
+        { label: 'b', text: '"Hello! We discussed an Elbrus climb before. If your plans have not changed, I can tell you about what is new in this season\'s programme."' },
         { label: 'c', text: '"Hi! We spoke a year ago about Elbrus. Did you end up making the climb? Or is it still something you are interested in?"' },
         { label: 'd', text: '"Hi! We have started taking bookings for the next season. Early bookings get the best price. Below I will send the programme description and the trip schedule. If you have any questions, I will be happy to help! :)"' }
       ]

@@ -51,13 +51,16 @@ const UI_TEXT = {
     alreadyTakenText: 'You have already completed this test. Each candidate may only take it once.',
     alreadyTakenError: 'If you believe this is an error, please contact us via',
     rejectTitle: 'Thank you for your time',
-    rejectText: 'Thank you for completing the test.<br><br>Unfortunately, at this time we are unable to offer a collaboration. We wish you the best of luck in your career search.',
+    rejectText: 'Thank you for your time and for completing the test. Unfortunately, at this time we are unable to offer a collaboration. We wish you the best of luck in your career search.',
     considerTitle: 'Thank you for completing the test!',
     considerText: 'We are ready to consider your candidacy. To continue, please record a short video (1\u20132 minutes) in English telling us about what you expect from working with us, your current priorities, and goals.<br><br>Send the video and a link to your resume via WhatsApp:',
     contactWhatsApp: 'Contact us on WhatsApp',
     strongTitle: 'Excellent result!',
     strongText: 'You have demonstrated a high level of professional competencies. We are ready to discuss a potential collaboration with you.<br><br>We will contact you shortly. You can also reach out to us directly:',
+    outstandingTitle: 'Outstanding result!',
+    outstandingText: 'You have demonstrated an exceptional level of professional competencies. We are very interested in discussing a collaboration with you.<br><br>We will contact you shortly. You can also reach out to us directly:',
     areasForGrowth: 'Areas for Growth',
+    strengths: 'Strengths',
     submitting: 'Submitting your results...',
     shareResult: 'Share your result',
     copied: 'Copied!',
@@ -71,6 +74,13 @@ const UI_TEXT = {
       systemAdherence: { title: 'System adherence', text: 'Working within a structured sales system with scripts and processes is essential for consistency and scalability.' },
       safety: { title: 'Safety', text: 'Never provide unverified information about safety to clients. When unsure, consult with the team before responding.' },
       profDev: { title: 'Professional development', text: 'Investing in professional development through books, courses, and other resources can significantly accelerate your growth in sales.' }
+    },
+    strengthMessages: {
+      sales: 'Strong sales skills — you understand qualification, objection handling, and client management',
+      client: 'Excellent client orientation — you prioritize honesty and client wellbeing',
+      discipline: 'Strong discipline and systems thinking — you work well within structured processes',
+      motivation: 'Strong motivation aligned with product and results',
+      profdev: 'Active investment in professional development'
     }
   },
   ru: {
@@ -110,14 +120,17 @@ const UI_TEXT = {
     alreadyTakenTitle: '\u0422\u0435\u0441\u0442 \u0443\u0436\u0435 \u043f\u0440\u043e\u0439\u0434\u0435\u043d',
     alreadyTakenText: '\u0412\u044b \u0443\u0436\u0435 \u043f\u0440\u043e\u0448\u043b\u0438 \u044d\u0442\u043e\u0442 \u0442\u0435\u0441\u0442. \u041a\u0430\u0436\u0434\u044b\u0439 \u043a\u0430\u043d\u0434\u0438\u0434\u0430\u0442 \u043c\u043e\u0436\u0435\u0442 \u043f\u0440\u043e\u0439\u0442\u0438 \u0435\u0433\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0434\u0438\u043d \u0440\u0430\u0437.',
     alreadyTakenError: '\u0415\u0441\u043b\u0438 \u0432\u044b \u0441\u0447\u0438\u0442\u0430\u0435\u0442\u0435 \u044d\u0442\u043e \u043e\u0448\u0438\u0431\u043a\u043e\u0439, \u0441\u0432\u044f\u0436\u0438\u0442\u0435\u0441\u044c \u0441 \u043d\u0430\u043c\u0438 \u0447\u0435\u0440\u0435\u0437',
-    rejectTitle: '\u0421\u043f\u0430\u0441\u0438\u0431\u043e \u0437\u0430 \u0432\u0430\u0448\u0435 \u0432\u0440\u0435\u043c\u044f',
-    rejectText: '\u0421\u043f\u0430\u0441\u0438\u0431\u043e \u0437\u0430 \u043f\u0440\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u0435 \u0442\u0435\u0441\u0442\u0430.<br><br>\u041a \u0441\u043e\u0436\u0430\u043b\u0435\u043d\u0438\u044e, \u0432 \u043d\u0430\u0441\u0442\u043e\u044f\u0449\u0435\u0435 \u0432\u0440\u0435\u043c\u044f \u043c\u044b \u043d\u0435 \u043c\u043e\u0436\u0435\u043c \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0438\u0442\u044c \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u0447\u0435\u0441\u0442\u0432\u043e. \u0416\u0435\u043b\u0430\u0435\u043c \u0432\u0430\u043c \u0443\u0441\u043f\u0435\u0445\u043e\u0432 \u0432 \u043f\u043e\u0438\u0441\u043a\u0435 \u0440\u0430\u0431\u043e\u0442\u044b.',
-    considerTitle: '\u0421\u043f\u0430\u0441\u0438\u0431\u043e \u0437\u0430 \u043f\u0440\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u0435 \u0442\u0435\u0441\u0442\u0430!',
-    considerText: '\u041c\u044b \u0433\u043e\u0442\u043e\u0432\u044b \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u0432\u0430\u0448\u0443 \u043a\u0430\u043d\u0434\u0438\u0434\u0430\u0442\u0443\u0440\u0443. \u0414\u043b\u044f \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0435\u043d\u0438\u044f \u0437\u0430\u043f\u0438\u0448\u0438\u0442\u0435 \u043a\u043e\u0440\u043e\u0442\u043a\u043e\u0435 \u0432\u0438\u0434\u0435\u043e (1\u20132 \u043c\u0438\u043d\u0443\u0442\u044b) \u043d\u0430 \u0430\u043d\u0433\u043b\u0438\u0439\u0441\u043a\u043e\u043c \u044f\u0437\u044b\u043a\u0435 \u043e \u0442\u043e\u043c, \u0447\u0442\u043e \u0432\u044b \u043e\u0436\u0438\u0434\u0430\u0435\u0442\u0435 \u043e\u0442 \u0440\u0430\u0431\u043e\u0442\u044b \u0441 \u043d\u0430\u043c\u0438, \u0432\u0430\u0448\u0438 \u043f\u0440\u0438\u043e\u0440\u0438\u0442\u0435\u0442\u044b \u0438 \u0446\u0435\u043b\u0438.<br><br>\u041e\u0442\u043f\u0440\u0430\u0432\u044c\u0442\u0435 \u0432\u0438\u0434\u0435\u043e \u0438 \u0441\u0441\u044b\u043b\u043a\u0443 \u043d\u0430 \u0440\u0435\u0437\u044e\u043c\u0435 \u0447\u0435\u0440\u0435\u0437 WhatsApp:',
-    contactWhatsApp: '\u041d\u0430\u043f\u0438\u0441\u0430\u0442\u044c \u0432 WhatsApp',
-    strongTitle: '\u041e\u0442\u043b\u0438\u0447\u043d\u044b\u0439 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442!',
-    strongText: '\u0412\u044b \u043f\u0440\u043e\u0434\u0435\u043c\u043e\u043d\u0441\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043b\u0438 \u0432\u044b\u0441\u043e\u043a\u0438\u0439 \u0443\u0440\u043e\u0432\u0435\u043d\u044c \u043f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u043a\u043e\u043c\u043f\u0435\u0442\u0435\u043d\u0446\u0438\u0439. \u041c\u044b \u0433\u043e\u0442\u043e\u0432\u044b \u043e\u0431\u0441\u0443\u0434\u0438\u0442\u044c \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0435 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u0447\u0435\u0441\u0442\u0432\u043e.<br><br>\u041c\u044b \u0441\u0432\u044f\u0436\u0435\u043c\u0441\u044f \u0441 \u0432\u0430\u043c\u0438 \u0432 \u0431\u043b\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0432\u0440\u0435\u043c\u044f. \u0412\u044b \u0442\u0430\u043a\u0436\u0435 \u043c\u043e\u0436\u0435\u0442\u0435 \u043d\u0430\u043f\u0438\u0441\u0430\u0442\u044c \u043d\u0430\u043c:',
-    areasForGrowth: '\u0417\u043e\u043d\u044b \u0440\u043e\u0441\u0442\u0430',
+    rejectTitle: 'Спасибо за ваше время',
+    rejectText: 'Спасибо за ваше время и прохождение теста. К сожалению, на данный момент мы не готовы предложить сотрудничество. Желаем удачи в поиске подходящей позиции.',
+    considerTitle: 'Спасибо за прохождение теста!',
+    considerText: 'Мы готовы рассмотреть вашу кандидатуру. Для продолжения, пожалуйста, запишите короткое видео (1\u20132 минуты) на английском языке — расскажите о том, чего вы ожидаете от сотрудничества, какие у вас сейчас приоритеты и цели.<br><br>Отправьте видео и ссылку на ваше резюме в WhatsApp:',
+    contactWhatsApp: 'Написать в WhatsApp',
+    strongTitle: 'Отличный результат!',
+    strongText: 'Вы продемонстрировали высокий уровень профессиональных компетенций. Мы готовы обсудить с вами возможность сотрудничества.<br><br>Мы свяжемся с вами в ближайшее время. Вы также можете связаться с нами:',
+    outstandingTitle: 'Выдающийся результат!',
+    outstandingText: 'Вы продемонстрировали исключительный уровень профессиональных компетенций. Мы очень заинтересованы в обсуждении сотрудничества с вами.<br><br>Мы свяжемся с вами в ближайшее время. Вы также можете связаться с нами:',
+    areasForGrowth: 'Зоны роста',
+    strengths: 'Сильные стороны',
     submitting: '\u041e\u0442\u043f\u0440\u0430\u0432\u043a\u0430 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u043e\u0432...',
     shareResult: '\u041f\u043e\u0434\u0435\u043b\u0438\u0442\u044c\u0441\u044f \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u043e\u043c',
     copied: '\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e!',
@@ -131,6 +144,13 @@ const UI_TEXT = {
       systemAdherence: { title: '\u0421\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043c\u0435', text: '\u0420\u0430\u0431\u043e\u0442\u0430 \u0432 \u0440\u0430\u043c\u043a\u0430\u0445 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0439 \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u043f\u0440\u043e\u0434\u0430\u0436 \u0432\u0430\u0436\u043d\u0430 \u0434\u043b\u044f \u0441\u0442\u0430\u0431\u0438\u043b\u044c\u043d\u043e\u0441\u0442\u0438 \u0438 \u043c\u0430\u0441\u0448\u0442\u0430\u0431\u0438\u0440\u0443\u0435\u043c\u043e\u0441\u0442\u0438.' },
       safety: { title: '\u0411\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u044c', text: '\u041d\u0438\u043a\u043e\u0433\u0434\u0430 \u043d\u0435 \u0434\u0430\u0432\u0430\u0439\u0442\u0435 \u043d\u0435\u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043d\u0443\u044e \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u0438 \u043a\u043b\u0438\u0435\u043d\u0442\u0430\u043c.' },
       profDev: { title: '\u041f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u043e\u0435 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435', text: '\u0418\u043d\u0432\u0435\u0441\u0442\u0438\u0446\u0438\u0438 \u0432 \u043f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u043e\u0435 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435 \u0447\u0435\u0440\u0435\u0437 \u043a\u043d\u0438\u0433\u0438 \u0438 \u043a\u0443\u0440\u0441\u044b \u043c\u043e\u0433\u0443\u0442 \u0437\u043d\u0430\u0447\u0438\u0442\u0435\u043b\u044c\u043d\u043e \u0443\u0441\u043a\u043e\u0440\u0438\u0442\u044c \u0432\u0430\u0448 \u0440\u043e\u0441\u0442.' }
+    },
+    strengthMessages: {
+      sales: 'Сильные навыки продаж — вы понимаете квалификацию, работу с возражениями и управление клиентами',
+      client: 'Отличная клиентоориентированность — вы ставите честность и благополучие клиента на первое место',
+      discipline: 'Сильная дисциплина и системное мышление — вы эффективно работаете в структурированных процессах',
+      motivation: 'Сильная мотивация, ориентированная на продукт и результат',
+      profdev: 'Активное инвестирование в профессиональное развитие'
     }
   }
 };
@@ -220,15 +240,13 @@ function renderWelcomeScreen() {
   const main = $('#main-content');
   main.innerHTML = `
     <div class="screen active" id="screen-welcome">
-      <div class="card">
+      <div class="card" style="position:relative;">
         <div class="welcome-content">
-          <div class="lang-selector">
-            <button class="lang-btn ${state.language === 'en' ? 'active' : ''}" data-lang="en">
-              <span class="lang-flag">\ud83c\uddec\ud83c\udde7</span> English
-            </button>
-            <button class="lang-btn ${state.language === 'ru' ? 'active' : ''}" data-lang="ru">
-              <span class="lang-flag">\ud83c\uddf7\ud83c\uddfa</span> \u0420\u0443\u0441\u0441\u043a\u0438\u0439
-            </button>
+          <div class="lang-dropdown-wrap" style="position:absolute;top:16px;right:16px;">
+            <select class="lang-dropdown" id="lang-select" style="appearance:none;-webkit-appearance:none;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:5px 28px 5px 10px;font-size:0.8rem;font-family:inherit;color:var(--text-dim);cursor:pointer;background-image:url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M3%205l3%203%203-3%22%2F%3E%3C%2Fsvg%3E');background-repeat:no-repeat;background-position:right 8px center;">
+              <option value="en" ${state.language === 'en' ? 'selected' : ''}>EN</option>
+              <option value="ru" ${state.language === 'ru' ? 'selected' : ''}>RU</option>
+            </select>
           </div>
           <img src="logo.png" alt="Elbrus Climbing" class="welcome-logo" style="display:block;margin:0 auto 20px;">
           <div class="welcome-title">${txt.welcomeTitle}</div>
@@ -262,12 +280,13 @@ function renderWelcomeScreen() {
   `;
 
   // Language selector bindings
-  $$('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      state.language = btn.dataset.lang;
+  const langSelect = $('#lang-select');
+  if (langSelect) {
+    langSelect.addEventListener('change', () => {
+      state.language = langSelect.value;
       renderWelcomeScreen();
     });
-  });
+  }
 
   $('#btn-welcome-start').addEventListener('click', () => {
     state.currentScreen = 1;
@@ -275,8 +294,19 @@ function renderWelcomeScreen() {
   });
 }
 
+// === LANGUAGE INDICATOR (for non-welcome screens) ===
+function showLangIndicator() {
+  const indicator = $('#lang-indicator');
+  if (indicator) {
+    indicator.style.display = 'block';
+    const sel = $('#lang-indicator-select');
+    if (sel) sel.value = state.language;
+  }
+}
+
 // === CONTACT FORM (Screen 1) ===
 function initContactForm() {
+  showLangIndicator();
   renderContactScreen();
   bindContactValidation();
 }
@@ -732,8 +762,20 @@ function renderResults(result) {
   $('#progress-section').style.display = 'none';
 
   const score = result.finalScore;
-  const colorClass = score >= 75 ? 'green' : (score >= 50 ? 'yellow' : 'red');
-  const scoreColor = score >= 75 ? 'var(--success)' : (score >= 50 ? 'var(--warning)' : 'var(--error)');
+  let colorClass, scoreColor;
+  if (score >= 85) {
+    colorClass = 'bright-green';
+    scoreColor = '#22c55e';
+  } else if (score >= 70) {
+    colorClass = 'green';
+    scoreColor = 'var(--success)';
+  } else if (score >= 55) {
+    colorClass = 'yellow';
+    scoreColor = 'var(--warning)';
+  } else {
+    colorClass = 'red';
+    scoreColor = 'var(--error)';
+  }
 
   let decisionHTML = '';
   if (result.autoReject || result.decision === 'reject') {
@@ -753,6 +795,16 @@ function renderResults(result) {
         </div>
       </div>
     `;
+  } else if (result.decision === 'outstanding') {
+    decisionHTML = `
+      <div class="decision-box strong">
+        <div class="decision-title">${txt.outstandingTitle}</div>
+        <div class="decision-text">
+          ${txt.outstandingText}<br>
+          <a href="${CONFIG.WHATSAPP_URL}" target="_blank">${txt.contactWhatsApp}</a>
+        </div>
+      </div>
+    `;
   } else {
     decisionHTML = `
       <div class="decision-box strong">
@@ -761,6 +813,33 @@ function renderResults(result) {
           ${txt.strongText}<br>
           <a href="${CONFIG.WHATSAPP_URL}" target="_blank">${txt.contactWhatsApp}</a>
         </div>
+      </div>
+    `;
+  }
+
+  // Strengths
+  let strengthsHTML = '';
+  const strengthItems = [];
+  const strengthMsgs = txt.strengthMessages;
+  if (result.categories) {
+    for (const cat of ['sales', 'client', 'discipline', 'motivation', 'profdev']) {
+      if (result.categories[cat] && result.categories[cat].percent >= 80) {
+        strengthItems.push(strengthMsgs[cat]);
+      }
+    }
+  }
+  if (strengthItems.length > 0) {
+    strengthsHTML = `
+      <div class="weaknesses" style="margin-top:24px;">
+        <h3>${txt.strengths}</h3>
+        ${strengthItems.map(s => `
+          <div class="weakness-item" style="border-left: 3px solid var(--success);">
+            <div class="weakness-text" style="color:var(--text);display:flex;align-items:flex-start;gap:8px;">
+              <span style="color:var(--success);font-size:1.1rem;flex-shrink:0;">&#10003;</span>
+              <span>${s}</span>
+            </div>
+          </div>
+        `).join('')}
       </div>
     `;
   }
@@ -781,6 +860,38 @@ function renderResults(result) {
     `;
   }
 
+  // Share buttons
+  const shareTextFull = `I scored ${score}/100 on the Elbrus Climbing sales assessment. Try it yourself: https://elbrusclimbing.github.io/knowledge-base/test-sales-hiring/`;
+  const shareUrl = 'https://elbrusclimbing.github.io/knowledge-base/test-sales-hiring/';
+  const shareTextOnly = `I scored ${score}/100 on the Elbrus Climbing sales assessment. Try it yourself:`;
+  const encodedText = encodeURIComponent(shareTextFull);
+  const encodedShareText = encodeURIComponent(shareTextOnly);
+  const encodedUrl = encodeURIComponent(shareUrl);
+
+  const shareHTML = `
+    <div style="margin-top:16px;">
+      <div style="font-size:0.85rem;color:var(--text-dim);margin-bottom:10px;text-align:center;">${txt.shareResult}</div>
+      <div class="share-buttons" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+        <a href="https://api.whatsapp.com/send?text=${encodedText}" target="_blank" class="share-btn" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--radius-sm);background:#25D366;color:#fff;text-decoration:none;font-size:0.8rem;font-weight:500;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://t.me/share/url?url=${encodedUrl}&text=${encodedShareText}" target="_blank" class="share-btn" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--radius-sm);background:#0088cc;color:#fff;text-decoration:none;font-size:0.8rem;font-weight:500;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Telegram
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=${encodedText}" target="_blank" class="share-btn" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--radius-sm);background:#1a1a1a;color:#fff;text-decoration:none;font-size:0.8rem;font-weight:500;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X
+        </a>
+        <button class="share-btn" id="btn-copy-share" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--radius-sm);background:var(--bg);color:var(--text);border:1px solid var(--border);cursor:pointer;font-size:0.8rem;font-weight:500;font-family:inherit;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+    </div>
+  `;
+
   const main = $('#main-content');
   main.innerHTML = `
     <div class="screen active" id="screen-results">
@@ -793,9 +904,9 @@ function renderResults(result) {
           <div class="result-bar-fill ${colorClass}" id="result-bar-fill" style="width:0%"></div>
         </div>
         ${decisionHTML}
+        ${strengthsHTML}
         ${weaknessHTML}
-        <div class="btn-spacer"></div>
-        <button class="btn btn-secondary" id="btn-share">${txt.shareResult}</button>
+        ${shareHTML}
       </div>
     </div>
   `;
@@ -807,42 +918,28 @@ function renderResults(result) {
     });
   });
 
-  // Share button
-  const shareBtn = $('#btn-share');
-  const shareTextContent = txt.shareText.replace('{score}', score);
-  const shareUrl = window.location.href;
-
-  shareBtn.addEventListener('click', async () => {
-    if (navigator.share) {
+  // Copy button
+  const copyBtn = $('#btn-copy-share');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
       try {
-        await navigator.share({
-          text: shareTextContent,
-          url: shareUrl
-        });
-      } catch (e) {
-        // User cancelled or error — ignore
-      }
-    } else {
-      // Desktop fallback: copy to clipboard
-      try {
-        await navigator.clipboard.writeText(shareTextContent + ' ' + shareUrl);
-        shareBtn.textContent = txt.copied;
+        await navigator.clipboard.writeText(shareTextFull);
+        copyBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> ${txt.copied}`;
         setTimeout(() => {
-          shareBtn.textContent = txt.shareResult;
+          copyBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg> Copy`;
         }, 2000);
       } catch (e) {
-        // Fallback for older browsers
         const textarea = document.createElement('textarea');
-        textarea.value = shareTextContent + ' ' + shareUrl;
+        textarea.value = shareTextFull;
         document.body.appendChild(textarea);
         textarea.select();
         document.execCommand('copy');
         document.body.removeChild(textarea);
-        shareBtn.textContent = txt.copied;
+        copyBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> ${txt.copied}`;
         setTimeout(() => {
-          shareBtn.textContent = txt.shareResult;
+          copyBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg> Copy`;
         }, 2000);
       }
-    }
-  });
+    });
+  }
 }

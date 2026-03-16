@@ -23,7 +23,7 @@ const ScoringEngine = (function () {
     15: { a: -2, b: 0, c: 2, d: 1 },
     16: { a: 1, b: 2, c: 0 },
     17: { a: -2, b: 2, c: 0, d: 1 },
-    18: { a: 0, b: -3, c: 2, d: 1 },
+    18: { a: 0, b: -2, c: 2, d: 1 },
     19: { a: -1, b: -2, c: 1, d: 2 },
     22: { a: -1, b: 1, c: -1, d: 2 },
     23: { a: 0, b: 1, c: 2, d: 1 },
@@ -302,10 +302,6 @@ const ScoringEngine = (function () {
     }
 
     // Auto-reject checks
-    if (a.Q18 === 'b') {
-      result.autoReject = true;
-      result.autoRejectReason = 'Safety violation (Q18)';
-    }
     const totalFakes = result.honestyDetails.fakeBooks + result.honestyDetails.fakeFilms;
     if (totalFakes >= 3) {
       result.autoReject = true;
@@ -328,16 +324,24 @@ const ScoringEngine = (function () {
       result.decision = 'reject';
     } else if (result.honestyScore < 9) {
       // Max "consider" if honesty < 9
-      result.decision = result.finalScore >= 50 ? 'consider' : 'reject';
-    } else if (result.finalScore >= 75) {
-      // Strong requires no category < 50% and honesty >= 13
+      result.decision = result.finalScore >= 55 ? 'consider' : 'reject';
+    } else if (result.finalScore >= 85) {
+      // Outstanding requires no category < 50% and honesty >= 13
+      const allCatsOk = Object.values(result.categories).every(c => c.percent >= 50);
+      if (allCatsOk && result.honestyScore >= 13) {
+        result.decision = 'outstanding';
+      } else {
+        result.decision = 'strong';
+      }
+    } else if (result.finalScore >= 70) {
+      // Excellent/strong
       const allCatsOk = Object.values(result.categories).every(c => c.percent >= 50);
       if (allCatsOk && result.honestyScore >= 13) {
         result.decision = 'strong';
       } else {
         result.decision = 'consider';
       }
-    } else if (result.finalScore >= 50) {
+    } else if (result.finalScore >= 55) {
       result.decision = 'consider';
     } else {
       result.decision = 'reject';
