@@ -3,6 +3,9 @@
  * Main Application Logic
  */
 
+const VERSION = '2.1';
+console.log('Elbrus Test v' + VERSION);
+
 // === CONFIGURATION ===
 const CONFIG = {
   APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbxpA1a-2n8n0jYdiRKZdZVtS44dgDChQ_vy8pGbGt-pWTNqpPvL2_sii5AvN0YYXoVxhw/exec',
@@ -202,8 +205,12 @@ function t() { return UI_TEXT[state.language]; }
 function getQuestions() { return questions[state.language]; }
 function getQuestionById(id) { return getQuestions().find(q => q.id === id); }
 
-// === COPY PROTECTION ===
-document.addEventListener('contextmenu', e => e.preventDefault());
+// === COPY PROTECTION (allow context menu on input fields for paste) ===
+document.addEventListener('contextmenu', e => {
+  const tag = e.target.tagName.toLowerCase();
+  if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+  e.preventDefault();
+});
 
 // === INITIALIZATION ===
 document.addEventListener('DOMContentLoaded', () => {

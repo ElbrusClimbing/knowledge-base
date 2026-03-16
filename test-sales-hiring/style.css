@@ -41,8 +41,8 @@ body {
   -webkit-user-select: none;
 }
 
-/* Allow selection in input fields */
-input, textarea {
+/* Allow selection and paste in input fields */
+input, textarea, select {
   user-select: text;
   -webkit-user-select: text;
 }
