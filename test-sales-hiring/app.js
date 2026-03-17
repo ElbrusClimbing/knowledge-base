@@ -3,7 +3,7 @@
  * Main Application Logic
  */
 
-const VERSION = '2.1';
+const VERSION = '2.2';
 console.log('Elbrus Test v' + VERSION);
 
 // === CONFIGURATION ===
@@ -776,7 +776,7 @@ function renderResults(result) {
   } else if (score >= 70) {
     colorClass = 'green';
     scoreColor = 'var(--success)';
-  } else if (score >= 55) {
+  } else if (score >= 60) {
     colorClass = 'yellow';
     scoreColor = 'var(--warning)';
   } else {
@@ -830,7 +830,7 @@ function renderResults(result) {
   const strengthMsgs = txt.strengthMessages;
   if (result.categories) {
     for (const cat of ['sales', 'client', 'discipline', 'motivation', 'profdev']) {
-      if (result.categories[cat] && result.categories[cat].percent >= 80) {
+      if (result.categories[cat] && result.categories[cat].percent >= 70) {
         strengthItems.push(strengthMsgs[cat]);
       }
     }

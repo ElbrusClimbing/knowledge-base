@@ -324,7 +324,7 @@ const ScoringEngine = (function () {
       result.decision = 'reject';
     } else if (result.honestyScore < 9) {
       // Max "consider" if honesty < 9
-      result.decision = result.finalScore >= 55 ? 'consider' : 'reject';
+      result.decision = result.finalScore >= 60 ? 'consider' : 'reject';
     } else if (result.finalScore >= 85) {
       // Outstanding requires no category < 50% and honesty >= 13
       const allCatsOk = Object.values(result.categories).every(c => c.percent >= 50);
@@ -341,7 +341,7 @@ const ScoringEngine = (function () {
       } else {
         result.decision = 'consider';
       }
-    } else if (result.finalScore >= 55) {
+    } else if (result.finalScore >= 60) {
       result.decision = 'consider';
     } else {
       result.decision = 'reject';
@@ -349,6 +349,7 @@ const ScoringEngine = (function () {
 
     // Weakness feedback
     result.weaknesses = _detectWeaknesses(result.questionScores, a);
+    _addCategoryWeaknesses(result.weaknesses, result.categories);
 
     return result;
   }
@@ -411,6 +412,24 @@ const ScoringEngine = (function () {
     }
 
     return w;
+  }
+
+  function _addCategoryWeaknesses(weaknesses, categories) {
+    const catWeakMessages = {
+      sales: { title: 'Sales techniques', text: 'Your approach to sales situations suggests room for growth in client qualification, objection handling, and managing the sales process. Studying consultative sales methodology could help strengthen these skills.' },
+      client: { title: 'Client orientation', text: 'Consider prioritising the client\'s needs and safety more consistently. In adventure tourism, trust and transparency are essential for building lasting client relationships.' },
+      discipline: { title: 'Discipline and systems', text: 'Working within structured processes, CRM systems, and established scripts is important for consistency and team collaboration. Developing systematic work habits will improve your effectiveness.' },
+      motivation: { title: 'Motivation alignment', text: 'Consider reflecting on what drives you in sales. Sustainable motivation typically comes from genuine interest in the product and a balance between income goals and professional growth.' },
+      profdev: { title: 'Professional development', text: 'Actively investing in your professional growth — through books, courses, mentoring, or conferences — can significantly accelerate your development as a sales professional.' }
+    };
+
+    for (const [cat, msg] of Object.entries(catWeakMessages)) {
+      if (categories[cat] && categories[cat].percent < 40) {
+        if (!weaknesses.some(w => w.title === msg.title)) {
+          weaknesses.push(msg);
+        }
+      }
+    }
   }
 
   return { calculate };
