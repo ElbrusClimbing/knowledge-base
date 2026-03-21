@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elbrus Climbing — Knowledge Base</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        /* ── Login Screen ── */
+        body.locked {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+            padding: 48px 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .login-logo {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .login-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .login-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 28px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            text-align: center;
+            letter-spacing: 2px;
+            transition: all 0.2s;
+            margin-bottom: 16px;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
+        .login-input.error {
+            border-color: #ef4444;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .login-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .login-btn:disabled {
+            background: #93c5fd;
+            cursor: not-allowed;
+        }
+
+        .login-error {
+            color: #ef4444;
+            font-size: 13px;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .login-error.show {
+            display: block;
+        }
+
+        /* ── Main Content (hidden until auth) ── */
+        .main-content {
+            display: none;
+        }
+
+        body.unlocked .login-container {
+            display: none;
+        }
+
+        body.unlocked .main-content {
+            display: block;
+        }
+
+        body.unlocked {
+            display: block;
+        }
+
+        /* ── Header ── */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-logo {
+            font-size: 22px;
+        }
+
+        .header-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: #1a1a1a;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: #f3f4f6;
+            border-radius: 6px;
+            overflow: hidden;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            color: #6b7280;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        /* ── Page Title ── */
+        .page-title-section {
+            max-width: 900px;
+            margin: 32px auto 0;
+            padding: 0 24px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 24px;
+        }
+
+        /* ── Search ── */
+        .search-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 24px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 16px 14px 44px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            background: #fff;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 40px;
+            top: 15px;
+            color: #9ca3af;
+            font-size: 16px;
+            pointer-events: none;
+        }
+
+        .search-results {
+            position: absolute;
+            top: 54px;
+            left: 24px;
+            right: 24px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            max-height: 320px;
+            overflow-y: auto;
+            display: none;
+            z-index: 50;
+        }
+
+        .search-results.visible {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f3f4f6;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item:hover {
+            background: #f0f7ff;
+        }
+
+        .search-result-item.disabled {
+            cursor: default;
+            opacity: 0.5;
+        }
+
+        .search-result-item.disabled:hover {
+            background: transparent;
+        }
+
+        .search-result-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .search-result-section {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        .search-no-results {
+            padding: 16px;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        /* ── Section Cards ── */
+        .sections-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+            padding: 28px 28px 20px;
+            transition: box-shadow 0.2s;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .section-icon {
+            font-size: 22px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .section-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            transition: background 0.15s;
+        }
+
+        .section-item.active {
+            cursor: pointer;
+        }
+
+        .section-item.active:hover {
+            background: #f0f7ff;
+        }
+
+        .section-item.active .item-title {
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        .section-item .item-arrow {
+            color: #2563eb;
+            font-size: 14px;
+            flex-shrink: 0;
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: all 0.2s;
+        }
+
+        .section-item.active:hover .item-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .section-item .item-title {
+            font-size: 14px;
+            color: #1a1a1a;
+        }
+
+        .section-item.coming-soon .item-title {
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        .badge-soon {
+            font-size: 10px;
+            font-weight: 600;
+            color: #9ca3af;
+            background: #f3f4f6;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+
+        .item-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .section-item.active .item-dot {
+            background: #2563eb;
+        }
+
+        .section-item.coming-soon .item-dot {
+            background: #d1d5db;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .login-container {
+                padding: 36px 28px;
+            }
+
+            .page-title {
+                font-size: 22px;
+            }
+
+            .section-card {
+                padding: 20px 18px 16px;
+            }
+
+            .header-title {
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+
+            .search-icon {
+                left: 36px;
+            }
+        }
+    </style>
+</head>
+<body class="locked">
+
+    <!-- ── Login Screen ── -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-logo">&#9968;</div>
+        <div class="login-title">ELBRUS CLIMBING</div>
+        <div class="login-subtitle">Knowledge Base</div>
+        <input type="password" class="login-input" id="passwordInput"
+               placeholder="Password" autocomplete="off" autofocus>
+        <button class="login-btn" id="loginBtn">Open</button>
+        <div class="login-error" id="loginError">Wrong password</div>
+    </div>
+
+    <!-- ── Main Content ── -->
+    <div class="main-content">
+
+        <div class="header">
+            <div class="header-inner">
+                <div class="header-brand">
+                    <span class="header-logo">&#9968;</span>
+                    <span class="header-title">ELBRUS CLIMBING</span>
+                </div>
+                <div class="lang-switch">
+                    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+                    <button class="lang-btn active" data-lang="ru" onclick="setLang('ru')">RU</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-title-section">
+            <div class="page-title" data-ru="База знаний" data-en="Knowledge Base">База знаний</div>
+            <div class="page-subtitle" data-ru="Внутренние материалы компании" data-en="Internal company materials">Внутренние материалы компании</div>
+        </div>
+
+        <div class="search-wrapper">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" class="search-input" id="searchInput"
+                   data-ru-placeholder="Поиск по базе знаний..."
+                   data-en-placeholder="Search the knowledge base..."
+                   placeholder="Поиск по базе знаний...">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+
+        <div class="sections-container">
+
+            <!-- SALES -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="section-icon">&#128203;</span>
+                    <span class="section-title" data-ru="Продажи" data-en="Sales">Продажи</span>
+                </div>
+                <ul class="section-list">
+                    <li class="section-item active" onclick="window.location.href='playbook_kb_protected.html'">
+                        <span class="item-dot"></span>
+                        <span class="item-title" data-ru="Техника продаж" data-en="Sales Playbook">Техника продаж</span>
+                        <span class="item-arrow">&rarr;</span>
+                    </li>
+                    <li class="section-item active" onclick="window.location.href='scripts_kb_protected.html'">
+                        <span class="item-dot"></span>
+                        <span class="item-title" data-ru="Скрипты продаж" data-en="Sales Scripts">Скрипты продаж</span>
+                        <span class="item-arrow">&rarr;</span>
+                    </li>
+                    <li class="section-item active" onclick="window.location.href='call_flowchart.html'">
+                        <span class="item-dot"></span>
+                        <span class="item-title" data-ru="Скрипт обзвона" data-en="Call Script">Скрипт обзвона</span>
+                        <span class="item-arrow">&rarr;</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- HR -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="section-icon">&#128101;</span>
+                    <span class="section-title" data-ru="HR и найм" data-en="HR &amp; Hiring">HR и найм</span>
+                </div>
+                <ul class="section-list">
+                    <li class="section-item active" onclick="window.location.href='test-sales-hiring/'">
+                        <span class="item-dot"></span>
+                        <span class="item-title" data-ru="Тест для менеджера по продажам" data-en="Sales Manager Test">Тест для менеджера по продажам</span>
+                        <span class="item-arrow">&rarr;</span>
+                    </li>
+                    <li class="section-item coming-soon">
+                        <span class="item-dot"></span>
+                        <span class="item-title" data-ru="Обучение новых сотрудников" data-en="Onboarding">Обучение новых сотрудников</span>
+                        <span class="badge-soon" data-ru="скоро" data-en="soon">скоро</span>
+                    </li>
+                    <li class="section-item coming-soon">
+                        <span class="item-dot"></span>
+                        <span class="item-title" data-ru="Стандарты работы" data-en="Work Standards">Стандарты работы</span>
+                        <span class="badge-soon" data-ru="скоро" data-en="soon">скоро</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- PRODUCT -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="section-icon">&#128230;</span>
+                    <span class="section-title" data-ru="Продукт" data-en="Product">Продукт</span>
+                </div>
+                <ul class="section-list">
+                    <li class="section-item coming-soon">
+                        <span class="item-dot"></span>
+                        <span class="item-title" data-ru="Описания программ" data-en="Programme Descriptions">Описания программ</span>
+                        <span class="badge-soon" data-ru="скоро" data-en="soon">скоро</span>
+                    </li>
+                    <li class="section-item coming-soon">
+                        <span class="item-dot"></span>
+                        <span class="item-title" data-ru="FAQ для клиентов" data-en="Client FAQ">FAQ для клиентов</span>
+                        <span class="badge-soon" data-ru="скоро" data-en="soon">скоро</span>
+                    </li>
+                    <li class="section-item coming-soon">
+                        <span class="item-dot"></span>
+                        <span class="item-title" data-ru="Безопасность" data-en="Safety">Безопасность</span>
+                        <span class="badge-soon" data-ru="скоро" data-en="soon">скоро</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- PROCESSES -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="section-icon">&#128202;</span>
+                    <span class="section-title" data-ru="Процессы" data-en="Processes">Процессы</span>
+                </div>
+                <ul class="section-list">
+                    <li class="section-item coming-soon">
+                        <span class="item-dot"></span>
+                        <span class="item-title" data-ru="Работа в CRM" data-en="CRM Guidelines">Работа в CRM</span>
+                        <span class="badge-soon" data-ru="скоро" data-en="soon">скоро</span>
+                    </li>
+                    <li class="section-item coming-soon">
+                        <span class="item-dot"></span>
+                        <span class="item-title" data-ru="Шаблоны сообщений" data-en="Message Templates">Шаблоны сообщений</span>
+                        <span class="badge-soon" data-ru="скоро" data-en="soon">скоро</span>
+                    </li>
+                    <li class="section-item coming-soon">
+                        <span class="item-dot"></span>
+                        <span class="item-title" data-ru="Отчётность" data-en="Reporting">Отчётность</span>
+                        <span class="badge-soon" data-ru="скоро" data-en="soon">скоро</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer" data-ru="Elbrus Climbing &middot; Внутренняя база знаний" data-en="Elbrus Climbing &middot; Internal Knowledge Base">Elbrus Climbing &middot; Внутренняя база знаний</div>
+
+    </div>
+
+    <script>
+        // ── Password Verification (PBKDF2 + SHA-256) ──
+        const SALT_HEX = '24eb0f39506be51b209d4f83c83ef252';
+        const HASH_HEX = '905ccb2b4e0412a8102c181bbc95d5b8e92fd31c5994ff5e7a3b3cc4aeee7518';
+        const ITERATIONS = 100000;
+
+        function hexToBuffer(hex) {
+            const bytes = new Uint8Array(hex.length / 2);
+            for (let i = 0; i < hex.length; i += 2) {
+                bytes[i / 2] = parseInt(hex.substr(i, 2), 16);
+            }
+            return bytes.buffer;
+        }
+
+        function bufferToHex(buffer) {
+            return Array.from(new Uint8Array(buffer))
+                .map(b => b.toString(16).padStart(2, '0'))
+                .join('');
+        }
+
+        async function verifyPassword(password) {
+            const encoder = new TextEncoder();
+            const keyMaterial = await crypto.subtle.importKey(
+                'raw', encoder.encode(password), 'PBKDF2', false, ['deriveBits']
+            );
+            const derivedBits = await crypto.subtle.deriveBits(
+                {
+                    name: 'PBKDF2',
+                    salt: new Uint8Array(hexToBuffer(SALT_HEX)),
+                    iterations: ITERATIONS,
+                    hash: 'SHA-256'
+                },
+                keyMaterial,
+                256
+            );
+            return bufferToHex(derivedBits) === HASH_HEX;
+        }
+
+        async function attemptLogin() {
+            const input = document.getElementById('passwordInput');
+            const btn = document.getElementById('loginBtn');
+            const error = document.getElementById('loginError');
+            const password = input.value;
+
+            if (!password) return;
+
+            btn.disabled = true;
+            btn.textContent = '...';
+            error.classList.remove('show');
+
+            const valid = await verifyPassword(password);
+
+            if (valid) {
+                document.body.classList.remove('locked');
+                document.body.classList.add('unlocked');
+            } else {
+                input.classList.add('error');
+                error.classList.add('show');
+                btn.disabled = false;
+                btn.textContent = 'Open';
+                setTimeout(() => input.classList.remove('error'), 400);
+            }
+        }
+
+        document.getElementById('loginBtn').addEventListener('click', attemptLogin);
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') attemptLogin();
+        });
+
+        // ── Language Switch ──
+        let currentLang = 'ru';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            document.querySelectorAll('[data-ru]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + lang);
+            });
+            const searchInput = document.getElementById('searchInput');
+            searchInput.placeholder = searchInput.getAttribute('data-' + lang + '-placeholder');
+            // Re-run search if there's text
+            if (searchInput.value.trim()) {
+                runSearch(searchInput.value.trim());
+            }
+        }
+
+        // ── Search ──
+        const searchIndex = [
+            { keywords: ['скрипт', 'script', 'ответ', 'reply', 'клиент', 'client', 'возражение', 'objection', 'цена', 'price'], title: {ru: 'Скрипты продаж', en: 'Sales Scripts'}, link: 'scripts_kb_protected.html', section: {ru: 'Продажи', en: 'Sales'} },
+            { keywords: ['техника', 'technique', 'методология', 'methodology', 'воронка', 'funnel', 'квалификация', 'qualification', 'закрытие', 'closing', 'playbook', 'плейбук'], title: {ru: 'Техника продаж', en: 'Sales Playbook'}, link: 'playbook_kb_protected.html', section: {ru: 'Продажи', en: 'Sales'} },
+            { keywords: ['звонок', 'call', 'обзвон', 'телефон', 'phone', 'холодный', 'cold'], title: {ru: 'Скрипт обзвона', en: 'Call Script'}, link: 'call_flowchart.html', section: {ru: 'Продажи', en: 'Sales'} },
+            { keywords: ['тест', 'test', 'найм', 'hiring', 'кандидат', 'candidate', 'менеджер', 'manager', 'оценка', 'assessment'], title: {ru: 'Тест для менеджера по продажам', en: 'Sales Manager Test'}, link: 'test-sales-hiring/', section: {ru: 'HR и найм', en: 'HR & Hiring'} },
+            { keywords: ['обучение', 'onboarding', 'новый сотрудник', 'new employee', 'адаптация'], title: {ru: 'Обучение новых сотрудников', en: 'Onboarding'}, link: null, section: {ru: 'HR и найм', en: 'HR & Hiring'} },
+            { keywords: ['программа', 'programme', 'маршрут', 'route', 'эльбрус', 'elbrus', 'казбек', 'kazbek'], title: {ru: 'Описания программ', en: 'Programme Descriptions'}, link: null, section: {ru: 'Продукт', en: 'Product'} },
+            { keywords: ['crm', 'битрикс', 'bitrix', 'сделка', 'deal', 'лид', 'lead'], title: {ru: 'Работа в CRM', en: 'CRM Guidelines'}, link: null, section: {ru: 'Процессы', en: 'Processes'} },
+            { keywords: ['безопасность', 'safety', 'страховка', 'insurance', 'акклиматизация', 'acclimatization'], title: {ru: 'Безопасность', en: 'Safety'}, link: null, section: {ru: 'Продукт', en: 'Product'} },
+            { keywords: ['шаблон', 'template', 'сообщение', 'message', 'ватсап', 'whatsapp'], title: {ru: 'Шаблоны сообщений', en: 'Message Templates'}, link: null, section: {ru: 'Процессы', en: 'Processes'} },
+            { keywords: ['отчёт', 'отчет', 'report', 'статистика', 'statistics', 'kpi'], title: {ru: 'Отчётность', en: 'Reporting'}, link: null, section: {ru: 'Процессы', en: 'Processes'} },
+            { keywords: ['faq', 'вопрос', 'question', 'частый', 'frequent'], title: {ru: 'FAQ для клиентов', en: 'Client FAQ'}, link: null, section: {ru: 'Продукт', en: 'Product'} },
+            { keywords: ['стандарт', 'standard', 'правила', 'rules', 'регламент', 'regulation'], title: {ru: 'Стандарты работы', en: 'Work Standards'}, link: null, section: {ru: 'HR и найм', en: 'HR & Hiring'} },
+            { keywords: ['продажа', 'sale', 'продавать', 'sell'], title: {ru: 'Скрипты продаж', en: 'Sales Scripts'}, link: 'scripts_kb_protected.html', section: {ru: 'Продажи', en: 'Sales'} },
+        ];
+
+        function runSearch(query) {
+            const resultsEl = document.getElementById('searchResults');
+            const q = query.toLowerCase().trim();
+
+            if (!q) {
+                resultsEl.classList.remove('visible');
+                resultsEl.innerHTML = '';
+                return;
+            }
+
+            const seen = new Set();
+            const matches = [];
+
+            searchIndex.forEach(item => {
+                const key = item.title.en;
+                if (seen.has(key)) return;
+                const matched = item.keywords.some(kw => kw.includes(q) || q.includes(kw));
+                if (matched) {
+                    seen.add(key);
+                    matches.push(item);
+                }
+            });
+
+            resultsEl.innerHTML = '';
+
+            if (matches.length === 0) {
+                const noResults = currentLang === 'ru' ? 'Ничего не найдено' : 'No results found';
+                resultsEl.innerHTML = '<div class="search-no-results">' + noResults + '</div>';
+            } else {
+                matches.forEach(item => {
+                    const div = document.createElement('div');
+                    const isAvailable = !!item.link;
+                    div.className = 'search-result-item' + (isAvailable ? '' : ' disabled');
+
+                    const soonLabel = currentLang === 'ru' ? ' (скоро)' : ' (coming soon)';
+                    const titleText = item.title[currentLang] + (isAvailable ? '' : soonLabel);
+
+                    div.innerHTML = '<div class="search-result-title">' + titleText + '</div>' +
+                        '<div class="search-result-section">' + item.section[currentLang] + '</div>';
+
+                    if (isAvailable) {
+                        div.addEventListener('click', () => {
+                            window.location.href = item.link;
+                        });
+                    }
+
+                    resultsEl.appendChild(div);
+                });
+            }
+
+            resultsEl.classList.add('visible');
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            runSearch(e.target.value);
+        });
+
+        document.addEventListener('click', (e) => {
+            const searchWrapper = document.querySelector('.search-wrapper');
+            if (!searchWrapper.contains(e.target)) {
+                document.getElementById('searchResults').classList.remove('visible');
+            }
+        });
+
+        document.getElementById('searchInput').addEventListener('focus', (e) => {
+            if (e.target.value.trim()) {
+                runSearch(e.target.value.trim());
+            }
+        });
+    </script>
+</body>
+</html>
