@@ -36,8 +36,11 @@
         }
 
         .login-logo {
-            font-size: 36px;
             margin-bottom: 16px;
+        }
+
+        .login-logo img {
+            height: 324px;
         }
 
         .login-title {
@@ -138,7 +141,9 @@
         .header {
             background: #fff;
             border-bottom: 1px solid #e5e7eb;
-            padding: 20px 0;
+            padding: 0;
+            height: 70px;
+            overflow: hidden;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -150,6 +155,7 @@
             padding: 0 24px;
             display: flex;
             align-items: center;
+            height: 70px;
             justify-content: space-between;
         }
 
@@ -446,6 +452,84 @@
             color: #9ca3af;
         }
 
+        /* ── Footer ── */
+        .footer-block {
+            max-width: 900px;
+            margin: 40px auto 0;
+            padding: 0 24px;
+        }
+
+        .footer-section {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            padding: 24px;
+        }
+
+        .footer-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #f5f5f5;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .footer-links a:hover {
+            background: #e8f0fe;
+            border-color: #2563eb;
+        }
+
+        .footer-group {
+            margin-bottom: 20px;
+        }
+
+        .footer-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer-group-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .link-desc {
+            color: #9ca3af;
+            font-size: 11px;
+            margin-left: 4px;
+        }
+
+        .footer-copy {
+            max-width: 900px;
+            margin: 24px auto 32px;
+            padding: 0 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
         /* ── Responsive ── */
         @media (max-width: 600px) {
             .login-container {
@@ -468,6 +552,7 @@
             .search-icon {
                 left: 36px;
             }
+
         }
     </style>
 </head>
@@ -475,8 +560,7 @@
 
     <!-- ── Login Screen ── -->
     <div class="login-container" id="loginContainer">
-        <div class="login-logo">&#9968;</div>
-        <div class="login-title">ELBRUS CLIMBING</div>
+        <div class="login-logo"><img src="logo.png" alt="Elbrus Climbing"></div>
         <div class="login-subtitle">Knowledge Base</div>
         <input type="password" class="login-input" id="passwordInput"
                placeholder="Password" autocomplete="off" autofocus>
@@ -490,8 +574,7 @@
         <div class="header">
             <div class="header-inner">
                 <div class="header-brand">
-                    <span class="header-logo">&#9968;</span>
-                    <span class="header-title">ELBRUS CLIMBING</span>
+                    <img src="logo.png" alt="Elbrus Climbing" style="height:86px;">
                 </div>
                 <div class="lang-switch">
                     <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
@@ -618,7 +701,45 @@
 
         </div>
 
-        <div class="footer" data-ru="Elbrus Climbing &middot; Внутренняя база знаний" data-en="Elbrus Climbing &middot; Internal Knowledge Base">Elbrus Climbing &middot; Внутренняя база знаний</div>
+        <!-- FOOTER: Resources -->
+        <div class="footer-block">
+            <div class="footer-section">
+                <div class="footer-title" data-ru="Ресурсы компании" data-en="Company Resources">Ресурсы компании</div>
+
+                <div class="footer-group">
+                    <div class="footer-group-title" data-ru="Мессенджеры" data-en="Messengers">Мессенджеры</div>
+                    <div class="footer-links">
+                        <a href="https://api.whatsapp.com/send/?phone=34603574933&text&app_absent=0" target="_blank">WhatsApp <span class="link-desc" data-ru="для иностранных клиентов" data-en="international clients">для иностранных клиентов</span></a>
+                        <a href="https://api.whatsapp.com/send/?phone=79633830167&text&app_absent=0" target="_blank">WhatsApp <span class="link-desc" data-ru="для российских клиентов" data-en="Russian clients">для российских клиентов</span></a>
+                        <a href="https://t.me/elbrusclimb" target="_blank">Telegram <span class="link-desc" data-ru="для российских клиентов" data-en="Russian clients">для российских клиентов</span></a>
+                        <a href="https://m.me/255632854489077" target="_blank">Facebook Messenger</a>
+                    </div>
+                </div>
+
+                <div class="footer-group">
+                    <div class="footer-group-title" data-ru="Рабочие инструменты" data-en="Work Tools">Рабочие инструменты</div>
+                    <div class="footer-links">
+                        <a href="https://elbrusclimbing.org/" target="_blank">Bitrix24 <span class="link-desc">CRM</span></a>
+                    </div>
+                </div>
+
+                <div class="footer-group">
+                    <div class="footer-group-title" data-ru="Сайты" data-en="Websites">Сайты</div>
+                    <div class="footer-links">
+                        <a href="https://elbrusclimbing.com/" target="_blank">elbrusclimbing.com <span class="link-desc" data-ru="Эльбрус, для иностранных клиентов" data-en="Elbrus, international clients">Эльбрус, для иностранных клиентов</span></a>
+                        <a href="https://elbrusclimbing.ru" target="_blank">elbrusclimbing.ru <span class="link-desc" data-ru="Эльбрус, для российских клиентов" data-en="Elbrus, Russian clients">Эльбрус, для российских клиентов</span></a>
+                        <a href="https://kazbek-climbing.com/" target="_blank">kazbek-climbing.com <span class="link-desc" data-ru="Казбек" data-en="Kazbek">Казбек</span></a>
+                        <a href="https://kilimanjaro-climbing.com/" target="_blank">kilimanjaro-climbing.com <span class="link-desc" data-ru="Килиманджаро" data-en="Kilimanjaro">Килиманджаро</span></a>
+                        <a href="https://nepal-discovery.com/" target="_blank">nepal-discovery.com <span class="link-desc" data-ru="Непал" data-en="Nepal">Непал</span></a>
+                        <a href="https://lenin-peak.com/" target="_blank">lenin-peak.com <span class="link-desc" data-ru="Пик Ленина" data-en="Peak Lenin">Пик Ленина</span></a>
+                        <a href="https://ararat-climbing.com/" target="_blank">ararat-climbing.com <span class="link-desc" data-ru="Арарат" data-en="Ararat">Арарат</span></a>
+                        <a href="https://thailandadventure.pro/" target="_blank">thailandadventure.pro <span class="link-desc" data-ru="Таиланд" data-en="Thailand">Таиланд</span></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="footer-copy">Elbrus Climbing &middot; Internal Knowledge Base</div>
 
     </div>
 
@@ -660,6 +781,41 @@
             return bufferToHex(derivedBits) === HASH_HEX;
         }
 
+        // ── Session Management (1 hour timeout) ──
+        const SESSION_KEY = 'elbrus_kb_session';
+        const SESSION_TIMEOUT = 60 * 60 * 1000; // 1 hour
+
+        function saveSession() {
+            localStorage.setItem(SESSION_KEY, JSON.stringify({ ts: Date.now(), valid: true }));
+        }
+
+        function checkSession() {
+            try {
+                const data = JSON.parse(localStorage.getItem(SESSION_KEY));
+                if (data && data.valid && (Date.now() - data.ts) < SESSION_TIMEOUT) {
+                    return true;
+                }
+            } catch(e) {}
+            return false;
+        }
+
+        function refreshSession() {
+            if (checkSession()) saveSession();
+        }
+
+        // Refresh session on any user activity
+        ['click', 'keydown', 'scroll', 'mousemove'].forEach(evt => {
+            document.addEventListener(evt, refreshSession, { passive: true });
+        });
+
+        // Auto-login if session valid
+        if (checkSession()) {
+            document.body.classList.remove('locked');
+            document.body.classList.add('unlocked');
+            saveSession();
+            loadSearchIndex();
+        }
+
         async function attemptLogin() {
             const input = document.getElementById('passwordInput');
             const btn = document.getElementById('loginBtn');
@@ -675,8 +831,10 @@
             const valid = await verifyPassword(password);
 
             if (valid) {
+                saveSession();
                 document.body.classList.remove('locked');
                 document.body.classList.add('unlocked');
+                loadSearchIndex();
             } else {
                 input.classList.add('error');
                 error.classList.add('show');
@@ -710,45 +868,102 @@
             }
         }
 
-        // ── Search ──
-        const searchIndex = [
-            { keywords: ['скрипт', 'script', 'ответ', 'reply', 'клиент', 'client', 'возражение', 'objection', 'цена', 'price'], title: {ru: 'Скрипты продаж', en: 'Sales Scripts'}, link: 'scripts_kb_protected.html', section: {ru: 'Продажи', en: 'Sales'} },
-            { keywords: ['техника', 'technique', 'методология', 'methodology', 'воронка', 'funnel', 'квалификация', 'qualification', 'закрытие', 'closing', 'playbook', 'плейбук'], title: {ru: 'Техника продаж', en: 'Sales Playbook'}, link: 'playbook_kb_protected.html', section: {ru: 'Продажи', en: 'Sales'} },
-            { keywords: ['звонок', 'call', 'обзвон', 'телефон', 'phone', 'холодный', 'cold'], title: {ru: 'Скрипт обзвона', en: 'Call Script'}, link: 'call_flowchart.html', section: {ru: 'Продажи', en: 'Sales'} },
-            { keywords: ['тест', 'test', 'найм', 'hiring', 'кандидат', 'candidate', 'менеджер', 'manager', 'оценка', 'assessment'], title: {ru: 'Тест для менеджера по продажам', en: 'Sales Manager Test'}, link: 'test-sales-hiring/', section: {ru: 'HR и найм', en: 'HR & Hiring'} },
-            { keywords: ['обучение', 'onboarding', 'новый сотрудник', 'new employee', 'адаптация'], title: {ru: 'Обучение новых сотрудников', en: 'Onboarding'}, link: null, section: {ru: 'HR и найм', en: 'HR & Hiring'} },
-            { keywords: ['программа', 'programme', 'маршрут', 'route', 'эльбрус', 'elbrus', 'казбек', 'kazbek'], title: {ru: 'Описания программ', en: 'Programme Descriptions'}, link: null, section: {ru: 'Продукт', en: 'Product'} },
-            { keywords: ['crm', 'битрикс', 'bitrix', 'сделка', 'deal', 'лид', 'lead'], title: {ru: 'Работа в CRM', en: 'CRM Guidelines'}, link: null, section: {ru: 'Процессы', en: 'Processes'} },
-            { keywords: ['безопасность', 'safety', 'страховка', 'insurance', 'акклиматизация', 'acclimatization'], title: {ru: 'Безопасность', en: 'Safety'}, link: null, section: {ru: 'Продукт', en: 'Product'} },
-            { keywords: ['шаблон', 'template', 'сообщение', 'message', 'ватсап', 'whatsapp'], title: {ru: 'Шаблоны сообщений', en: 'Message Templates'}, link: null, section: {ru: 'Процессы', en: 'Processes'} },
-            { keywords: ['отчёт', 'отчет', 'report', 'статистика', 'statistics', 'kpi'], title: {ru: 'Отчётность', en: 'Reporting'}, link: null, section: {ru: 'Процессы', en: 'Processes'} },
-            { keywords: ['faq', 'вопрос', 'question', 'частый', 'frequent'], title: {ru: 'FAQ для клиентов', en: 'Client FAQ'}, link: null, section: {ru: 'Продукт', en: 'Product'} },
-            { keywords: ['стандарт', 'standard', 'правила', 'rules', 'регламент', 'regulation'], title: {ru: 'Стандарты работы', en: 'Work Standards'}, link: null, section: {ru: 'HR и найм', en: 'HR & Hiring'} },
-            { keywords: ['продажа', 'sale', 'продавать', 'sell'], title: {ru: 'Скрипты продаж', en: 'Sales Scripts'}, link: 'scripts_kb_protected.html', section: {ru: 'Продажи', en: 'Sales'} },
-        ];
+        // ── Search (JSON index) ──
+        let searchIndex = [];
+        let searchIndexLoaded = false;
+        let searchDebounceTimer = null;
+
+        async function loadSearchIndex() {
+            try {
+                const resp = await fetch('kb_search_index.json');
+                if (resp.ok) {
+                    searchIndex = await resp.json();
+                    searchIndexLoaded = true;
+                }
+            } catch (e) {
+                console.warn('Search index not loaded:', e);
+            }
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function highlightMatch(text, query) {
+            if (!query) return escapeHtml(text);
+            const escaped = escapeHtml(text);
+            const qEsc = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const re = new RegExp('(' + qEsc + ')', 'gi');
+            return escaped.replace(re, '<mark style="background:#fef08a;padding:0 1px;border-radius:2px">$1</mark>');
+        }
+
+        function scoreItem(item, q) {
+            const titleField = currentLang === 'ru' ? 'title_ru' : 'title_en';
+            const sectionField = currentLang === 'ru' ? 'section_ru' : 'section_en';
+            const snippetField = currentLang === 'ru' ? 'snippet_ru' : 'snippet_en';
+            const title = (item[titleField] || '').toLowerCase();
+            const section = (item[sectionField] || '').toLowerCase();
+            const keywords = (item.keywords || '').toLowerCase();
+            const snippet = (item[snippetField] || '').toLowerCase();
+
+            // Split query into words for multi-word matching
+            const words = q.split(/\s+/).filter(w => w.length > 0);
+            let score = 0;
+            let allWordsMatch = true;
+
+            for (const word of words) {
+                let wordMatched = false;
+                if (title.includes(word)) { score += 10; wordMatched = true; }
+                if (keywords.includes(word)) { score += 5; wordMatched = true; }
+                if (section.includes(word)) { score += 3; wordMatched = true; }
+                if (snippet.includes(word)) { score += 2; wordMatched = true; }
+                if (!wordMatched) allWordsMatch = false;
+            }
+
+            // Bonus for exact phrase match
+            if (title.includes(q)) score += 20;
+            if (keywords.includes(q)) score += 10;
+
+            // Only return score if at least one word matched; for multi-word queries require all words
+            if (words.length > 1 && !allWordsMatch) return 0;
+            return score;
+        }
 
         function runSearch(query) {
             const resultsEl = document.getElementById('searchResults');
             const q = query.toLowerCase().trim();
 
-            if (!q) {
+            if (!q || q.length < 2) {
                 resultsEl.classList.remove('visible');
                 resultsEl.innerHTML = '';
                 return;
             }
 
-            const seen = new Set();
-            const matches = [];
+            if (!searchIndexLoaded) {
+                resultsEl.innerHTML = '<div class="search-no-results">Loading...</div>';
+                resultsEl.classList.add('visible');
+                return;
+            }
 
+            const titleField = currentLang === 'ru' ? 'title_ru' : 'title_en';
+            const sectionField = currentLang === 'ru' ? 'section_ru' : 'section_en';
+            const snippetField = currentLang === 'ru' ? 'snippet_ru' : 'snippet_en';
+
+            // Score and filter
+            const scored = [];
             searchIndex.forEach(item => {
-                const key = item.title.en;
-                if (seen.has(key)) return;
-                const matched = item.keywords.some(kw => kw.includes(q) || q.includes(kw));
-                if (matched) {
-                    seen.add(key);
-                    matches.push(item);
-                }
+                const s = scoreItem(item, q);
+                if (s > 0) scored.push({ item, score: s });
             });
+
+            // Sort by score descending, active items first
+            scored.sort((a, b) => {
+                if (a.item.type === 'active' && b.item.type !== 'active') return -1;
+                if (a.item.type !== 'active' && b.item.type === 'active') return 1;
+                return b.score - a.score;
+            });
+
+            const matches = scored.slice(0, 10);
 
             resultsEl.innerHTML = '';
 
@@ -756,16 +971,24 @@
                 const noResults = currentLang === 'ru' ? 'Ничего не найдено' : 'No results found';
                 resultsEl.innerHTML = '<div class="search-no-results">' + noResults + '</div>';
             } else {
-                matches.forEach(item => {
+                matches.forEach(({ item }) => {
                     const div = document.createElement('div');
-                    const isAvailable = !!item.link;
+                    const isAvailable = item.type === 'active' && !!item.link;
                     div.className = 'search-result-item' + (isAvailable ? '' : ' disabled');
 
                     const soonLabel = currentLang === 'ru' ? ' (скоро)' : ' (coming soon)';
-                    const titleText = item.title[currentLang] + (isAvailable ? '' : soonLabel);
+                    const titleText = item[titleField] + (item.type === 'coming_soon' ? soonLabel : '');
+                    const sectionText = item[sectionField] || '';
+                    const snippetText = item[snippetField] || '';
 
-                    div.innerHTML = '<div class="search-result-title">' + titleText + '</div>' +
-                        '<div class="search-result-section">' + item.section[currentLang] + '</div>';
+                    let html = '<div class="search-result-title">' + highlightMatch(titleText, query.trim()) + '</div>';
+                    html += '<div class="search-result-section">' + highlightMatch(sectionText, query.trim()) + '</div>';
+                    if (snippetText) {
+                        const truncated = snippetText.length > 120 ? snippetText.substring(0, 120) + '...' : snippetText;
+                        html += '<div class="search-result-snippet" style="font-size:12px;color:#9ca3af;margin-top:3px;line-height:1.4">' + highlightMatch(truncated, query.trim()) + '</div>';
+                    }
+
+                    div.innerHTML = html;
 
                     if (isAvailable) {
                         div.addEventListener('click', () => {
@@ -780,8 +1003,12 @@
             resultsEl.classList.add('visible');
         }
 
+        // Debounced search input handler (300ms)
         document.getElementById('searchInput').addEventListener('input', (e) => {
-            runSearch(e.target.value);
+            clearTimeout(searchDebounceTimer);
+            searchDebounceTimer = setTimeout(() => {
+                runSearch(e.target.value);
+            }, 300);
         });
 
         document.addEventListener('click', (e) => {
